@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.batch.a20dojo_and">
+    package="jp.co.cyberagent.dojo2020">
 
     <application
         android:allowBackup="true"

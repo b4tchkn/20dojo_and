@@ -1,4 +1,4 @@
-package com.batch.a20dojo_and
+package jp.co.cyberagent.dojo2020
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.batch.a20dojo_and", appContext.packageName)
+        assertEquals("jp.co.cyberagent.dojo2020", appContext.packageName)
     }
 }

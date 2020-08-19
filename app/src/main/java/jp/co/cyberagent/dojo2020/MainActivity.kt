@@ -1,4 +1,4 @@
-package com.batch.a20dojo_and
+package jp.co.cyberagent.dojo2020
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

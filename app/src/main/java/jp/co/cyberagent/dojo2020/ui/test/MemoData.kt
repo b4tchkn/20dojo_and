@@ -1,4 +1,4 @@
-package jp.co.cyberagent.dojo2020
+package jp.co.cyberagent.dojo2020.ui.test
 
 import jp.co.cyberagent.dojo2020.data.model.Memo
 

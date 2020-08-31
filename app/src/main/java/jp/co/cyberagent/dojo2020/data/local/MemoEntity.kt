@@ -13,5 +13,8 @@ data class MemoEntity(
     val title: String,
 
     @ColumnInfo(name = "contents")
-    val contents: String
+    val contents: String,
+
+    @ColumnInfo(name = "time")
+    val time: Double
 )

@@ -1,4 +1,4 @@
-package jp.co.cyberagent.dojo2020.ui.main
+package jp.co.cyberagent.dojo2020.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

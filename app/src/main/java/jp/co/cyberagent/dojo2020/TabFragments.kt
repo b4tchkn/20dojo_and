@@ -6,19 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class Tab1Fragment: Fragment(){
+class EditRecordTabFragment: Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_tab_1,container,false)
+        return inflater.inflate(R.layout.edit_record_tab,container,false)
     }
 }
 
-class Tab2Fragment: Fragment(){
+class TimerFragment: Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_tab_2,container,false)
+        return inflater.inflate(R.layout.timer_tab,container,false)
     }
 }
-class Tab3Fragment: Fragment(){
+class ProfileFragment: Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_tab_3,container,false)
+        return inflater.inflate(R.layout.profile_tab,container,false)
     }
 }

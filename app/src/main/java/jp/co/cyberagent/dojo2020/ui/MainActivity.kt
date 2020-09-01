@@ -36,10 +36,6 @@ class MainActivity : AppCompatActivity() {
                 secondMemoTime.text = secondMemo.time.toString()
             }
 
-            reloadButton.setOnClickListener {
-                homeViewModel.fetchMemoList()
-            }
-
             saveButton.setOnClickListener {
                 val title = titleEditText.text.toString()
                 val memo = createWithTitle(title)

@@ -12,6 +12,6 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="edit_record_fragment を表示"/>
+        android:text=" MemoListFragmentを表示"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

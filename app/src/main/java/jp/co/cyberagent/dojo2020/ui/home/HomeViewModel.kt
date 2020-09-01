@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(context: Context) : ViewModel() {
-    private val repository = DI.injectLocalDataSource(context)
+    private val repository = DI.injectRepository(context)
 
     private val mutableLiveData: MutableLiveData<List<Memo>> = MutableLiveData()
     val liveData: LiveData<List<Memo>>

@@ -6,11 +6,22 @@ import jp.co.cyberagent.dojo2020.data.DataSource
 import jp.co.cyberagent.dojo2020.data.Repository
 import jp.co.cyberagent.dojo2020.data.local.LocalDataSource
 import jp.co.cyberagent.dojo2020.data.local.db.MemoDataBase
+import jp.co.cyberagent.dojo2020.data.model.Memo
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 object DI {
-    fun injectRepository(context: Context): DataSource {
+    fun injectRepository(context: Context): Repository {
         val localDataSource = injectLocalDataSource(context)
-        val remoteDataSource = injectRemoteDataSource()
+        val remoteDataSource = object : DataSource {
+            override suspend fun save(memo: Memo) {
+
+            }
+
+            override suspend fun fetchAll(): Flow<List<Memo>> = flow {
+
+            }
+        } // todo
 
         return Repository(localDataSource, remoteDataSource)
     }

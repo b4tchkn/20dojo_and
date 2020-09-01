@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 firstMemoContent.text = firstMemo.contents
                 firstMemoTime.text = firstMemo.time.toString()
 
-                val secondMemo = it.drop(1).randomOrNull() ?: return@observe
+                val secondMemo = it.randomOrNull() ?: return@observe
 
                 secondMemoTitle.text = secondMemo.title
                 secondMemoContent.text = secondMemo.contents

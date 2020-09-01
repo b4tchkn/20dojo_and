@@ -63,5 +63,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:21.6.0'
     implementation 'com.google.firebase:firebase-firestore:21.6.0'
 
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+
 
 }

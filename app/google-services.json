@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1058767414159",
+    "firebase_url": "https://ca-memoapp.firebaseio.com",
+    "project_id": "ca-memoapp",
+    "storage_bucket": "ca-memoapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058767414159:android:efb8315f2f1fa12506e1fa",
+        "android_client_info": {
+          "package_name": "jp.co.cyberagent.dojo2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058767414159-4rriqjdfjq7m93qrun9carff6po7smoi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jp.co.cyberagent.dojo2020",
+            "certificate_hash": "885ccaeb0e16733441da13463bc2c9a126bf9ae1"
+          }
+        },
+        {
+          "client_id": "1058767414159-g7va6ogtvhoqvpei0ttf7lltvvdi0joq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMeK1bXk8OVhfdeu0pps_xJIKFdk9Vcvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058767414159-g7va6ogtvhoqvpei0ttf7lltvvdi0joq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

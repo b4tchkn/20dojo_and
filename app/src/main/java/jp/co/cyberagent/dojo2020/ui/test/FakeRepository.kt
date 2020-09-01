@@ -5,7 +5,7 @@ import jp.co.cyberagent.dojo2020.data.model.Memo
 import kotlinx.coroutines.flow.flow
 
 object FakeRepository : jp.co.cyberagent.dojo2020.data.DataSource {
-    override suspend fun insert(memo: Memo) {
+    override suspend fun save(memo: Memo) {
         Log.d(Constants.REPOSITORY, "insert: $memo")
     }
 

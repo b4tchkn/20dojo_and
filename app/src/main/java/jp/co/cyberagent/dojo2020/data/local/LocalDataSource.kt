@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.map
 
 class LocalDataSource(private val dataBase: MemoDataBase) : DataSource {
 
-    override suspend fun insert(memo: Memo) {
+    override suspend fun save(memo: Memo) {
         val forInsertMemo = MemoEntity.createForInsert(memo.title, memo.contents, memo.time)
 
         dataBase.memoDao().insert(forInsertMemo)

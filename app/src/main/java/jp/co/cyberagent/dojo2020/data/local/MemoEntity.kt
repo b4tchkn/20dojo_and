@@ -17,4 +17,10 @@ data class MemoEntity(
 
     @ColumnInfo(name = "time")
     val time: Double
-)
+) {
+    companion object {
+        fun createForInsert(title: String, contents: String, time: Double): MemoEntity {
+            return MemoEntity(0, title, contents, time)
+        }
+    }
+}

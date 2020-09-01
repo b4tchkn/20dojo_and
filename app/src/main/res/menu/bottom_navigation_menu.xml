@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navi_smile"
+        android:icon="@drawable/ic_baseline_edit_24"
+        android:title="EditRecord"/>
+    <item
+        android:id="@+id/navi_pets"
+        android:icon="@drawable/ic_baseline_alarm_24"
+        android:title="Timer"/>
+    <item
+        android:id="@+id/navi_sun"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Profile"/>
+</menu>

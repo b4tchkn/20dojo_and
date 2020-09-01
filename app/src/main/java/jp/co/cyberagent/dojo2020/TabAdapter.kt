@@ -18,7 +18,7 @@ class TabAdapter(fm:FragmentManager, private val context: Context): FragmentPage
     override fun getItem(position: Int): Fragment {
         return when(position){
             0 -> {
-                Tab01Fragment()
+                Tab1Fragment()
             }
             else ->  {
                 Tab2Fragment()

@@ -2,15 +2,15 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navi_smile"
+        android:id="@+id/navi_memo_list"
         android:icon="@drawable/ic_baseline_edit_24"
-        android:title="EditRecord"/>
+        android:title="メモ一覧"/>
     <item
-        android:id="@+id/navi_pets"
+        android:id="@+id/navi_timer"
         android:icon="@drawable/ic_baseline_alarm_24"
-        android:title="Timer"/>
+        android:title="タイマー"/>
     <item
-        android:id="@+id/navi_sun"
+        android:id="@+id/navi_profile"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="Profile"/>
+        android:title="プロフィール"/>
 </menu>

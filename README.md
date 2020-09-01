@@ -26,6 +26,9 @@
 `easy`、`normal`、`hard`、`expert`のレベルに分けて機能ごとにissueを分けてあるので`required`から優先的に取り掛かってください。`required`のissueがすべて終わったら`required`がついてないissueなどにも挑戦してみましょう。
 機能ごとの詳細はissueに書いてあります。チーム内で実装方法がわからなかった場合は遠慮せずメンターに聞いてください。
 
+### Hackmd
+URL: https://hackmd.io/mKFD2FWsQkuNJOYyhovcpw?edit
+
 
 ### 注意事項
 issueごとにブランチを切って、PRを出してチーム内でコードレビューを行ってmasterにマージする流れで開発しましょう。

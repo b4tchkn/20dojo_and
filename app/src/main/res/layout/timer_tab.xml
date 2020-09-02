@@ -9,12 +9,12 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="290dp"
+        android:layout_width="200dp"
         android:layout_height="89dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="607dp"
-        android:layout_marginEnd="61dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="578dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="64dp"
         android:text="@string/timer_fragment"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

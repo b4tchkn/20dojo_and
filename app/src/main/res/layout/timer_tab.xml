@@ -11,8 +11,8 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/timer_fragment"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="@string/timerfragment"/>
+        android:textStyle="bold" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -9,7 +9,5 @@ import kotlinx.android.synthetic.main.list_item.view.*
 import java.text.FieldPosition
 
 class RecyclerViewHolder(view:View):RecyclerView.ViewHolder(view) {
-
     val itemTextView:TextView = view.findViewById(R.id.item_text_view)
-
 }

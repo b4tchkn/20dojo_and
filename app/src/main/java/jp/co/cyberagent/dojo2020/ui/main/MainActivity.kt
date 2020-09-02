@@ -21,7 +21,7 @@ class MainActivity :Activity(){
         viewAdapter = RecyclerAdapter(a)
         viewManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
 
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView2).apply {
+        recyclerView = findViewById<RecyclerView>(R.id.recycler_View).apply {
             setHasFixedSize(true)
 
             layoutManager = viewManager
@@ -30,7 +30,4 @@ class MainActivity :Activity(){
         }
 
     }
-
-
-
 }

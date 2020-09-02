@@ -9,17 +9,8 @@ import kotlinx.android.synthetic.main.list_item.view.*
 import java.text.FieldPosition
 
 class RecyclerViewHolder(view:View):RecyclerView.ViewHolder(view) {
-    interface ItemClickListner{
-        abstract val size: Int
 
-        fun onItemClick(view:View, position: Int)
-        operator fun get(position: Int): CharSequence? {
-            TODO("Not yet implemented")
-        }
-    }
-    val itemTextView:TextView = view.findViewById(R.id.itemImageView)
-    val itemImageView: ImageView = view.findViewById(R.id.itemImageView)
-
+    val itemTextView:TextView = view.findViewById(R.id.item_text_view)
 
 
 }

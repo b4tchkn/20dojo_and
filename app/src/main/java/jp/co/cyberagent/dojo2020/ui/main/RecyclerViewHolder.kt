@@ -12,5 +12,4 @@ class RecyclerViewHolder(view:View):RecyclerView.ViewHolder(view) {
 
     val itemTextView:TextView = view.findViewById(R.id.item_text_view)
 
-
 }

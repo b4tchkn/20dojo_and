@@ -10,7 +10,12 @@ import java.text.FieldPosition
 
 class RecyclerViewHolder(view:View):RecyclerView.ViewHolder(view) {
     interface ItemClickListner{
-        fun onItemClick(view:View,position: Int)
+        abstract val size: Int
+
+        fun onItemClick(view:View, position: Int)
+        operator fun get(position: Int): CharSequence? {
+            TODO("Not yet implemented")
+        }
     }
     val itemTextView:TextView = view.findViewById(R.id.itemImageView)
     val itemImageView: ImageView = view.findViewById(R.id.itemImageView)

@@ -17,6 +17,7 @@
         android:layout_marginBottom="64dp"
         android:fontFamily="serif"
         android:text="@string/timer_fragment"
+        android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity"
+    tools:context=".ui.main.Recyclerviewmain"
     tools:ignore="MissingDefaultResource">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -26,5 +26,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingClass" />
 </androidx.constraintlayout.widget.ConstraintLayout>

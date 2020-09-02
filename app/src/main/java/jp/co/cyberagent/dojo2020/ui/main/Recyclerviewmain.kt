@@ -1,5 +1,4 @@
 package jp.co.cyberagent.dojo2020.ui.main
-import kotlinx.android.synthetic.main.recyclerview_page.*
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jp.co.cyberagent.dojo2020.R
 
-class MainActivity : AppCompatActivity(),RecyclerViewHolder.ItemClickListner{
+class Recyclerviewmain(override val size: Int) : AppCompatActivity(),RecyclerViewHolder.ItemClickListner{
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
@@ -36,5 +35,6 @@ class MainActivity : AppCompatActivity(),RecyclerViewHolder.ItemClickListner{
     override fun onItemClick(view: View, position: Int) {
         Toast.makeText(applicationContext,"position $position was tapped",Toast.LENGTH_SHORT).show()
     }
+
 
 }

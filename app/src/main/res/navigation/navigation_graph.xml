@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/navi_memo_list">
 
-    <fragment android:id="@+id/navi_memo_list"
+    <fragment
+        android:id="@+id/navi_memo_list"
         android:name="jp.co.cyberagent.dojo2020.MemoListFragment"
         android:label="Fragment1"/>
 
-    <fragment android:id="@+id/navi_timer"
+    <fragment
+        android:id="@+id/navi_timer"
         android:name="jp.co.cyberagent.dojo2020.TimerFragment"
         android:label="Fragment2"/>
 
-    <fragment android:id="@+id/navi_profile"
+    <fragment
+        android:id="@+id/navi_profile"
         android:name="jp.co.cyberagent.dojo2020.ProfileFragment"
         android:label="Fragment3"/>
+
+    <fragment
+        android:id="@+id/input_memo_data"
+        android:name="jp.co.cyberagent.dojo2020."
+        android:label="Fragment4"/>
 
 </navigation>

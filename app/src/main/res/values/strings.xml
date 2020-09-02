@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">dojo2020</string>
     <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_memo_ragment">InputMemoFragment を表示</string>
+    <string name="timerfragment">TimerFragment を表示</string>
+
+    <!-- write memo -->
+    <string name="tv_input_memo_title">タイトル</string>
+    <string name="tv_input_memo_time">作業時間</string>
 </resources>

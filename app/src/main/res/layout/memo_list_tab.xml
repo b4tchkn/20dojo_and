@@ -12,6 +12,14 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text=" MemoListFragmentを表示"/>
+        android:text=" MemoListFragmentを表示"
+        />
+
+    <Button
+        android:id="@+id/btToInputMemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

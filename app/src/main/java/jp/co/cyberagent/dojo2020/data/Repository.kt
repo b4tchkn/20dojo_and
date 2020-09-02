@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.Flow
 class Repository(
     private val localDataSource: DataSource,
     private val remoteDataSource: DataSource
-) : DataSource {
+) {
 
-    override suspend fun save(memo: Memo) {
+    suspend fun save(memo: Memo) {
         localDataSource.save(memo)
     }
 
-    override suspend fun fetchAll(): Flow<List<Memo>> {
+    suspend fun fetchAll(): Flow<List<Memo>> {
         return localDataSource.fetchAll()
     }
 }

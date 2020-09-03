@@ -10,4 +10,5 @@ class TimerFragment: Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.timer_tab,container,false)
     }
+    +@id/timeCountLabel.text = "Hello world"
 }

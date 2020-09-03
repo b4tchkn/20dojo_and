@@ -6,6 +6,8 @@ import jp.co.cyberagent.dojo2020.data.DataSource
 import jp.co.cyberagent.dojo2020.data.Repository
 import jp.co.cyberagent.dojo2020.data.local.LocalDataSource
 import jp.co.cyberagent.dojo2020.data.local.MemoDataBase
+import jp.co.cyberagent.dojo2020.data.remote.FireStoreDataSource
+import jp.co.cyberagent.dojo2020.data.remote.RemoteDataSource
 
 object DI {
     fun injectRepository(context: Context): DataSource {
@@ -15,14 +17,14 @@ object DI {
         return Repository(localDataSource, remoteDataSource)
     }
 
-    fun injectLocalDataSource(context: Context): DataSource {
+    private fun injectLocalDataSource(context: Context): DataSource {
         val database = injectDatabase(context)
 
         return LocalDataSource(database)
     }
 
-    fun injectRemoteDataSource(): DataSource {
-        TODO()
+    private fun injectRemoteDataSource(): FireStoreDataSource {
+        return RemoteDataSource()
     }
 
     private fun injectDatabase(context: Context): MemoDataBase {

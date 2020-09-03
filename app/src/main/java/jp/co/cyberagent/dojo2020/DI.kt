@@ -5,12 +5,13 @@ import androidx.room.Room
 import jp.co.cyberagent.dojo2020.data.DataSource
 import jp.co.cyberagent.dojo2020.data.Repository
 import jp.co.cyberagent.dojo2020.data.local.LocalDataSource
+
 import jp.co.cyberagent.dojo2020.data.local.MemoDataBase
 import jp.co.cyberagent.dojo2020.data.remote.FireStoreDataSource
 import jp.co.cyberagent.dojo2020.data.remote.RemoteDataSource
 
 object DI {
-    fun injectRepository(context: Context): DataSource {
+    fun injectRepository(context: Context): Repository {
         val localDataSource = injectLocalDataSource(context)
         val remoteDataSource = injectRemoteDataSource()
 

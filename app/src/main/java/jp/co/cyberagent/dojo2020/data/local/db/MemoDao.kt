@@ -1,4 +1,4 @@
-package jp.co.cyberagent.dojo2020.data.local
+package jp.co.cyberagent.dojo2020.data.local.db
 
 import androidx.room.Dao
 import androidx.room.Insert

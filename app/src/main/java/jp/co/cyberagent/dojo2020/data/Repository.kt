@@ -9,11 +9,11 @@ class Repository(
     private val remoteDataSource: FireStoreDataSource
 ) : DataSource {
 
-    override suspend fun save(memo: Memo) {
-        TODO("Not yet implemented")
+    suspend fun save(memo: Memo) {
+        localDataSource.save(memo)
     }
 
-    override suspend fun fetchAll(): Flow<List<Memo>> {
-        TODO("Not yet implemented")
+    suspend fun fetchAll(): Flow<List<Memo>> {
+        return localDataSource.fetchAll()
     }
 }

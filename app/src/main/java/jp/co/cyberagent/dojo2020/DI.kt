@@ -3,6 +3,7 @@ package jp.co.cyberagent.dojo2020
 import android.content.Context
 import androidx.room.Room
 import jp.co.cyberagent.dojo2020.data.DataSource
+import jp.co.cyberagent.dojo2020.data.DefaultRepository
 import jp.co.cyberagent.dojo2020.data.Repository
 import jp.co.cyberagent.dojo2020.data.local.LocalDataSource
 import jp.co.cyberagent.dojo2020.data.local.db.MemoDataBase
@@ -14,7 +15,7 @@ object DI {
         val localDataSource = injectLocalDataSource(context)
         val remoteDataSource = injectRemoteDataSource()
 
-        return Repository(localDataSource, remoteDataSource)
+        return DefaultRepository(localDataSource, remoteDataSource)
     }
 
     private fun injectLocalDataSource(context: Context): DataSource {

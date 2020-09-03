@@ -11,4 +11,5 @@
 
     <!-- Timer View -->
     <string name="timer_count_view">0</string>
+
 </resources>

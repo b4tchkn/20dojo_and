@@ -5,8 +5,10 @@
     <string name="timer_fragment">TimerFragmentを表示</string>
     <string name="input_memo_fragment">InputMemoFragment を表示</string>
 
-    <!-- write memo -->
+    <!-- Input Memo View -->
     <string name="tv_input_memo_title">タイトル</string>
     <string name="tv_input_memo_time">作業時間</string>
+
+    <!-- Timer View -->
     <string name="timer_count_view">0</string>
 </resources>

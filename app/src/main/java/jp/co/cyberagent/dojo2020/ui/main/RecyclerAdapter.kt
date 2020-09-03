@@ -8,8 +8,8 @@ import jp.co.cyberagent.dojo2020.R
 
 class RecyclerAdapter(private val list: List<String>):RecyclerView.Adapter<RecyclerViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
-        val View = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
-        return RecyclerViewHolder(View)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
+        return RecyclerViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {

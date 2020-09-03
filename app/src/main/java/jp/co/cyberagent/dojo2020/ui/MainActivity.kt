@@ -37,10 +37,6 @@ class MainActivity : AppCompatActivity() {
                 layoutManager = linearLayoutManager
                 adapter = memoAdapter
             }
-
-            reloadButton.setOnClickListener {
-                memoAdapter.memoList = list.reversed()
-            }
         }
 
     }

@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import jp.co.cyberagent.dojo2020.databinding.ItemMemoBinding
+import java.util.Collections.emptyList
 
-class MemoAdapter(initialList: List<String>) : RecyclerView.Adapter<MemoAdapter.RecyclerViewHolder>() {
+class MemoAdapter(initialList: List<Memo> = emptyList()) : RecyclerView.Adapter<MemoAdapter.RecyclerViewHolder>() {
 
-    var memoList: List<String> = initialList
+    var memoList: List<Memo> = initialList
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -35,7 +36,7 @@ class MemoAdapter(initialList: List<String>) : RecyclerView.Adapter<MemoAdapter.
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val memo = memoList[position]
 
-        holder.setMemo(Memo(memo, "contents", 0.01))
+        holder.setMemo(memo)
     }
 
     override fun getItemCount() = memoList.size

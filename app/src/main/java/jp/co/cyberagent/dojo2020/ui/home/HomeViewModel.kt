@@ -12,9 +12,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(context: Context) : ViewModel() {
     private val repository = DI.injectRepository(context)
 
-    val liveData = liveData { emitSource(repository.fetchAll().asLiveData()) }
+    val memoListLiveData = liveData { emitSource(repository.fetchAll().asLiveData()) }
 
-    fun saveMemo(memo: Memo) = viewModelScope.launch {
-        repository.save(memo)
-    }
+    fun saveMemo(memo: Memo) = viewModelScope.launch { repository.save(memo) }
 }

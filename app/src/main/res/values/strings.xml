@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">dojo2020</string>
+    <array name="a">
+        <item>a1</item>
+        <item>a2</item>
+        <item>a3</item>
+    </array>
 </resources>

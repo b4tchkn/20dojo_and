@@ -1,52 +1,69 @@
 package jp.co.cyberagent.dojo2020.ui
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import jp.co.cyberagent.dojo2020.data.model.Memo
-import jp.co.cyberagent.dojo2020.databinding.ActivityMainBinding
-import jp.co.cyberagent.dojo2020.ui.home.HomeViewModel
-import jp.co.cyberagent.dojo2020.ui.home.HomeViewModelFactory
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import jp.co.cyberagent.dojo2020.databinding.ActivityAuthBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityAuthBinding
+    private val userViewModel by viewModels<UserViewModel>()
 
-    private val homeViewModel: HomeViewModel by viewModels {
-        HomeViewModelFactory(this, Bundle(), this)
-    }
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        firebaseAuth = Firebase.auth
+
         with(binding) {
+            userViewModel.user.observe(this@MainActivity) {
+                Toast.makeText(this@MainActivity, "${it.uid} success!!", Toast.LENGTH_LONG).show()
 
-            homeViewModel.liveData.observe(this@MainActivity) {
-                val firstMemo = it.randomOrNull() ?: return@observe
-
-                firstMemoTitle.text = firstMemo.title
-                firstMemoContent.text = firstMemo.contents
-                firstMemoTime.text = firstMemo.time.toString()
-
-                val secondMemo = it.randomOrNull() ?: return@observe
-
-                secondMemoTitle.text = secondMemo.title
-                secondMemoContent.text = secondMemo.contents
-                secondMemoTime.text = secondMemo.time.toString()
+                helloWorld.text = it.email
             }
 
-            saveButton.setOnClickListener {
-                val title = titleEditText.text.toString()
-                val memo = createWithTitle(title)
+            signInButton.setOnClickListener {
+                val text = titleEditText.text.toString()
 
-                homeViewModel.saveMemo(memo)
+                val list = text.split(",")
+                val email = list.first()
+                val pass = list.drop(1).first()
+
+                Toast.makeText(this@MainActivity, "[$email]", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, "[$pass]", Toast.LENGTH_LONG).show()
+
+                val tag = "DEBUG"
+                Log.d(tag, "[$email]")
+                Log.d(tag, "[$pass]")
+
+                userViewModel.signIn(email, pass)
+            }
+
+            signUpButton.setOnClickListener {
+                val text = titleEditText.text.toString()
+
+                val list = text.split(",")
+                val email = list.first()
+                val pass = list.drop(1).first()
+
+                userViewModel.signUp(email, pass)
             }
         }
+
     }
 
-    private fun createWithTitle(title: String): Memo {
-        return Memo(title, "contents", 0.256)
-    }
+    override fun onStart() {
+        super.onStart()
 
+        firebaseAuth.currentUser ?: return
+    }
 }

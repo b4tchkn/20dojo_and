@@ -11,5 +11,7 @@
 
     <!-- Timer View -->
     <string name="timer_count_view">0</string>
+    <string name="startButton">Start</string>
+    <string name="stopButton">Stop</string>
 
 </resources>

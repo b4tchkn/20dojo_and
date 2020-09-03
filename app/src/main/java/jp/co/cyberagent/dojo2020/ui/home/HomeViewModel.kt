@@ -1,18 +1,31 @@
 package jp.co.cyberagent.dojo2020.ui.home
 
 import android.content.Context
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import jp.co.cyberagent.dojo2020.DI
+import jp.co.cyberagent.dojo2020.data.model.FirebaseUserInfo
 import jp.co.cyberagent.dojo2020.data.model.Memo
+import jp.co.cyberagent.dojo2020.data.remote.auth.AuthDataSource
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(context: Context) : ViewModel() {
-    private val repository = DI.injectRepository(context)
+    private val memoRepository = DI.injectRepository(context)
+    private val userInfoRepository: AuthDataSource = TODO()
 
-    val memoListLiveData = liveData { emitSource(repository.fetchAll().asLiveData()) }
+    val userInfoLiveData = liveData<FirebaseUserInfo> {
+        emitSource(userInfoRepository.fetchFirebaseUserInfo().asLiveData())
+    }
 
-    fun saveMemo(memo: Memo) = viewModelScope.launch { repository.save(memo) }
+    val memoListLiveData = liveData<List<Memo>> {
+        userInfoLiveData.asFlow().collect { userInfo ->
+            emitSource(memoRepository.fetchAll(userInfo.uid).asLiveData())
+        }
+    }
+
+    fun saveMemo(memo: Memo) = viewModelScope.launch {
+        userInfoLiveData.asFlow().collect { userInfo ->
+            memoRepository.save(userInfo.uid, memo)
+        }
+    }
 }

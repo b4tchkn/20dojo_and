@@ -1,4 +1,4 @@
-package jp.co.cyberagent.dojo2020.data.remote
+package jp.co.cyberagent.dojo2020.data.remote.auth
 
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth

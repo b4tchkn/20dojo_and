@@ -1,12 +1,21 @@
 package jp.co.cyberagent.dojo2020.ui
 
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import jp.co.cyberagent.dojo2020.data.model.Memo
+import jp.co.cyberagent.dojo2020.data.remote.FirebaseAuthentication
 import jp.co.cyberagent.dojo2020.databinding.ActivityMainBinding
+import jp.co.cyberagent.dojo2020.ui.home.HomeViewModel
+import jp.co.cyberagent.dojo2020.ui.home.HomeViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val homeViewModel by viewModels<HomeViewModel> {
+        HomeViewModelFactory(this, Bundle(), this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,9 +24,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
+
+            val memoAdapter = MemoAdapter()
+
+            val linearLayoutManager = LinearLayoutManager(
+                this@MainActivity,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+
             recyclerView.apply {
-                layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                adapter = MemoAdapter((1 until 10).toList().map { it.toString() })
+                layoutManager = linearLayoutManager
+                adapter = memoAdapter
+            }
+
+            reloadButton.setOnClickListener {
+                memoAdapter.memoList = list.reversed()
             }
         }
 

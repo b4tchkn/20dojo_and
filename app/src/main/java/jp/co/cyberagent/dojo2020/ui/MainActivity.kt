@@ -1,12 +1,9 @@
 package jp.co.cyberagent.dojo2020.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import jp.co.cyberagent.dojo2020.data.model.Memo
-import jp.co.cyberagent.dojo2020.data.remote.FirebaseAuthentication
 import jp.co.cyberagent.dojo2020.databinding.ActivityMainBinding
 import jp.co.cyberagent.dojo2020.ui.home.HomeViewModel
 import jp.co.cyberagent.dojo2020.ui.home.HomeViewModelFactory

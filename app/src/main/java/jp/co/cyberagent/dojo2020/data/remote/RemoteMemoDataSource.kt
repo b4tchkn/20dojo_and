@@ -9,7 +9,7 @@ import jp.co.cyberagent.dojo2020.data.remote.firestore.memosRef
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
-class RemoteDataSource : FireStoreDataSource {
+class RemoteMemoDataSource : FireStoreDataSource {
     private val firestore = Firebase.firestore
 
     override suspend fun save(uid: String, memo: Memo) {

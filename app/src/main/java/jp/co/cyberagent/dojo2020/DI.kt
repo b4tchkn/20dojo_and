@@ -8,7 +8,7 @@ import jp.co.cyberagent.dojo2020.data.MemoRepository
 import jp.co.cyberagent.dojo2020.data.local.LocalMemoDataSource
 import jp.co.cyberagent.dojo2020.data.local.db.MemoDataBase
 import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
-import jp.co.cyberagent.dojo2020.data.remote.RemoteDataSource
+import jp.co.cyberagent.dojo2020.data.remote.RemoteMemoDataSource
 
 object DI {
     fun injectRepository(context: Context): MemoRepository {
@@ -25,7 +25,7 @@ object DI {
     }
 
     private fun injectRemoteDataSource(): FireStoreDataSource {
-        return RemoteDataSource()
+        return RemoteMemoDataSource()
     }
 
     private fun injectDatabase(context: Context): MemoDataBase {

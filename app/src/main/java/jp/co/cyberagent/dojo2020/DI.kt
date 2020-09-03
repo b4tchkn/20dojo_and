@@ -5,8 +5,7 @@ import androidx.room.Room
 import jp.co.cyberagent.dojo2020.data.DataSource
 import jp.co.cyberagent.dojo2020.data.Repository
 import jp.co.cyberagent.dojo2020.data.local.LocalDataSource
-
-import jp.co.cyberagent.dojo2020.data.local.MemoDataBase
+import jp.co.cyberagent.dojo2020.data.local.db.MemoDataBase
 import jp.co.cyberagent.dojo2020.data.remote.FireStoreDataSource
 import jp.co.cyberagent.dojo2020.data.remote.RemoteDataSource
 

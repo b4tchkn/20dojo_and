@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class Repository(
     private val localDataSource: DataSource,
     private val remoteDataSource: FireStoreDataSource
-) : DataSource {
+) {
 
     suspend fun save(memo: Memo) {
         localDataSource.save(memo)

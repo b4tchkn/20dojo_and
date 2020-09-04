@@ -16,29 +16,4 @@ class TimerFragment: Fragment(){
         super.onViewCreated(view, savedInstanceState)
         Log.d("I/System.out","ViewCreated")
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d("I/System.out","Create")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("I/System.out","Resume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("I/System.out","Stop")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("I/System.out","DestroyView")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("I/System.out","Destroy")
-    }
 }

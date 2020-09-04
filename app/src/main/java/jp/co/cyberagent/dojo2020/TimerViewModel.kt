@@ -6,4 +6,7 @@ class TimerViewModel {
     constructor(){
         this.vmtime
     }
+
+
+
 }

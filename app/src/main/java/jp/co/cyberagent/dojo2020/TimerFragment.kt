@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import java.lang.reflect.Array.get
 import java.util.*
 import kotlin.concurrent.schedule
+
 
 class TimerFragment: Fragment(){
 
@@ -30,5 +32,9 @@ class TimerFragment: Fragment(){
         time += 1023
         timeCountTextView.text = time.toString()
         timeCountTextView.setTextColor(Color.argb(128, 255, 128, 255))
+
+        val temp = TimerViewModel(100)
+
+        Log.d("VMint", temp.vmtime.toString())
     }
 }

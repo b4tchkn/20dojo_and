@@ -33,8 +33,6 @@ class TimerFragment: Fragment(){
         timeCountTextView.text = time.toString()
         timeCountTextView.setTextColor(Color.argb(128, 255, 128, 255))
 
-        val temp = TimerViewModel(100)
-
-        Log.d("VMint", temp.vmtime.toString())
+        Log.d("VMint", TimerViewModel().vmtime.toString())
     }
 }

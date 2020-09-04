@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import java.util.*
+import kotlin.concurrent.schedule
 
 class TimerFragment: Fragment(){
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,7 +26,9 @@ class TimerFragment: Fragment(){
         //setContentView(R.layout.timer_tab)
 
         val timeCountTextView = view.findViewById<TextView>(R.id.timeCountTextView)
-        timeCountTextView.text = "2"
+        var time: Int = 1
+        time += 1023
+        timeCountTextView.text = time.toString()
         timeCountTextView.setTextColor(Color.argb(128, 255, 128, 255))
     }
 }

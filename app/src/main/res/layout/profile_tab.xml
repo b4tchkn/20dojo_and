@@ -14,7 +14,6 @@
         android:id="@+id/linearLayoutCompat"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="57dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"

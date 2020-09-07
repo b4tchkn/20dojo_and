@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,15 +10,15 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="317dp"
+        android:layout_height="535dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466">
+        app:layout_constraintVertical_bias="0.5">
 
 
         <ImageButton
@@ -30,64 +32,77 @@
             android:id="@+id/person_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:layout_marginBottom="30dp"
             android:text="名前"
-            />
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/github_image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/github_icon" />
 
         <TextView
             android:id="@+id/github_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
             android:text="Githubアカウント"
-            />
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/twitter_image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/twitter_icon" />
 
         <TextView
             android:id="@+id/twitter_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginTop="5dp"
             android:text="Twitterアカウント"
-            />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edit_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:textSize="20sp"
             android:hint="名前"
-            android:visibility="gone"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/edit_github_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:textSize="20sp"
             android:hint="githubアカウント"
-            android:visibility="gone"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/edit_twitter_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:textSize="20sp"
             android:hint="Twitterアカウント"
-            android:visibility="gone"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            android:visibility="gone" />
 
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/edit_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
             android:layout_marginTop="20dp"
-            android:background="@drawable/ic_baseline_edit_24"
+            android:src="@drawable/ic_baseline_edit_24"
+            app:rippleColor="#ffffff"
+            app:fabSize="normal"
             tools:layout_editor_absoluteX="159dp"
             tools:layout_editor_absoluteY="538dp" />
 

@@ -47,18 +47,32 @@ class ProfileFragment : Fragment() {
                 github_account.visibility = View.GONE
                 twitter_account.visibility = View.GONE
 
+                github_image.visibility = View.INVISIBLE
+                twitter_image.visibility = View.INVISIBLE
+
                 edit_name.visibility = View.VISIBLE
                 edit_github_account.visibility = View.VISIBLE
                 edit_twitter_account.visibility = View.VISIBLE
+
+//                edit_name.text = person_name.editableText
+//                edit_github_account.text = github_account.editableText
+//                edit_twitter_account.text = twitter_account.editableText
 
                 param = 0
 
             } else {
                 //もう一度編集ボタンを押すとTextViewに戻る
 
-                person_name.text = edit_name.text
-                github_account.text = edit_github_account.text
-                twitter_account.text = edit_twitter_account.text
+                //編集ボタンが押された時に前の内容が消えないようにする
+                if (edit_name.text.toString() != "" && edit_github_account.text.toString() != "" && edit_twitter_account.text.toString() != "") {
+
+                    person_name.text = edit_name.text
+                    github_account.text = edit_github_account.text
+                    twitter_account.text = edit_twitter_account.text
+
+                }
+
+
 
                 if (dataStore != null) {
                     //SharedPreferenceに登録したデータを保存
@@ -74,6 +88,9 @@ class ProfileFragment : Fragment() {
                 edit_name.visibility = View.GONE
                 edit_github_account.visibility = View.GONE
                 edit_twitter_account.visibility = View.GONE
+
+                github_image.visibility = View.VISIBLE
+                twitter_image.visibility = View.VISIBLE
 
                 person_name.visibility = View.VISIBLE
                 github_account.visibility = View.VISIBLE

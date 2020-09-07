@@ -8,6 +8,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/navigation_graph"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -17,11 +26,4 @@
         app:itemTextColor="#ff1493"
         app:itemIconTint = "#ff1493"
         app:menu="@menu/bottom_navigation_menu" />
-
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:navGraph="@navigation/navigation_graph"/>
 </FrameLayout>

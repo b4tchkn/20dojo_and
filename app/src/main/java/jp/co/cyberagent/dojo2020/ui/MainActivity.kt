@@ -1,9 +1,13 @@
 package jp.co.cyberagent.dojo2020.ui
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import jp.co.cyberagent.dojo2020.R
+import jp.co.cyberagent.dojo2020.data.remote.auth.FirebaseAuthentication
 import jp.co.cyberagent.dojo2020.databinding.ActivityMainBinding
 import jp.co.cyberagent.dojo2020.ui.home.HomeViewModel
 import jp.co.cyberagent.dojo2020.ui.home.HomeViewModelFactory
@@ -16,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -35,6 +38,12 @@ class MainActivity : AppCompatActivity() {
                 adapter = memoAdapter
             }
         }
+        FirebaseAuthentication.signUp("momomomomo@gmail.com", "password")
+
+        setContentView(R.layout.activity_main)
+        val button:Button = findViewById(R.id.edit_button)
+
+      //  val host:NavHostFragment = supportFragmentManager.findFragmentById(my_)
 
     }
 }

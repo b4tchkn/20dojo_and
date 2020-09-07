@@ -22,10 +22,10 @@
         android:text="home_to_create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/home_to_profile" />
+        app:layout_constraintRight_toLeftOf="@id/home_to_profile_button" />
 
     <Button
-        android:id="@+id/home_to_profile"
+        android:id="@+id/home_to_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="home_to_profile"

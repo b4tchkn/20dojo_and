@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_memoCreateFragment)
             }
 
-            homeToProfile.setOnClickListener {
+            homeToProfileButton.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
             }
         }

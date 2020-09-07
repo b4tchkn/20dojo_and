@@ -1,29 +1,40 @@
 package jp.co.cyberagent.dojo2020.ui.home
 
 import android.os.Bundle
-import android.view.*
-import android.widget.Button
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import jp.co.cyberagent.dojo2020.R
+import jp.co.cyberagent.dojo2020.databinding.FragmentHomeBinding
 
-class HomeFragment:Fragment() {
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.activity_main,container,false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentHomeBinding.inflate(inflater)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val editbutton = view.findViewById<Button>(R.id.edit_button)
-        editbutton?.setOnClickListener{
-            findNavController().navigate(R.id.action_homeFragment_to_memoEditFragment,null)
+
+        with(binding) {
+            homeToCreateButton.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_memoCreateFragment)
+            }
+
+            homeToProfile.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            }
         }
-        val probutton = view.findViewById<Button>(R.id.profile_button)
-        probutton?.setOnClickListener{
-            findNavController().navigate(R.id.action_homeFragment_to_profileFragment,null)
-        }
+
     }
 
 }

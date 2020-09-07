@@ -1,5 +1,6 @@
 package jp.co.cyberagent.dojo2020
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
@@ -11,6 +12,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
 //        pager.adapter = TabAdapter(supportFragmentManager,this)
 //        tab_layout.setupWithViewPager(pager)

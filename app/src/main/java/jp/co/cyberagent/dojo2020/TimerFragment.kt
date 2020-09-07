@@ -1,15 +1,12 @@
 package jp.co.cyberagent.dojo2020
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.timer_tab.*
 import java.text.SimpleDateFormat

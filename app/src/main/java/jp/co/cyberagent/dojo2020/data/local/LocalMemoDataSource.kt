@@ -9,13 +9,13 @@ import kotlinx.coroutines.flow.map
 
 class LocalMemoDataSource(private val dataBase: MemoDataBase) : MemoDataSource {
 
-    override suspend fun save(memo: Memo) {
+    override suspend fun saveMemo(memo: Memo) {
         val forInsertMemo = MemoEntity.createForInsert(memo.title, memo.contents, memo.time)
 
         dataBase.memoDao().insert(forInsertMemo)
     }
 
-    override suspend fun fetchAll(): Flow<List<Memo>> {
+    override suspend fun fetchAllMemo(): Flow<List<Memo>> {
         return dataBase.memoDao().fetchAll().map { memoEntityList ->
             memoEntityList.map { Memo(it.title, it.contents, it.time) }
         }

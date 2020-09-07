@@ -22,13 +22,13 @@ class HomeViewModel(context: Context) : ViewModel() {
 
     val memoListLiveData = liveData<List<Memo>> {
         user().collect { userInfo ->
-            emitSource(memoRepository.fetchAll(userInfo?.uid).asLiveData())
+            emitSource(memoRepository.fetchAllMemo(userInfo?.uid).asLiveData())
         }
     }
 
     fun saveMemo(memo: Memo) = viewModelScope.launch {
         user().collect { userInfo ->
-            memoRepository.save(userInfo?.uid, memo)
+            memoRepository.saveMemo(userInfo?.uid, memo)
             Log.d(TAG, "uid is ${userInfo?.uid}")
         }
     }

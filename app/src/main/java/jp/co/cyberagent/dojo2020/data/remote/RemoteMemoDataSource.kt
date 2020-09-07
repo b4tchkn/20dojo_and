@@ -12,13 +12,13 @@ import kotlinx.coroutines.tasks.await
 class RemoteMemoDataSource : FireStoreDataSource {
     private val firestore = Firebase.firestore
 
-    override suspend fun save(uid: String, memo: Memo) {
+    override suspend fun saveMemo(uid: String, memo: Memo) {
         val entity = memo.toEntityForRemote()
 
         firestore.memosRef(uid).document().set(entity)
     }
 
-    override suspend fun fetchAll(uid: String) = flow<List<Memo>> {
+    override suspend fun fetchAllMemo(uid: String) = flow<List<Memo>> {
         try {
             val snapshot = firestore.memosRef(uid).get().await()
             val memoEntityList = snapshot.toObjects(MemoEntity::class.java)

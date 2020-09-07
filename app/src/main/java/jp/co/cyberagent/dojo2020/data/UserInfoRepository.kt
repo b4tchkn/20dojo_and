@@ -1,7 +1,5 @@
 package jp.co.cyberagent.dojo2020.data
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import com.google.firebase.auth.FirebaseUser
 import jp.co.cyberagent.dojo2020.data.model.FirebaseUserInfo
 import jp.co.cyberagent.dojo2020.data.remote.auth.FirebaseAuthentication
@@ -33,7 +31,6 @@ class DefaultUserInfoRepository : UserInfoRepository {
         val uid = user.uid
 
         emit(FirebaseUserInfo(uid, email))
-        Log.d(TAG, "Emit $uid $email")
     }
 
 }

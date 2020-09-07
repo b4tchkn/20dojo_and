@@ -25,6 +25,8 @@ class TimerFragment: Fragment(){
 
     private val dataFormat = SimpleDateFormat("mm:ss.SS", Locale.getDefault())
 
+    private var tappedStartButtonFlag: Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -59,11 +61,15 @@ class TimerFragment: Fragment(){
         timerText.setText(dataFormat.format(0));
 
         startButton.setOnClickListener{
-            handler.post(runnable)
+            if (tappedStartButtonFlag == 0){
+                handler.post(runnable)
+                tappedStartButtonFlag = 1
+            }
         }
 
         stopButton.setOnClickListener{
             handler.removeCallbacks(runnable)
+            tappedStartButtonFlag = 0
         }
 
     }

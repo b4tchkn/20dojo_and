@@ -1,4 +1,4 @@
-package jp.co.cyberagent.dojo2020.data.remote
+package jp.co.cyberagent.dojo2020.data.remote.firestore
 
 object FireStoreConstants {
     const val USERS = "users"

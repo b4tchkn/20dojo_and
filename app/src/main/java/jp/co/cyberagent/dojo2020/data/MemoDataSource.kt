@@ -3,8 +3,8 @@ package jp.co.cyberagent.dojo2020.data
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import kotlinx.coroutines.flow.Flow
 
-interface DataSource {
-    suspend fun save(memo: Memo)
+interface MemoDataSource {
+    suspend fun saveMemo(memo: Memo)
 
-    suspend fun fetchAll(): Flow<List<Memo>>
+    suspend fun fetchAllMemo(): Flow<List<Memo>>
 }

@@ -58,7 +58,7 @@ class TimerFragment: Fragment(){
 
         val timerText = view.findViewById<TextView>(R.id.timeCountTextView);
 
-        timerText.setText(dataFormat.format(1234567));
+        timerText.setText(dataFormat.format(0));
 
         startButton.setOnClickListener{
             handler.post(runnable)

@@ -1,10 +1,17 @@
 package jp.co.cyberagent.dojo2020.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import jp.co.cyberagent.dojo2020.R
 import jp.co.cyberagent.dojo2020.data.remote.auth.FirebaseAuthentication
@@ -20,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -38,12 +46,24 @@ class MainActivity : AppCompatActivity() {
                 adapter = memoAdapter
             }
         }
-        FirebaseAuthentication.signUp("momomomomo@gmail.com", "password")
+      //  FirebaseAuthentication.signUp("momomomomo@gmail.com", "password")
 
-        setContentView(R.layout.activity_main)
-        val button:Button = findViewById(R.id.edit_button)
+
+
 
       //  val host:NavHostFragment = supportFragmentManager.findFragmentById(my_)
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main,menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.action_settings -> true
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-package jp.co.cyberagent.dojo2020
+package jp.co.cyberagent.dojo2020.ui.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import jp.co.cyberagent.dojo2020.R
 import jp.co.cyberagent.dojo2020.models.Memo
-import jp.co.cyberagent.dojo2020.ui.list.MemoListViewModel
-import jp.co.cyberagent.dojo2020.ui.list.MemoListViewModelFactory
 
 class InputMemoFragment: Fragment() {
 
@@ -23,7 +22,7 @@ class InputMemoFragment: Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_input_memo ,container,false)
+        return inflater.inflate(R.layout.fragment_input_memo,container,false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -3,19 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainActivity">
+    app:startDestination="@id/profileFragment">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="jp.co.cyberagent.dojo2020.ui.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/memoEditFragment"
-        android:name="jp.co.cyberagent.dojo2020.ui.main.MemoEditFragment"
+        android:name="jp.co.cyberagent.dojo2020.ui.create.MemoCreateFragment"
         android:label="MemoEditFragment" >
         <action
-            android:id="@+id/action_memoEditFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
+            android:id="@+id/action_memoEditFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="jp.co.cyberagent.dojo2020.ui.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_memoEditFragment"
+            app:destination="@id/memoEditFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="jp.co.cyberagent.dojo2020.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

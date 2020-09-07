@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat
 
 interface MemoRepository {
-    suspend fun save(uid: String?, memo: Memo)
+    suspend fun saveMemo(uid: String?, memo: Memo)
 
-    suspend fun fetchAll(uid: String?): Flow<List<Memo>>
+    suspend fun fetchAllMemo(uid: String?): Flow<List<Memo>>
 }
 
 class DefaultMemoRepository(
@@ -17,23 +17,23 @@ class DefaultMemoRepository(
     private val remoteDataSource: FireStoreDataSource
 ) : MemoRepository {
 
-    override suspend fun save(uid: String?, memo: Memo) {
-        localMemoDataSource.save(memo)
+    override suspend fun saveMemo(uid: String?, memo: Memo) {
+        localMemoDataSource.saveMemo(memo)
         val userId = uid ?: return
 
-        remoteDataSource.save(userId, memo)
+        remoteDataSource.saveMemo(userId, memo)
     }
 
     @FlowPreview
-    override suspend fun fetchAll(uid: String?): Flow<List<Memo>> {
-        val localMemoListFlow = localMemoDataSource.fetchAll()
+    override suspend fun fetchAllMemo(uid: String?): Flow<List<Memo>> {
+        val localMemoListFlow = localMemoDataSource.fetchAllMemo()
 
         val memoListFlow = localMemoListFlow.flatMapConcat { localMemoList ->
             if (uid != null && localMemoList.isEmpty()) {
-                return@flatMapConcat remoteDataSource.fetchAll(uid)
+                return@flatMapConcat remoteDataSource.fetchAllMemo(uid)
             }
 
-            return@flatMapConcat localMemoDataSource.fetchAll()
+            return@flatMapConcat localMemoDataSource.fetchAllMemo()
         }
 
         return memoListFlow

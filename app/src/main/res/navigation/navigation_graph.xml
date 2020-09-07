@@ -7,8 +7,12 @@
 
     <fragment
         android:id="@+id/navi_memo_list"
-        android:name="jp.co.cyberagent.dojo2020.MemoListFragment"
-        android:label="Fragment1"/>
+        android:name="jp.co.cyberagent.dojo2020.ui.list.MemoListFragment"
+        android:label="Fragment1">
+        <action
+            android:id="@+id/action_navi_memo_list_to_input_memo_data"
+            app:destination="@id/input_memo_data" />
+    </fragment>
 
     <fragment
         android:id="@+id/navi_timer"
@@ -22,7 +26,7 @@
 
     <fragment
         android:id="@+id/input_memo_data"
-        android:name="jp.co.cyberagent.dojo2020."
+        android:name="jp.co.cyberagent.dojo2020.ui.list.InputMemoFragment"
         android:label="Fragment4"/>
 
 </navigation>

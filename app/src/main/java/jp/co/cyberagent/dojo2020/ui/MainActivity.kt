@@ -46,24 +46,7 @@ class MainActivity : AppCompatActivity() {
                 adapter = memoAdapter
             }
         }
-      //  FirebaseAuthentication.signUp("momomomomo@gmail.com", "password")
 
-
-
-
-      //  val host:NavHostFragment = supportFragmentManager.findFragmentById(my_)
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main,menu)
-        return true
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
 }

@@ -9,56 +9,81 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
-import java.lang.reflect.Array.get
+import kotlinx.android.synthetic.main.timer_tab.*
+import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.concurrent.schedule
 
 
 class TimerFragment: Fragment(){
 
+    private val timer: Timer? = null
+    private val handler = Handler()
 
+    private val timerText: TextView? = null
+    private var delay: Long = 0
+    private  var period:kotlin.Long = 0
+    private val count = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private var timeValue = 0                              // 秒カウンター
+
+    private val dataFormat = SimpleDateFormat("mm:ss.SS", Locale.getDefault())
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.timer_tab, container, false)
     }
 
-    private val handler = Handler()
-    private var runnable = Runnable {}
-    var i = 0
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("I/System.out","ViewCreated")
 
-        //setContentView(R.layout.timer_tab)
+        delay = 0;
+        period = 100;
 
-        val timeCountTextView = view.findViewById<TextView>(R.id.timeCountTextView)
-        val startButton = view.findViewById<Button>(R.id.startButton)
-        val stopButton = view.findViewById<Button>(R.id.stopButton)
-        var time: Int = 1
-        time += 1023
-        timeCountTextView.text = time.toString()
-        timeCountTextView.setTextColor(Color.argb(255, 255, 128, 255))
-
-        runnable = Runnable {
-            i++
-            timeCountTextView.text = i.toString()
-            handler.postDelayed(runnable, 1000)
-        }
-        handler.post(runnable)
-
-
-        Log.d("VMint", TimerViewModel().vmtime.toString())
-        startButton.setOnClickListener {
-            timeCountTextView.text = TimerViewModel().vmtime.toString()
+        // Handler(スレット間通信：イベントキュー？)
+        val runnable = object : Runnable {
+            // メッセージ受信が有った時かな?
+            override fun run() {
+                timeValue++                      // 秒カウンタ+1
+                timeToText(timeValue)?.let {        // timeToText()で表示データを作り
+                    timeCountTextView.text = it            // timeText.textへ代入(表示)
+                }
+                handler.postDelayed(this, 1000)  // 1000ｍｓ後に自分にpost
+            }
         }
 
-        stopButton.setOnClickListener {
-            time ++
-            timeCountTextView.text = time.toString()
+        val startButton = view.findViewById<Button>(R.id.startButton);
+        val stopButton = view.findViewById<Button>(R.id.stopButton);
+
+        val timerText = view.findViewById<TextView>(R.id.timeCountTextView);
+
+        timerText.setText(dataFormat.format(1234567));
+
+        startButton.setOnClickListener{
+            handler.post(runnable)
         }
+
+        stopButton.setOnClickListener{
+            handler.removeCallbacks(runnable)
+        }
+
     }
 
+    private fun timeToText(time: Int = 0): String? {
+        return if (time < 0) {
+            null                                    // 時刻が0未満の場合 null
+        } else if (time == 0) {
+            "00:00:00"                            // ０なら
+        } else {
+            val h = time / 3600
+            val m = time % 3600 / 60
+            val s = time % 60
+            "%1$02d:%2$02d:%3$02d".format(h, m, s)  // 表示に整形
+        }
+    }
 
 }

@@ -7,6 +7,4 @@ class TimerViewModel {
         this.vmtime
     }
 
-
-
 }

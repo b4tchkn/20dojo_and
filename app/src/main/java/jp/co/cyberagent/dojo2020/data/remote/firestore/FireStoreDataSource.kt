@@ -26,7 +26,8 @@ class DefaultFireStoreDataSource : FireStoreDataSource {
         try {
             val snapshot = firestore.memosRef(uid).get().await()
             val memoEntityList = snapshot.toObjects(MemoEntity::class.java)
-            val nullableMemoList = memoEntityList.map { entity -> entity.modelOrNull() } // if use state, throw exception
+            val nullableMemoList =
+                memoEntityList.map { entity -> entity.modelOrNull() } // if use state, throw exception
 
             val notNullMemoList = nullableMemoList.map { it ?: return@flow }
 
@@ -37,16 +38,16 @@ class DefaultFireStoreDataSource : FireStoreDataSource {
     }
 
     private fun Memo.toEntityForRemote(): MemoEntity {
-        return MemoEntity(title, contents, time)
+        return MemoEntity(id, title, contents, time)
     }
 
     private fun MemoEntity.modelOrNull(): Memo? {
-        val containsNull = listOf(title, contents, time).contains(null)
+        val containsNull = listOf(id, title, contents, time).contains(null)
         if (containsNull) {
             return null
         }
 
-        return Memo(title!!, contents!!, time!!)
+        return Memo(id!!, title!!, contents!!, time!!)
     }
 
 }

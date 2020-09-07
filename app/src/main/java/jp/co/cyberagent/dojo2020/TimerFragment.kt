@@ -15,13 +15,11 @@ import java.util.*
 
 class TimerFragment: Fragment(){
 
-    // private val timer: Timer? = null
+
     private val handler = Handler()
 
-    // private val timerText: TextView? = null
     private var delay: Long = 0
     private  var period:kotlin.Long = 0
-    // private val count = 0
 
     private var timeValue = 0                              // 秒カウンター
 

@@ -1,4 +1,4 @@
-package jp.co.cyberagent.dojo2020.data.remote
+package jp.co.cyberagent.dojo2020.data.remote.firestore
 
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import kotlinx.coroutines.flow.Flow

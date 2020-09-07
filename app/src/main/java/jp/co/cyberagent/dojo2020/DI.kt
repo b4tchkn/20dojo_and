@@ -2,30 +2,30 @@ package jp.co.cyberagent.dojo2020
 
 import android.content.Context
 import androidx.room.Room
-import jp.co.cyberagent.dojo2020.data.DataSource
-import jp.co.cyberagent.dojo2020.data.DefaultRepository
-import jp.co.cyberagent.dojo2020.data.Repository
-import jp.co.cyberagent.dojo2020.data.local.LocalDataSource
+import jp.co.cyberagent.dojo2020.data.MemoDataSource
+import jp.co.cyberagent.dojo2020.data.DefaultMemoRepository
+import jp.co.cyberagent.dojo2020.data.MemoRepository
+import jp.co.cyberagent.dojo2020.data.local.LocalMemoDataSource
 import jp.co.cyberagent.dojo2020.data.local.db.MemoDataBase
-import jp.co.cyberagent.dojo2020.data.remote.FireStoreDataSource
-import jp.co.cyberagent.dojo2020.data.remote.RemoteDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
+import jp.co.cyberagent.dojo2020.data.remote.RemoteMemoDataSource
 
 object DI {
-    fun injectRepository(context: Context): Repository {
+    fun injectRepository(context: Context): MemoRepository {
         val localDataSource = injectLocalDataSource(context)
         val remoteDataSource = injectRemoteDataSource()
 
-        return DefaultRepository(localDataSource, remoteDataSource)
+        return DefaultMemoRepository(localDataSource, remoteDataSource)
     }
 
-    private fun injectLocalDataSource(context: Context): DataSource {
+    private fun injectLocalDataSource(context: Context): MemoDataSource {
         val database = injectDatabase(context)
 
-        return LocalDataSource(database)
+        return LocalMemoDataSource(database)
     }
 
     private fun injectRemoteDataSource(): FireStoreDataSource {
-        return RemoteDataSource()
+        return RemoteMemoDataSource()
     }
 
     private fun injectDatabase(context: Context): MemoDataBase {

@@ -4,7 +4,7 @@ import android.util.Log
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import kotlinx.coroutines.flow.flow
 
-object FakeRepository : jp.co.cyberagent.dojo2020.data.DataSource {
+object FakeRepository : jp.co.cyberagent.dojo2020.data.MemoDataSource {
     override suspend fun save(memo: Memo) {
         Log.d(Constants.REPOSITORY, "insert: $memo")
     }

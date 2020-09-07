@@ -1,24 +1,24 @@
 package jp.co.cyberagent.dojo2020.data
 
 import jp.co.cyberagent.dojo2020.data.model.Memo
-import jp.co.cyberagent.dojo2020.data.remote.FireStoreDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat
 
-interface Repository {
+interface MemoRepository {
     suspend fun save(uid: String?, memo: Memo)
 
     suspend fun fetchAll(uid: String?): Flow<List<Memo>>
 }
 
-class DefaultRepository(
-    private val localDataSource: DataSource,
+class DefaultMemoRepository(
+    private val localMemoDataSource: MemoDataSource,
     private val remoteDataSource: FireStoreDataSource
-) : Repository {
+) : MemoRepository {
 
     override suspend fun save(uid: String?, memo: Memo) {
-        localDataSource.save(memo)
+        localMemoDataSource.save(memo)
         val userId = uid ?: return
 
         remoteDataSource.save(userId, memo)
@@ -26,14 +26,14 @@ class DefaultRepository(
 
     @FlowPreview
     override suspend fun fetchAll(uid: String?): Flow<List<Memo>> {
-        val localMemoListFlow = localDataSource.fetchAll()
+        val localMemoListFlow = localMemoDataSource.fetchAll()
 
         val memoListFlow = localMemoListFlow.flatMapConcat { localMemoList ->
             if (uid != null && localMemoList.isEmpty()) {
                 return@flatMapConcat remoteDataSource.fetchAll(uid)
             }
 
-            return@flatMapConcat localDataSource.fetchAll()
+            return@flatMapConcat localMemoDataSource.fetchAll()
         }
 
         return memoListFlow

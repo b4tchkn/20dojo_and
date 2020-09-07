@@ -21,7 +21,9 @@ class MemoAdapter(initialList: List<Memo> = emptyList()) : RecyclerView.Adapter<
 
         fun setMemo(memo: Memo) {
             binding.apply {
-                itemTextView.text = memo.title
+                titleTextView.text = memo.title
+                contentsTextView.text = memo.contents
+                timeTextView.text = memo.time.toString()
             }
         }
     }

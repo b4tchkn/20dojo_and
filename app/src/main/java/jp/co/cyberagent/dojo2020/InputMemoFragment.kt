@@ -1,7 +1,6 @@
 package jp.co.cyberagent.dojo2020
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,14 +8,14 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import jp.co.cyberagent.dojo2020.models.Todo
-import jp.co.cyberagent.dojo2020.ui.list.TodoListViewModel
-import jp.co.cyberagent.dojo2020.ui.list.TodoListViewModelFactory
+import jp.co.cyberagent.dojo2020.models.Memo
+import jp.co.cyberagent.dojo2020.ui.list.MemoListViewModel
+import jp.co.cyberagent.dojo2020.ui.list.MemoListViewModelFactory
 
 class InputMemoFragment: Fragment() {
 
-    private val todoListViewModel by viewModels<TodoListViewModel> {
-        TodoListViewModelFactory(
+    private val memoListViewModel by viewModels<MemoListViewModel> {
+        MemoListViewModelFactory(
             this,
             Bundle(),
             this.requireContext()
@@ -42,8 +41,8 @@ class InputMemoFragment: Fragment() {
 //                } else {
 //                    Log.i("test", "null")
 //                }
-            val todo = Todo(0, title, hour.toInt(), minute.toInt(), description)
-            todoListViewModel.saveTodo(todo)
+            val memo = Memo(0, title, hour.toInt(), minute.toInt(), description)
+            memoListViewModel.saveMemo(memo)
         }
     }
 }

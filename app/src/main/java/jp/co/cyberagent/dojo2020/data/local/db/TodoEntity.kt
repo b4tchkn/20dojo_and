@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 //DBのテーブル
-@Entity(tableName = "todo_list")
-data class TodoEntity(
+@Entity(tableName = "memo_list")
+data class MemoEntity(
     @PrimaryKey(autoGenerate = true) val id : Int,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "hour") val hour: Int,
@@ -14,8 +14,8 @@ data class TodoEntity(
     @ColumnInfo(name = "description") val description: String
 ) {
     companion object {
-        fun createForInsert(title: String, hour: Int, minute: Int, description: String): TodoEntity {
-            return TodoEntity(
+        fun createForInsert(title: String, hour: Int, minute: Int, description: String): MemoEntity {
+            return MemoEntity(
                 0,
                 title,
                 hour,

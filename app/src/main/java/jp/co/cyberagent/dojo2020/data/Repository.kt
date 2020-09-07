@@ -2,23 +2,23 @@ package jp.co.cyberagent.dojo2020.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import jp.co.cyberagent.dojo2020.models.Todo
+import jp.co.cyberagent.dojo2020.models.Memo
 
 interface Repository {
-    suspend fun inputTodo(todo: Todo)
-    fun loadAllTodo(): LiveData<List<Todo>>
+    suspend fun inputMemo(memo: Memo)
+    fun loadAllMemo(): LiveData<List<Memo>>
 }
 
 class DefaultRepository(
-    private val localDataSorce: DataSource
+    private val localDataSorce: MemoDataSource
 ):Repository {
-    override suspend fun inputTodo(todo: Todo) {
+    override suspend fun inputMemo(todo: Memo) {
         Log.i("test: in Repository", todo.title)
         localDataSorce.inputMemo(todo)
     }
 
-    override fun loadAllTodo(): LiveData<List<Todo>> {
-        val localTodoList = localDataSorce.loadAllTodo()
+    override fun loadAllMemo(): LiveData<List<Memo>> {
+        val localTodoList = localDataSorce.loadAllMemo()
 
 
         return localTodoList

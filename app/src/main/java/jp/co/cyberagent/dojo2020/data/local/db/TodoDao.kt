@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface TodoDao {
-    @Query( value = "SELECT * FROM todo_list")
-    fun loadAllTodo(): LiveData<List<TodoEntity>>
+interface MemoDao {
+    @Query( value = "SELECT * FROM memo_list")
+    fun loadAllMemo(): LiveData<List<MemoEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(todoEntity: TodoEntity)
+    fun insert(memoEntity: MemoEntity)
 }

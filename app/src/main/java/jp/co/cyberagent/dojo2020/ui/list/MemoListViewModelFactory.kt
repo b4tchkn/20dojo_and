@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 
 @Suppress("UNCHECKED_CAST")
-class TodoListViewModelFactory (
+class MemoListViewModelFactory (
     owner: SavedStateRegistryOwner,
     defaultArgs : Bundle,
     private val context: Context
@@ -19,6 +19,6 @@ class TodoListViewModelFactory (
         modelClass: Class<T>,
         handle: SavedStateHandle
     ): T {
-        return TodoListViewModel(context) as T
+        return MemoListViewModel(context) as T
     }
 }

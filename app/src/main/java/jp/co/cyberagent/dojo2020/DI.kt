@@ -3,7 +3,7 @@ package jp.co.cyberagent.dojo2020
 import android.content.Context
 import android.util.Log
 import androidx.room.Room
-import jp.co.cyberagent.dojo2020.data.DataSource
+import jp.co.cyberagent.dojo2020.data.MemoDataSource
 import jp.co.cyberagent.dojo2020.data.DefaultRepository
 import jp.co.cyberagent.dojo2020.data.Repository
 import jp.co.cyberagent.dojo2020.data.local.LocalDataSource
@@ -17,7 +17,7 @@ object DI {
         return DefaultRepository(localDataSource)
     }
 
-    private fun injectLocalDataSource(context: Context): DataSource {
+    private fun injectLocalDataSource(context: Context): MemoDataSource {
         val database = injectDatabase(context)
 
         return LocalDataSource(database)
@@ -27,7 +27,7 @@ object DI {
         val database = Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "todo_database"
+            "memo_database"
         ).build()
 
         return database

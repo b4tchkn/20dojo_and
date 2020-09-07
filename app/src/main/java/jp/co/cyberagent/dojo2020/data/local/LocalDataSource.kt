@@ -3,26 +3,26 @@ package jp.co.cyberagent.dojo2020.data.local
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import jp.co.cyberagent.dojo2020.data.DataSource
+import jp.co.cyberagent.dojo2020.data.MemoDataSource
 import jp.co.cyberagent.dojo2020.data.local.db.AppDatabase
-import jp.co.cyberagent.dojo2020.data.local.db.TodoEntity
-import jp.co.cyberagent.dojo2020.models.Todo
+import jp.co.cyberagent.dojo2020.data.local.db.MemoEntity
+import jp.co.cyberagent.dojo2020.models.Memo
 
 
 class LocalDataSource (private val database: AppDatabase):
-    DataSource {
-    override fun loadAllTodo(): LiveData<List<Todo>> {
+    MemoDataSource {
+    override fun loadAllMemo(): LiveData<List<Memo>> {
         Log.i("test:", "in LocalDatasource loadAllTodo()" )
-        return database.todoDao().loadAllTodo().map {
-            todo ->
-                todo.map { Todo(it.id, it.title, it.hour, it.minute, it.description)}
+        return database.memoDao().loadAllMemo().map {
+            memo ->
+                memo.map { Memo(it.id, it.title, it.hour, it.minute, it.description)}
         }
     }
 
-    override fun inputMemo (todo: Todo) {
-        val forInsertTodo = TodoEntity.createForInsert(todo.title, todo.hour, todo.minute, todo.description)
-        Log.i("test:LocalDatasource", todo.title )
+    override fun inputMemo (memo: Memo) {
+        val forInsertMemo = MemoEntity.createForInsert(memo.title, memo.hour, memo.minute, memo.description)
+        Log.i("test:LocalDatasource", memo.title )
 
-        database.todoDao().insert(forInsertTodo)
+        database.memoDao().insert(forInsertMemo)
     }
 }

@@ -12,15 +12,15 @@ interface Repository {
 class DefaultRepository(
     private val localDataSorce: MemoDataSource
 ):Repository {
-    override suspend fun inputMemo(todo: Memo) {
-        Log.i("test: in Repository", todo.title)
-        localDataSorce.inputMemo(todo)
+    override suspend fun inputMemo(memo: Memo) {
+        Log.i("test: in Repository", memo.title)
+        localDataSorce.inputMemo(memo)
     }
 
     override fun loadAllMemo(): LiveData<List<Memo>> {
-        val localTodoList = localDataSorce.loadAllMemo()
+        val localMemoList = localDataSorce.loadAllMemo()
 
 
-        return localTodoList
+        return localMemoList
     }
 }

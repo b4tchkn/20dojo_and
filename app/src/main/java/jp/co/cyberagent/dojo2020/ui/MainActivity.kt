@@ -3,7 +3,6 @@ package jp.co.cyberagent.dojo2020.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import jp.co.cyberagent.dojo2020.databinding.ActivityMainBinding
 import jp.co.cyberagent.dojo2020.test.MemoData
 import jp.co.cyberagent.dojo2020.ui.home.HomeViewModel
@@ -20,33 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        with(binding) {
-
-            val memoAdapter = MemoAdapter()
-
-            homeViewModel.memoListLiveData.observe(this@MainActivity) {
-                memoAdapter.memoList = it
-            }
-
-            val linearLayoutManager = LinearLayoutManager(
-                this@MainActivity,
-                LinearLayoutManager.VERTICAL,
-                false
-            )
-
-            recyclerView.apply {
-                layoutManager = linearLayoutManager
-                adapter = memoAdapter
-            }
-
-            reloadButton.setOnClickListener {
-                val memo = MemoData.list.randomOrNull() ?: return@setOnClickListener
-
-                homeViewModel.saveMemo(memo)
-            }
-
-        }
-
     }
+
 }

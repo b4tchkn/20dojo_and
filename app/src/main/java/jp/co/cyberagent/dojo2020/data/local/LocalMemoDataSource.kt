@@ -20,4 +20,8 @@ class LocalMemoDataSource(private val dataBase: MemoDataBase) : MemoDataSource {
             memoEntityList.map { Memo(it.id, it.title, it.contents, it.time) }
         }
     }
+
+    override suspend fun deleteMemoById(id: Int) {
+        dataBase.memoDao().deleteById(id)
+    }
 }

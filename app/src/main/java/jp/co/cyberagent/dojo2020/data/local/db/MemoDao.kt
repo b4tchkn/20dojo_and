@@ -1,9 +1,6 @@
 package jp.co.cyberagent.dojo2020.data.local.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -13,4 +10,7 @@ interface MemoDao {
 
     @Query(value = "SELECT * FROM memos")
     fun fetchAll(): Flow<List<MemoEntity>>
+
+    @Query("DELETE FROM memos WHERE id = :id")
+    suspend fun deleteById(id: Int)
 }

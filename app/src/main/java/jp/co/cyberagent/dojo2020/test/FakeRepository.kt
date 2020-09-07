@@ -15,4 +15,8 @@ object FakeRepository : jp.co.cyberagent.dojo2020.data.MemoDataSource {
         dataList.forEach { Log.d(Constants.REPOSITORY, "fetchAll: $it") }
         emit(dataList)
     }
+
+    override suspend fun deleteMemoById(id: Int) {
+        MemoData.list.removeIf { it.id == id }
+    }
 }

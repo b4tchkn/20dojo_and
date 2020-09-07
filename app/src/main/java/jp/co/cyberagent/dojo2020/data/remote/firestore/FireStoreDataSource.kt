@@ -5,12 +5,15 @@ import com.google.firebase.ktx.Firebase
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.tasks.await
 
 interface FireStoreDataSource {
     suspend fun saveMemo(uid: String, memo: Memo)
 
     suspend fun fetchAllMemo(uid: String): Flow<List<Memo>>
+
+    suspend fun deleteMemoById(uid: String, id: Int)
 }
 
 class DefaultFireStoreDataSource : FireStoreDataSource {
@@ -18,8 +21,9 @@ class DefaultFireStoreDataSource : FireStoreDataSource {
 
     override suspend fun saveMemo(uid: String, memo: Memo) {
         val entity = memo.toEntityForRemote()
+        val id = entity.id ?: return
 
-        firestore.memosRef(uid).document().set(entity)
+        firestore.memosRef(uid).document(id).set(entity)
     }
 
     override suspend fun fetchAllMemo(uid: String) = flow<List<Memo>> {
@@ -35,6 +39,10 @@ class DefaultFireStoreDataSource : FireStoreDataSource {
         } catch (e: Exception) {
             //Todo(emit failed)
         }
+    }
+
+    override suspend fun deleteMemoById(uid: String, id: Int) {
+        firestore.memosRef(uid).document(id).delete().await()
     }
 
     private fun Memo.toEntityForRemote(): MemoEntity {

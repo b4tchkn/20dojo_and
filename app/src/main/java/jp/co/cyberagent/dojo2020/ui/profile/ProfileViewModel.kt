@@ -7,12 +7,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jp.co.cyberagent.dojo2020.DI
 import jp.co.cyberagent.dojo2020.data.DefaultUserInfoRepository
+import jp.co.cyberagent.dojo2020.data.UserInfoRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(context: Context) : ViewModel() {
-    private val repository = DI.injectRepository(context)
     private val userInfoRepository = DefaultUserInfoRepository()
+    private val firebaseUserInfoRepository: UserInfoRepository =
+        DI.injectDefaultUserInfoRepository()
+
+    private fun user() = firebaseUserInfoRepository.fetchUserInfo()
 
     private val mutableLiveData: MutableLiveData<Profile> = MutableLiveData()
     val liveData: LiveData<Profile>

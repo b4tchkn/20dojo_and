@@ -9,11 +9,11 @@ import jp.co.cyberagent.dojo2020.data.model.Account
 data class ProfileEntity(
     @PrimaryKey
     @ColumnInfo(name = "name")
-    val name: String,
+    val name: String?,
 
     @ColumnInfo(name = "icon")
-    val iconUrl: String,
+    val iconUrl: String?,
 
     @ColumnInfo(name = "account_list")
-    val accountList: List<Account>
+    val accountList: List<Account>?
 )

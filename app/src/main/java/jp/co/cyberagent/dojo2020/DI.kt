@@ -22,10 +22,11 @@ object DI {
         return DefaultMemoRepository(localDataSource, remoteDataSource)
     }
 
-    fun injectDefaultFireStoreProfileDataSource(): FireStoreProfileDataSource {
-        val fireStore = injectFireStore()
+    fun injectDefaultProfileRepository(context: Context): ProfileRepository {
+        val profileDataSource = injectDefaultProfileDataSource(context)
+        val fireStoreProfileDataSource = injectDefaultFireStoreProfileDataSource()
 
-        return DefaultFireStoreProfileDataSource(fireStore)
+        return DefaultProfileRepository(profileDataSource, fireStoreProfileDataSource)
     }
 
     fun injectDefaultDraftRepository(context: Context): DraftRepository {
@@ -36,6 +37,12 @@ object DI {
 
     fun injectDefaultUserInfoRepository(): UserInfoRepository {
         return DefaultUserInfoRepository()
+    }
+
+    private fun injectDefaultFireStoreProfileDataSource(): FireStoreProfileDataSource {
+        val fireStore = injectFireStore()
+
+        return DefaultFireStoreProfileDataSource(fireStore)
     }
 
     private fun injectDefaultProfileDataSource(context: Context): ProfileDataSource {

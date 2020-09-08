@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/testFragment">
 
     <fragment
         android:id="@+id/memoCreateFragment"
@@ -31,4 +31,8 @@
             android:id="@+id/action_profileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="jp.co.cyberagent.dojo2020.ui.test.TestFragment"
+        android:label="TestFragment" />
 </navigation>

@@ -13,14 +13,14 @@ import jp.co.cyberagent.dojo2020.data.remote.firestore.DefaultFireStoreDataSourc
 import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
 
 object DI {
-    fun injectRepository(context: Context): MemoRepository {
-        val localDataSource = injectLocalDataSource(context)
+    fun injectDefaultMemoRepository(context: Context): MemoRepository {
+        val localDataSource = injectDefaultMemoDataSource(context)
         val remoteDataSource = injectRemoteDataSource()
 
         return DefaultMemoRepository(localDataSource, remoteDataSource)
     }
 
-    private fun injectLocalDataSource(context: Context): MemoDataSource {
+    private fun injectDefaultMemoDataSource(context: Context): MemoDataSource {
         val database = injectDatabase(context)
 
         return DefaultMemoDataSource(database)

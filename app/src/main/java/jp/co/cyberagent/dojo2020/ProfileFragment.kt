@@ -1,16 +1,24 @@
 package jp.co.cyberagent.dojo2020
 
+// Kotlin Android Extensions
+import android.app.Activity.RESULT_OK
+import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.content.Context
-// Kotlin Android Extensions
 import kotlinx.android.synthetic.main.profile_tab.*
 
 class ProfileFragment : Fragment() {
+
+
 
     //ビューを作成する関数
     override fun onCreateView(
@@ -24,6 +32,8 @@ class ProfileFragment : Fragment() {
     //ビューができたらここの処理(onCreate同様)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val selectPhoto = SelectPhoto(this, edit_image)
 
         //SharedPreferenceを使うためのインスタンス
         val dataStore: SharedPreferences? = activity?.getPreferences(Context.MODE_PRIVATE)
@@ -98,6 +108,33 @@ class ProfileFragment : Fragment() {
 
                 param = 1
 
+            }
+        }
+
+        edit_image.setOnClickListener {
+            selectPhoto.selectPhoto()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
+        if (resultCode != RESULT_OK) return
+
+        when (requestCode) {
+            SelectPhoto.READ_REQUESTED_CODE -> {
+                try {
+                    val inputStream =
+                        data?.data?.let { context?.contentResolver?.openInputStream(it)}
+                    val inputImage: Bitmap = BitmapFactory.decodeStream(inputStream)
+
+                    edit_image.setImageBitmap(inputImage)
+
+
+                } catch (e: Exception) {
+                    Toast.makeText(context, "エラーが発生しました", Toast.LENGTH_LONG)
+                }
             }
         }
     }

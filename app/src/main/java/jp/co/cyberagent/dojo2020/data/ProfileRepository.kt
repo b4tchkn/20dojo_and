@@ -4,7 +4,7 @@ import jp.co.cyberagent.dojo2020.data.model.Profile
 import kotlinx.coroutines.flow.Flow
 
 interface ProfileRepository {
-    suspend fun saveProfile(uid: String, profile: Profile)
+    suspend fun saveProfile(uid: String?, profile: Profile)
 
-    suspend fun fetchProfile(uid: String): Flow<Profile?>
+    suspend fun fetchProfile(uid: String?): Flow<Profile?>
 }

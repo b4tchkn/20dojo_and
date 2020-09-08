@@ -16,6 +16,8 @@ object FirebaseAuthentication {
         }
     }
 
+    fun currentUser() = firebaseAuth.currentUser
+
     fun addStateListener(stateListener: StateListener) {
         stateListenerList.add(stateListener)
     }

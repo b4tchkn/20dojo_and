@@ -6,7 +6,7 @@ import jp.co.cyberagent.dojo2020.data.MemoDataSource
 import jp.co.cyberagent.dojo2020.data.DefaultMemoRepository
 import jp.co.cyberagent.dojo2020.data.MemoRepository
 import jp.co.cyberagent.dojo2020.data.local.LocalMemoDataSource
-import jp.co.cyberagent.dojo2020.data.local.db.MemoDataBase
+import jp.co.cyberagent.dojo2020.data.local.db.memo.MemoDataBase
 import jp.co.cyberagent.dojo2020.data.remote.firestore.DefaultFireStoreDataSource
 import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
 

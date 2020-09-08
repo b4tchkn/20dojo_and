@@ -1,8 +1,8 @@
 package jp.co.cyberagent.dojo2020.data.local
 
 import jp.co.cyberagent.dojo2020.data.MemoDataSource
-import jp.co.cyberagent.dojo2020.data.local.db.MemoDataBase
-import jp.co.cyberagent.dojo2020.data.local.db.MemoEntity
+import jp.co.cyberagent.dojo2020.data.local.db.memo.MemoDataBase
+import jp.co.cyberagent.dojo2020.data.local.db.memo.MemoEntity
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

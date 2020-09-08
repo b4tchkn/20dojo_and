@@ -3,10 +3,7 @@ package jp.co.cyberagent.dojo2020
 import android.content.Context
 import androidx.room.Room
 import jp.co.cyberagent.dojo2020.data.*
-import jp.co.cyberagent.dojo2020.data.local.DefaultDraftDataSource
-import jp.co.cyberagent.dojo2020.data.local.DefaultMemoDataSource
-import jp.co.cyberagent.dojo2020.data.local.DraftDataSource
-import jp.co.cyberagent.dojo2020.data.local.MemoDataSource
+import jp.co.cyberagent.dojo2020.data.local.*
 import jp.co.cyberagent.dojo2020.data.local.db.ApplicationDataBase
 import jp.co.cyberagent.dojo2020.data.remote.firestore.DefaultFireStoreDataSource
 import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
@@ -27,6 +24,12 @@ object DI {
 
     fun injectDefaultUserInfoRepository(): UserInfoRepository {
         return DefaultUserInfoRepository()
+    }
+
+    private fun injectDefaultProfileDataSource(context: Context): ProfileDataSource {
+        val database = injectDatabase(context)
+
+        return DefaultProfileDataSource(database)
     }
 
     private fun injectDefaultMemoDataSource(context: Context): MemoDataSource {

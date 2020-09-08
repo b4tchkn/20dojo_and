@@ -8,18 +8,18 @@
         android:id="@+id/add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginEnd="@dimen/small_margin"
         android:text="@string/add"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/category_spinner"
+        app:layout_constraintRight_toRightOf="@id/category_spinner"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/category_spinner"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/add_button"
-        app:layout_constraintRight_toRightOf="@id/add_button"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/add_button" />
 
     <EditText
@@ -35,8 +35,9 @@
         android:maxLines="1"
         android:nextFocusDown="@id/content_text_edit"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/add_button"
+        app:layout_constraintRight_toLeftOf="@id/category_spinner"
         app:layout_constraintTop_toTopOf="parent">
+
         <requestFocus />
     </EditText>
 

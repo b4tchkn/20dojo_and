@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import jp.co.cyberagent.dojo2020.R
@@ -33,6 +34,15 @@ class MemoCreateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
+            val adapter = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.spinner_item,
+                android.R.layout.simple_spinner_item
+            )
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            categorySpinner.adapter = adapter
+
             addButton.setOnClickListener {
                 findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
             }

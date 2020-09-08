@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_item">
+        <item>None</item>
+        <item>Kotlin</item>
+        <item>Android</item>
+        <item>iOS</item>
+        <item>Redux</item>
+    </string-array>
+</resources>

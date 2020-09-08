@@ -34,6 +34,14 @@ class ProfileFragment : Fragment() {
             profileToHomeButton.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
             }
+
+            viewModel.liveData.observe(viewLifecycleOwner) {
+                profileUserName.text = it.name
+                profileTotalTime.text = it.totalTime
+            }
+            reloadButton.setOnClickListener {
+                viewModel.fetchUserData()
+            }
         }
 
     }

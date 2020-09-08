@@ -5,12 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import jp.co.cyberagent.dojo2020.R
 import jp.co.cyberagent.dojo2020.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
+
+    private val viewModel: ProfileViewModel by viewModels {
+        ProfileViewModelFactory(this, Bundle(), requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

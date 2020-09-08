@@ -30,7 +30,8 @@
             android:layout_height="100dp"
             android:layout_marginBottom="20dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/ic_baseline_person_24" />
+            android:background="@drawable/ic_baseline_person_24"
+            />
 
         <TextView
             android:id="@+id/person_name"

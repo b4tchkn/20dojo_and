@@ -17,7 +17,19 @@ class LocalMemoDataSource(private val dataBase: MemoDataBase) : MemoDataSource {
 
     override suspend fun fetchAllMemo(): Flow<List<Memo>> {
         return dataBase.memoDao().fetchAll().map { memoEntityList ->
-            memoEntityList.map { Memo(it.title, it.contents, it.time) }
+            memoEntityList.map { Memo(it.id, it.title, it.contents, it.time) }
         }
+    }
+
+    override suspend fun fetchMemoById(id: String): Flow<Memo?> {
+        return dataBase.memoDao().fetch(id).map { memoEntity ->
+            memoEntity?.let {
+                Memo(it.id, it.title, it.contents, it.time)
+            }
+        }
+    }
+
+    override suspend fun deleteMemoById(id: String) {
+        dataBase.memoDao().deleteById(id)
     }
 }

@@ -11,13 +11,14 @@ interface UserInfoRepository {
 }
 
 class DefaultUserInfoRepository : UserInfoRepository {
+    private var firebaseUser: FirebaseUser? = null
+
     init {
         FirebaseAuthentication.addStateListener { firebaseAuth ->
             firebaseUser = firebaseAuth.currentUser
         }
+        firebaseUser = FirebaseAuthentication.currentUser()
     }
-
-    private var firebaseUser: FirebaseUser? = null
 
     override fun fetchUserInfo(): Flow<FirebaseUserInfo?> = flow {
         if (firebaseUser == null || firebaseUser?.uid == null || firebaseUser?.email == null) {

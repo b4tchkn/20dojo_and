@@ -3,17 +3,22 @@ package jp.co.cyberagent.dojo2020.test
 import jp.co.cyberagent.dojo2020.data.model.Memo
 
 object MemoData {
-    val list = listOf(
-        Memo("", "", 0.0),
-        Memo("title", "contents", 0.0),
-        Memo("title", "cccccccccccccccccccccccccccccccccccccc aaaaaaaaaaaaaaaaaaaaaaaaa", 0.0),
+    val list = mutableListOf(
+        Memo("101", "", "", 0.0),
+        Memo("102", "title", "contents", 0.0),
+        Memo("102", "title", "cccccccccccccccccccccccccccccccccccccc aaaaaaaaaaaaaaaaaaaaaaaaa", 0.0),
 
-        Memo("", "", -1.1),
-        Memo("title", "contents", -1.1),
-        Memo("title", "cccccccccccccccccccccccccccccccccccccc aaaaaaaaaaaaaaaaaaaaaaaaa", -1.1),
+        Memo("103", "", "", -1.1),
+        Memo("103", "title", "contents", -1.1),
+        Memo(
+            "103",
+            "title",
+            "cccccccccccccccccccccccccccccccccccccc aaaaaaaaaaaaaaaaaaaaaaaaa",
+            -1.1
+        ),
 
-        Memo("", "", 1.1),
-        Memo("title", "contents", 1.1),
-        Memo("title", "cccccccccccccccccccccccccccccccccccccc aaaaaaaaaaaaaaaaaaaaaaaaa", 1.1)
+        Memo("103", "", "", 1.1),
+        Memo("103", "title", "contents", 1.1),
+        Memo("103", "title", "cccccccccccccccccccccccccccccccccccccc aaaaaaaaaaaaaaaaaaaaaaaaa", 1.1)
     )
 }

@@ -64,12 +64,12 @@ class DefaultFireStoreDataSource : FireStoreDataSource {
     }
 
     private fun MemoEntity.modelOrNull(): Memo? {
-        val containsNull = listOf(id, title, contents, time).contains(null)
+        val containsNull = listOf(id, title, contents, time, category).contains(null)
         if (containsNull) {
             return null
         }
 
-        return Memo(id!!, title!!, contents!!, time!!)
+        return Memo(id!!, title!!, contents!!, time!!, category!!)
     }
 
 }

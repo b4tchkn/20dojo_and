@@ -2,7 +2,7 @@ package jp.co.cyberagent.dojo2020.data
 
 import jp.co.cyberagent.dojo2020.data.local.MemoDataSource
 import jp.co.cyberagent.dojo2020.data.model.Memo
-import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.FireStoreDataSource
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat

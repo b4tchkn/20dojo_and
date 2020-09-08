@@ -5,8 +5,8 @@ import androidx.room.Room
 import jp.co.cyberagent.dojo2020.data.*
 import jp.co.cyberagent.dojo2020.data.local.*
 import jp.co.cyberagent.dojo2020.data.local.db.ApplicationDataBase
-import jp.co.cyberagent.dojo2020.data.remote.firestore.DefaultFireStoreDataSource
-import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.DefaultFireStoreDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.FireStoreDataSource
 
 object DI {
     fun injectDefaultMemoRepository(context: Context): MemoRepository {

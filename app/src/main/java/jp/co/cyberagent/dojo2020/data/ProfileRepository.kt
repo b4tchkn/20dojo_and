@@ -8,3 +8,7 @@ interface ProfileRepository {
 
     suspend fun fetchProfile(uid: String?): Flow<Profile?>
 }
+
+class DefaultProfileRepository() {
+
+}

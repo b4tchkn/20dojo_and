@@ -6,7 +6,7 @@ import jp.co.cyberagent.dojo2020.data.MemoDataSource
 import jp.co.cyberagent.dojo2020.data.DefaultMemoRepository
 import jp.co.cyberagent.dojo2020.data.MemoRepository
 import jp.co.cyberagent.dojo2020.data.local.LocalMemoDataSource
-import jp.co.cyberagent.dojo2020.data.local.db.memo.MemoDataBase
+import jp.co.cyberagent.dojo2020.data.local.db.ApplicationDataBase
 import jp.co.cyberagent.dojo2020.data.remote.firestore.DefaultFireStoreDataSource
 import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
 
@@ -28,10 +28,10 @@ object DI {
         return DefaultFireStoreDataSource()
     }
 
-    private fun injectDatabase(context: Context): MemoDataBase {
+    private fun injectDatabase(context: Context): ApplicationDataBase {
         val database = Room.databaseBuilder(
             context,
-            MemoDataBase::class.java,
+            ApplicationDataBase::class.java,
             "ca-memo-database"
         ).build()
 

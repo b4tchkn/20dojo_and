@@ -2,13 +2,16 @@ package jp.co.cyberagent.dojo2020
 
 import android.content.Context
 import androidx.room.Room
+import jp.co.cyberagent.dojo2020.data.DefaultDraftRepository
 import jp.co.cyberagent.dojo2020.data.local.MemoDataSource
 import jp.co.cyberagent.dojo2020.data.DefaultMemoRepository
+import jp.co.cyberagent.dojo2020.data.DraftRepository
 import jp.co.cyberagent.dojo2020.data.MemoRepository
 import jp.co.cyberagent.dojo2020.data.local.DefaultDraftDataSource
 import jp.co.cyberagent.dojo2020.data.local.DefaultMemoDataSource
 import jp.co.cyberagent.dojo2020.data.local.DraftDataSource
 import jp.co.cyberagent.dojo2020.data.local.db.ApplicationDataBase
+import jp.co.cyberagent.dojo2020.data.model.Draft
 import jp.co.cyberagent.dojo2020.data.remote.firestore.DefaultFireStoreDataSource
 import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
 
@@ -18,6 +21,12 @@ object DI {
         val remoteDataSource = injectRemoteDataSource()
 
         return DefaultMemoRepository(localDataSource, remoteDataSource)
+    }
+
+    fun injectDefaultDraftRepository(context: Context): DraftRepository {
+        val dataSource = injectDefaultDraftDataSource(context)
+
+        return DefaultDraftRepository(dataSource)
     }
 
     private fun injectDefaultMemoDataSource(context: Context): MemoDataSource {

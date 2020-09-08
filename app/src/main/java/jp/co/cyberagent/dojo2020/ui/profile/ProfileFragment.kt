@@ -37,8 +37,15 @@ class ProfileFragment : Fragment() {
 
             viewModel.liveData.observe(viewLifecycleOwner) {
                 profileUserName.text = it.name
-                profileTotalTime.text = it.totalTime
+                profileIconUrl.text = it.iconUrl
+                val twitterAccount = it.accountList.first { it.serviceName == "twitter" }
+                profileTwitterId.text = twitterAccount.id
+                profileTwitterUrl.text = twitterAccount.url
+                val githubAccount = it.accountList.first { it.serviceName == "github" }
+                profileGithubId.text = githubAccount.id
+                profileGithubUrl.text = githubAccount.url
             }
+
             reloadButton.setOnClickListener {
                 viewModel.fetchUserData()
             }

@@ -13,7 +13,7 @@ interface FireStoreDataSource {
 
     suspend fun fetchAllMemo(uid: String): Flow<List<Memo>>
 
-    suspend fun deleteMemoById(uid: String, id: Int)
+    suspend fun deleteMemoById(uid: String, id: String)
 }
 
 class DefaultFireStoreDataSource : FireStoreDataSource {
@@ -41,7 +41,7 @@ class DefaultFireStoreDataSource : FireStoreDataSource {
         }
     }
 
-    override suspend fun deleteMemoById(uid: String, id: Int) {
+    override suspend fun deleteMemoById(uid: String, id: String) {
         firestore.memosRef(uid).document(id).delete().await()
     }
 

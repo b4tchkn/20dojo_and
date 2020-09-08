@@ -3,11 +3,12 @@ package jp.co.cyberagent.dojo2020.data.local.db
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "memos")
 data class MemoEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @PrimaryKey
+    val id: String,
 
     @ColumnInfo(name = "title")
     val title: String,
@@ -20,7 +21,7 @@ data class MemoEntity(
 ) {
     companion object {
         fun createForInsert(title: String, contents: String, time: Double): MemoEntity {
-            return MemoEntity(0, title, contents, time)
+            return MemoEntity(UUID.randomUUID().toString(), title, contents, time)
         }
     }
 }

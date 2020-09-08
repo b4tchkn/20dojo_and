@@ -21,7 +21,7 @@ class LocalMemoDataSource(private val dataBase: MemoDataBase) : MemoDataSource {
         }
     }
 
-    override suspend fun deleteMemoById(id: Int) {
+    override suspend fun deleteMemoById(id: String) {
         dataBase.memoDao().deleteById(id)
     }
 }

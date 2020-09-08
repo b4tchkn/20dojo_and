@@ -8,5 +8,5 @@ interface MemoDataSource {
 
     suspend fun fetchAllMemo(): Flow<List<Memo>>
 
-    suspend fun deleteMemoById(id: Int)
+    suspend fun deleteMemoById(id: String)
 }

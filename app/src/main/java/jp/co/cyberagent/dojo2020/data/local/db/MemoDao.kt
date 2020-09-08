@@ -12,5 +12,5 @@ interface MemoDao {
     fun fetchAll(): Flow<List<MemoEntity>>
 
     @Query("DELETE FROM memos WHERE id = :id")
-    suspend fun deleteById(id: Int)
+    suspend fun deleteById(id: String)
 }

@@ -5,14 +5,14 @@ import jp.co.cyberagent.dojo2020.data.model.Account
 
 class AccountListConverter {
     @TypeConverter
-    fun fromAccountList(list: List<Account>): String {
-        return list.joinToString(separator) { account -> accountToString(account) }
+    fun fromAccountList(list: List<Account>?): String? {
+        return list?.joinToString(separator) { account -> accountToString(account) }
     }
 
     @TypeConverter
-    fun accountListToString(string: String): List<Account> {
-        val accountsString = string.split(separator)
-        return accountsString.map { stringToAccount(it) }
+    fun accountListToString(string: String?): List<Account>? {
+        val accountsString = string?.split(separator)
+        return accountsString?.map { stringToAccount(it) }
     }
 
     companion object {

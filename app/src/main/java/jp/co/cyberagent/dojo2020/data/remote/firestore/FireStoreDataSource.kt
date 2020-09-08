@@ -13,6 +13,8 @@ interface FireStoreDataSource {
 
     suspend fun fetchAllMemo(uid: String): Flow<List<Memo>>
 
+    suspend fun fetchMemoById(uid: String, id: String): Flow<Memo?>
+
     suspend fun deleteMemoById(uid: String, id: String)
 }
 
@@ -36,6 +38,18 @@ class DefaultFireStoreDataSource : FireStoreDataSource {
             val notNullMemoList = nullableMemoList.map { it ?: return@flow }
 
             emit(notNullMemoList)
+        } catch (e: Exception) {
+            //Todo(emit failed)
+        }
+    }
+
+    override suspend fun fetchMemoById(uid: String, id: String) = flow<Memo?> {
+        try {
+            val snapshot = firestore.memosRef(uid).document(id).get().await()
+            val memoEntity = snapshot.toObject(MemoEntity::class.java)
+            val memo = memoEntity?.modelOrNull()
+
+            emit(memo)
         } catch (e: Exception) {
             //Todo(emit failed)
         }

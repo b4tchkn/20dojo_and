@@ -2,6 +2,9 @@ package jp.co.cyberagent.dojo2020
 
 import android.content.Context
 import androidx.room.Room
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import jp.co.cyberagent.dojo2020.data.*
 import jp.co.cyberagent.dojo2020.data.local.*
 import jp.co.cyberagent.dojo2020.data.local.db.ApplicationDataBase
@@ -45,7 +48,13 @@ object DI {
     }
 
     private fun injectDefaultFireStoreMemoDataSource(): FireStoreMemoDataSource {
-        return DefaultFireStoreMemoDataSource()
+        val firestore = injectFireStore()
+
+        return DefaultFireStoreMemoDataSource(firestore)
+    }
+
+    private fun injectFireStore(): FirebaseFirestore {
+        return Firebase.firestore
     }
 
     private fun injectDatabase(context: Context): ApplicationDataBase {

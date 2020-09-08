@@ -1,7 +1,6 @@
 package jp.co.cyberagent.dojo2020.data.remote.firestore.memo
 
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import jp.co.cyberagent.dojo2020.data.remote.firestore.memosRef
 import kotlinx.coroutines.flow.Flow
@@ -18,8 +17,8 @@ interface FireStoreMemoDataSource {
     suspend fun deleteMemoById(uid: String, id: String)
 }
 
-class DefaultFireStoreMemoDataSource : FireStoreMemoDataSource {
-    private val firestore = Firebase.firestore
+class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
+    FireStoreMemoDataSource {
 
     override suspend fun saveMemo(uid: String, memo: Memo) {
         val entity = memo.toEntityForRemote()

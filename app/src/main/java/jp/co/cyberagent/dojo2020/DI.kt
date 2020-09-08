@@ -10,13 +10,22 @@ import jp.co.cyberagent.dojo2020.data.local.*
 import jp.co.cyberagent.dojo2020.data.local.db.ApplicationDataBase
 import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.DefaultFireStoreMemoDataSource
 import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.FireStoreMemoDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.profile.DefaultFireStoreProfileDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.profile.FireStoreProfileDataSource
 
 object DI {
+
     fun injectDefaultMemoRepository(context: Context): MemoRepository {
         val localDataSource = injectDefaultMemoDataSource(context)
         val remoteDataSource = injectDefaultFireStoreMemoDataSource()
 
         return DefaultMemoRepository(localDataSource, remoteDataSource)
+    }
+
+    fun injectDefaultFireStoreProfileDataSource(): FireStoreProfileDataSource {
+        val fireStore = injectFireStore()
+
+        return DefaultFireStoreProfileDataSource(fireStore)
     }
 
     fun injectDefaultDraftRepository(context: Context): DraftRepository {

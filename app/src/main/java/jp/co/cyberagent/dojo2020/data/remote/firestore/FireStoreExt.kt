@@ -11,6 +11,14 @@ fun FirebaseFirestore.memosRef(uid: String): CollectionReference {
         .collection(FireStoreConstants.MEMOS)
 }
 
+fun FirebaseFirestore.profileRef(uid: String): DocumentReference {
+    return this
+        .collection(FireStoreConstants.USERS)
+        .document(uid)
+        .collection(FireStoreConstants.PROFILE)
+        .document(FireStoreConstants.YOUR)
+}
+
 fun CollectionReference.document(id: Int): DocumentReference {
     return this.document(id.toString())
 }

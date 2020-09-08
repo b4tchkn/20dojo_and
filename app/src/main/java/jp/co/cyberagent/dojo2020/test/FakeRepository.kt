@@ -16,7 +16,7 @@ object FakeRepository : jp.co.cyberagent.dojo2020.data.MemoDataSource {
         emit(dataList)
     }
 
-    override suspend fun deleteMemoById(id: Int) {
+    override suspend fun deleteMemoById(id: String) {
         MemoData.list.removeIf { it.id == id }
     }
 }

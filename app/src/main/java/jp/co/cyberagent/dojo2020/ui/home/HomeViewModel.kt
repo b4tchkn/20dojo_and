@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(context: Context) : ViewModel() {
-    private val memoRepository = DI.injectRepository(context)
+    private val memoRepository = DI.injectDefaultMemoRepository(context)
     private val firebaseUserInfoRepository: UserInfoRepository = DefaultUserInfoRepository()
 
     private fun user() = firebaseUserInfoRepository.fetchUserInfo()

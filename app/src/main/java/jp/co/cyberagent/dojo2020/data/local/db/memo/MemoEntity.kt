@@ -1,4 +1,4 @@
-package jp.co.cyberagent.dojo2020.data.local.db
+package jp.co.cyberagent.dojo2020.data.local.db.memo
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -18,10 +18,4 @@ data class MemoEntity(
 
     @ColumnInfo(name = "time")
     val time: Double
-) {
-    companion object {
-        fun createForInsert(title: String, contents: String, time: Double): MemoEntity {
-            return MemoEntity(UUID.randomUUID().toString(), title, contents, time)
-        }
-    }
-}
+)

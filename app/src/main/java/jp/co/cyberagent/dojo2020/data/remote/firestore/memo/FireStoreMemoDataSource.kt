@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
-interface FireStoreDataSource {
+interface FireStoreMemoDataSource {
     suspend fun saveMemo(uid: String, memo: Memo)
 
     suspend fun fetchAllMemo(uid: String): Flow<List<Memo>>
@@ -18,7 +18,7 @@ interface FireStoreDataSource {
     suspend fun deleteMemoById(uid: String, id: String)
 }
 
-class DefaultFireStoreDataSource : FireStoreDataSource {
+class DefaultFireStoreMemoDataSource : FireStoreMemoDataSource {
     private val firestore = Firebase.firestore
 
     override suspend fun saveMemo(uid: String, memo: Memo) {

@@ -2,9 +2,7 @@ package jp.co.cyberagent.dojo2020
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 open class SelectPhoto(private val fragment: Fragment, private val image: ImageView): Activity() {

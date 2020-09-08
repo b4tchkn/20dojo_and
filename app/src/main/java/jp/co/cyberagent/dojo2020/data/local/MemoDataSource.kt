@@ -19,26 +19,28 @@ interface MemoDataSource {
 class DefaultMemoDataSource(private val dataBase: ApplicationDataBase) : MemoDataSource {
 
     override suspend fun saveMemo(memo: Memo) {
-        val forInsertMemo = MemoEntity(memo.id, memo.title, memo.contents, memo.time)
-
-        dataBase.memoDao().insert(forInsertMemo)
+        dataBase.memoDao().insert(memo.toEntityForLocal())
     }
 
     override suspend fun fetchAllMemo(): Flow<List<Memo>> {
         return dataBase.memoDao().fetchAll().map { memoEntityList ->
-            memoEntityList.map { Memo(it.id, it.title, it.contents, it.time) }
+            memoEntityList.map { it.toModel() }
         }
     }
 
     override suspend fun fetchMemoById(id: String): Flow<Memo?> {
-        return dataBase.memoDao().fetch(id).map { memoEntity ->
-            memoEntity?.let {
-                Memo(it.id, it.title, it.contents, it.time)
-            }
-        }
+        return dataBase.memoDao().fetch(id).map { it?.toModel() }
     }
 
     override suspend fun deleteMemoById(id: String) {
         dataBase.memoDao().deleteById(id)
+    }
+
+    private fun MemoEntity.toModel(): Memo {
+        return Memo(id, title, contents, time, category)
+    }
+
+    private fun Memo.toEntityForLocal(): MemoEntity {
+        return MemoEntity(id, title, contents, time, category)
     }
 }

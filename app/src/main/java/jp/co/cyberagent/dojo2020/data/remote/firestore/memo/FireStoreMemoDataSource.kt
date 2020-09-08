@@ -1,14 +1,13 @@
-package jp.co.cyberagent.dojo2020.data.remote.firestore
+package jp.co.cyberagent.dojo2020.data.remote.firestore.memo
 
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import jp.co.cyberagent.dojo2020.data.model.Memo
+import jp.co.cyberagent.dojo2020.data.remote.firestore.memosRef
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.tasks.await
 
-interface FireStoreDataSource {
+interface FireStoreMemoDataSource {
     suspend fun saveMemo(uid: String, memo: Memo)
 
     suspend fun fetchAllMemo(uid: String): Flow<List<Memo>>
@@ -18,8 +17,8 @@ interface FireStoreDataSource {
     suspend fun deleteMemoById(uid: String, id: String)
 }
 
-class DefaultFireStoreDataSource : FireStoreDataSource {
-    private val firestore = Firebase.firestore
+class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
+    FireStoreMemoDataSource {
 
     override suspend fun saveMemo(uid: String, memo: Memo) {
         val entity = memo.toEntityForRemote()

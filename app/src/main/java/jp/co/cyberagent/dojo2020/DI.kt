@@ -2,21 +2,31 @@ package jp.co.cyberagent.dojo2020
 
 import android.content.Context
 import androidx.room.Room
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import jp.co.cyberagent.dojo2020.data.*
-import jp.co.cyberagent.dojo2020.data.local.DefaultDraftDataSource
-import jp.co.cyberagent.dojo2020.data.local.DefaultMemoDataSource
-import jp.co.cyberagent.dojo2020.data.local.DraftDataSource
-import jp.co.cyberagent.dojo2020.data.local.MemoDataSource
+import jp.co.cyberagent.dojo2020.data.local.*
 import jp.co.cyberagent.dojo2020.data.local.db.ApplicationDataBase
-import jp.co.cyberagent.dojo2020.data.remote.firestore.DefaultFireStoreDataSource
-import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.DefaultFireStoreMemoDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.FireStoreMemoDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.profile.DefaultFireStoreProfileDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.profile.FireStoreProfileDataSource
 
 object DI {
+
     fun injectDefaultMemoRepository(context: Context): MemoRepository {
         val localDataSource = injectDefaultMemoDataSource(context)
-        val remoteDataSource = injectRemoteDataSource()
+        val remoteDataSource = injectDefaultFireStoreMemoDataSource()
 
         return DefaultMemoRepository(localDataSource, remoteDataSource)
+    }
+
+    fun injectDefaultProfileRepository(context: Context): ProfileRepository {
+        val profileDataSource = injectDefaultProfileDataSource(context)
+        val fireStoreProfileDataSource = injectDefaultFireStoreProfileDataSource()
+
+        return DefaultProfileRepository(profileDataSource, fireStoreProfileDataSource)
     }
 
     fun injectDefaultDraftRepository(context: Context): DraftRepository {
@@ -27,6 +37,18 @@ object DI {
 
     fun injectDefaultUserInfoRepository(): UserInfoRepository {
         return DefaultUserInfoRepository()
+    }
+
+    private fun injectDefaultFireStoreProfileDataSource(): FireStoreProfileDataSource {
+        val fireStore = injectFireStore()
+
+        return DefaultFireStoreProfileDataSource(fireStore)
+    }
+
+    private fun injectDefaultProfileDataSource(context: Context): ProfileDataSource {
+        val database = injectDatabase(context)
+
+        return DefaultProfileDataSource(database)
     }
 
     private fun injectDefaultMemoDataSource(context: Context): MemoDataSource {
@@ -41,8 +63,14 @@ object DI {
         return DefaultDraftDataSource(dataBase)
     }
 
-    private fun injectRemoteDataSource(): FireStoreDataSource {
-        return DefaultFireStoreDataSource()
+    private fun injectDefaultFireStoreMemoDataSource(): FireStoreMemoDataSource {
+        val firestore = injectFireStore()
+
+        return DefaultFireStoreMemoDataSource(firestore)
+    }
+
+    private fun injectFireStore(): FirebaseFirestore {
+        return Firebase.firestore
     }
 
     private fun injectDatabase(context: Context): ApplicationDataBase {

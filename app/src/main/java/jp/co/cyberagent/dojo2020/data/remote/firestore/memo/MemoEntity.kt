@@ -1,4 +1,4 @@
-package jp.co.cyberagent.dojo2020.data.remote.firestore
+package jp.co.cyberagent.dojo2020.data.remote.firestore.memo
 
 data class MemoEntity(
     val id: String? = null,

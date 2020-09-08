@@ -22,7 +22,7 @@ class DefaultProfileDataSource(private val database: ApplicationDataBase) : Prof
     }
 
     private fun Profile.toEntity(): ProfileEntity {
-        return ProfileEntity(name, iconUrl, accountList)
+        return ProfileEntity.createForInsert(name, iconUrl, accountList)
     }
 
     private fun ProfileEntity.toModel(): Profile {

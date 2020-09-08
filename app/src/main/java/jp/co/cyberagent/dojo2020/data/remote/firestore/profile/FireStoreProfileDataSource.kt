@@ -30,7 +30,10 @@ class DefaultFireStoreProfileDataSource(private val firestore: FirebaseFirestore
     }
 
     private fun ProfileEntity.toModel(): Profile {
-        return Profile(name, iconUrl, accountEntityList?.mapNotNull { it.toModelOrNull() })
+        return Profile(
+            name,
+            iconUrl,
+            accountEntityList?.mapNotNull { it.toModelOrNull() })
     }
 
     private fun AccountEntity.toModelOrNull(): Account? {

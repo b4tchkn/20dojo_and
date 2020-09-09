@@ -6,11 +6,11 @@ data class Memo(
     val id: String,
     val title: String,
     val contents: String,
-    val time: Double,
+    val time: Long,
     val category: String
 ) {
     companion object {
-        fun createWithOutId(title: String, contents: String, time: Double, category: String): Memo {
+        fun createWithOutId(title: String, contents: String, time: Long, category: String): Memo {
             val id = UUID.randomUUID().toString()
 
             return Memo(id, title, contents, time, category)

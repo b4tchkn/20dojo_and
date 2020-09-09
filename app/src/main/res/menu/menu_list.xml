@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/kotlin"
+        android:title="kotlin" />
+    <item
+        android:id="@+id/android"
+        android:title="android" />
+
+</menu>

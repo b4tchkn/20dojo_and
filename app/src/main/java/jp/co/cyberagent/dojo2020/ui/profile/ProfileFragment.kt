@@ -42,19 +42,19 @@ class ProfileFragment : Fragment() {
             }
 
             viewModel.profileLiveData.observe(viewLifecycleOwner) {
-                profileUserName.text = it.name
+                userNameTextView.text = it.name
 
                 val url =
                     "https://raw.githubusercontent.com/bumptech/glide/master/static/glide_logo.png"
-                Glide.with(view).load(url).into(profileIcon)
+                Glide.with(view).load(url).into(iconImageView)
 
                 val twitterAccount = it.accountList?.first { it.serviceName == "twitter" }
-                profileTwitterId.text = twitterAccount?.id
-                profileTwitterUrl.text = twitterAccount?.url
+                twitterIdTextView.text = twitterAccount?.id
+                twitterUrlTextView.text = twitterAccount?.url
 
                 val githubAccount = it.accountList?.first { it.serviceName == "github" }
-                profileGithubId.text = githubAccount?.id
-                profileGithubUrl.text = githubAccount?.url
+                githubIdTextView.text = githubAccount?.id
+                githubUrlTextView.text = githubAccount?.url
             }
 
             reloadButton.setOnClickListener {

@@ -29,6 +29,8 @@ object DI {
 
     private var firebaseFireStore: FirebaseFirestore? = null
 
+    private var categoryDataSource: CategoryDataSource? = null
+
     private var applicationDataBase: ApplicationDataBase? = null
 
     fun injectDefaultMemoRepository(context: Context): MemoRepository {
@@ -121,6 +123,15 @@ object DI {
         firebaseFireStore = Firebase.firestore
 
         return firebaseFireStore!!
+    }
+
+    private fun injectCategoryDataSource(context: Context): CategoryDataSource {
+        if (categoryDataSource != null) return categoryDataSource!!
+
+        val database = injectDatabase(context)
+        categoryDataSource = DefaultCategoryDataSource(database)
+
+        return categoryDataSource!!
     }
 
     private fun injectDatabase(context: Context): ApplicationDataBase {

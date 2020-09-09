@@ -41,7 +41,7 @@ class ProfileViewModel(context: Context) : ViewModel() {
     val studyTimeLiveData: LiveData<Long>
         get() = studyTimeMutableLiveData
 
-    fun fetchStudyTime() = viewModelScope.launch {
+    fun culculateStudyTime() = viewModelScope.launch {
         userFlow.collect { userInfo ->
             memoRepository.fetchAllMemo(userInfo?.uid).collect { memoList ->
                 val totalTime = memoList.fold(0L) { res: Long, memo: Memo ->

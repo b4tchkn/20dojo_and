@@ -8,20 +8,259 @@
         android:id="@+id/profile_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile Fragment"
+        android:text="Profile"
         android:textSize="36dp"
-        app:layout_constraintBottom_toTopOf="@id/profile_to_home_button"
+        app:layout_constraintBottom_toTopOf="@+id/profile_card_view"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_to_home_button" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profile_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/view_cardview_margin_leftright"
+        android:layout_marginTop="@dimen/view_cardview_margin_topbottom"
+        android:layout_marginEnd="@dimen/view_cardview_margin_leftright"
+        android:layout_marginBottom="@dimen/view_cardview_margin_topbottom"
+        app:cardCornerRadius="16dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_text_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/view_cardview_padding_topbottom"
+                android:paddingBottom="@dimen/view_cardview_padding_topbottom">
+
+                <ImageView
+                    android:id="@+id/profile_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="@dimen/view_cardview_padding_leftright"
+                    android:layout_marginRight="@dimen/view_cardview_padding_leftright" />
+
+                <TextView
+                    android:id="@+id/profile_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="NAME"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/view_cardview_textsize_main"
+                    android:paddingStart="@dimen/view_cardview_padding_leftright" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/border"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/view_cardview_padding_topbottom"
+                android:paddingBottom="@dimen/view_cardview_padding_topbottom">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/view_cardview_margin_leftright"
+                    android:layout_marginEnd="@dimen/view_cardview_margin_leftright"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/twitter_logo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/profile_twitter_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="id"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/view_cardview_textsize_sub" />
+
+                    <TextView
+                        android:id="@+id/profile_twitter_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="url"
+                        android:textSize="@dimen/view_cardview_textsize_sub" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/border"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/view_cardview_padding_topbottom"
+                android:paddingBottom="@dimen/view_cardview_padding_topbottom">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/view_cardview_margin_leftright"
+                    android:layout_marginEnd="@dimen/view_cardview_margin_leftright"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/github_logo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/profile_github_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="id"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/view_cardview_textsize_sub" />
+
+                    <TextView
+                        android:id="@+id/profile_github_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="url"
+                        android:textSize="@dimen/view_cardview_textsize_sub" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/border"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/view_cardview_padding_topbottom"
+                android:paddingBottom="@dimen/view_cardview_padding_topbottom">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Total Time"
+                        android:textSize="@dimen/view_cardview_textsize_sub" />
+
+                    <TextView
+                        android:id="@+id/profile_total_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="123"
+                        android:textSize="@dimen/view_cardview_textsize_main" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/vertical_line"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Monthly Time"
+                        android:textSize="@dimen/view_cardview_textsize_sub" />
+
+                    <TextView
+                        android:id="@+id/profile_monthly_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="45"
+                        android:textSize="@dimen/view_cardview_textsize_main" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/vertical_line"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Weekly Time"
+                        android:textSize="@dimen/view_cardview_textsize_sub" />
+
+                    <TextView
+                        android:id="@+id/profile_weekly_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="6"
+                        android:textSize="@dimen/view_cardview_textsize_main" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/profile_to_home_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="profile_to_home"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/reload_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reload"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_card_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

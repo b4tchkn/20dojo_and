@@ -26,8 +26,7 @@ class ProfileViewModel(context: Context) : ViewModel() {
     private val userFlow = firebaseUserInfoRepository.fetchUserInfo()
 
     private val profileMutableLiveData: MutableLiveData<Profile> = MutableLiveData()
-    val profileLiveData: LiveData<Profile>
-        get() = profileMutableLiveData
+    val profileLiveData: LiveData<Profile> = profileMutableLiveData
 
     fun fetchUserData() = viewModelScope.launch {
         userFlow.collect { userInfo ->
@@ -38,8 +37,7 @@ class ProfileViewModel(context: Context) : ViewModel() {
     }
 
     private val studyTimeMutableLiveData: MutableLiveData<Long> = MutableLiveData()
-    val studyTimeLiveData: LiveData<Long>
-        get() = studyTimeMutableLiveData
+    val studyTimeLiveData: LiveData<Long> = studyTimeMutableLiveData
 
     fun calculateStudyTime() = viewModelScope.launch {
         userFlow.collect { userInfo ->

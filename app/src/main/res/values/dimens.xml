@@ -8,4 +8,12 @@
     <dimen name="middle_margin">16dp</dimen>
     <dimen name="large_margin">24dp</dimen>
 
+    <dimen name="view_cardview_padding_leftright">12dp</dimen>
+    <dimen name="view_cardview_padding_topbottom">12dp</dimen>
+    <dimen name="view_cardview_textsize_main">24sp</dimen>
+    <dimen name="view_cardview_textsize_sub">16sp</dimen>
+
+    <dimen name="view_cardview_margin_leftright">16dp</dimen>
+    <dimen name="view_cardview_margin_topbottom">8dp</dimen>
+
 </resources>

@@ -8,6 +8,8 @@ import com.google.firebase.ktx.Firebase
 import jp.co.cyberagent.dojo2020.data.*
 import jp.co.cyberagent.dojo2020.data.local.*
 import jp.co.cyberagent.dojo2020.data.local.db.ApplicationDataBase
+import jp.co.cyberagent.dojo2020.data.remote.firestore.category.DefaultFirestoreCategoryDataSource
+import jp.co.cyberagent.dojo2020.data.remote.firestore.category.FirestoreCategoryDataSource
 import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.DefaultFireStoreMemoDataSource
 import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.FireStoreMemoDataSource
 import jp.co.cyberagent.dojo2020.data.remote.firestore.profile.DefaultFireStoreProfileDataSource
@@ -30,6 +32,7 @@ object DI {
     private var firebaseFireStore: FirebaseFirestore? = null
 
     private var categoryDataSource: CategoryDataSource? = null
+    private var firestoreCategoryDataSource: FirestoreCategoryDataSource? = null
 
     private var applicationDataBase: ApplicationDataBase? = null
 
@@ -132,6 +135,14 @@ object DI {
         categoryDataSource = DefaultCategoryDataSource(database)
 
         return categoryDataSource!!
+    }
+
+    private fun injectFirestoreCategoryDataSource(): FirestoreCategoryDataSource {
+        if (firestoreCategoryDataSource != null) return firestoreCategoryDataSource!!
+
+        firestoreCategoryDataSource = DefaultFirestoreCategoryDataSource(injectFireStore())
+
+        return firestoreCategoryDataSource!!
     }
 
     private fun injectDatabase(context: Context): ApplicationDataBase {

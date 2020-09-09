@@ -19,6 +19,13 @@ fun FirebaseFirestore.profileRef(uid: String): DocumentReference {
         .document(FireStoreConstants.YOUR)
 }
 
+fun FirebaseFirestore.categoriesRef(uid: String): CollectionReference {
+    return this
+        .collection(FireStoreConstants.USERS)
+        .document(uid)
+        .collection(FireStoreConstants.CATEGORY)
+}
+
 fun CollectionReference.document(id: Int): DocumentReference {
     return this.document(id.toString())
 }

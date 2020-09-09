@@ -2,21 +2,29 @@ package jp.co.cyberagent.dojo2020.ui.create
 
 import android.content.Context
 import android.os.Bundle
+<<<<<<< Updated upstream
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+=======
+import android.view.*
+>>>>>>> Stashed changes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import jp.co.cyberagent.dojo2020.R
 import jp.co.cyberagent.dojo2020.databinding.FragmentMemoCreateBinding
+<<<<<<< Updated upstream
 import jp.co.cyberagent.dojo2020.ui.create.spinner.CustomOnItemSelectedListener
 import jp.co.cyberagent.dojo2020.ui.create.spinner.SpinnerAdapter
 import jp.co.cyberagent.dojo2020.ui.widget.CustomBottomSheetDialog
 import jp.co.cyberagent.dojo2020.ui.widget.CustomBottomSheetDialog.Companion.TAG
+=======
+import kotlinx.android.synthetic.main.activity_main.*
+>>>>>>> Stashed changes
 
 class MemoCreateFragment : Fragment() {
     private lateinit var activityInFragment: AppCompatActivity
@@ -77,9 +85,19 @@ class MemoCreateFragment : Fragment() {
                 findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
             }
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_list,menu)
 
     }
 
+<<<<<<< Updated upstream
     private fun showKeyboard() {
         val manager =
             activityInFragment.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -93,3 +111,6 @@ class MemoCreateFragment : Fragment() {
         }
     }
 }
+=======
+}
+>>>>>>> Stashed changes

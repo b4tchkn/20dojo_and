@@ -1,9 +1,7 @@
 package jp.co.cyberagent.dojo2020.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import jp.co.cyberagent.dojo2020.R
@@ -36,5 +34,6 @@ class HomeFragment : Fragment() {
         }
 
     }
+    
 
 }

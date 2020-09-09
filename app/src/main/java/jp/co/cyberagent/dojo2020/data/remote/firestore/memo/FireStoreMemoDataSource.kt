@@ -2,6 +2,7 @@ package jp.co.cyberagent.dojo2020.data.remote.firestore.memo
 
 import com.google.firebase.firestore.FirebaseFirestore
 import jp.co.cyberagent.dojo2020.data.model.Memo
+import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreConstants
 import jp.co.cyberagent.dojo2020.data.remote.firestore.memosRef
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,6 +12,8 @@ interface FireStoreMemoDataSource {
     suspend fun saveMemo(uid: String, memo: Memo)
 
     suspend fun fetchAllMemo(uid: String): Flow<List<Memo>>
+
+    suspend fun fetchFilteredMemoByCategory(uid: String, category: String): Flow<List<Memo>?>
 
     suspend fun fetchMemoById(uid: String, id: String): Flow<Memo?>
 
@@ -31,12 +34,36 @@ class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
         try {
             val snapshot = firestore.memosRef(uid).get().await()
             val memoEntityList = snapshot.toObjects(MemoEntity::class.java)
-            val nullableMemoList =
-                memoEntityList.map { entity -> entity.modelOrNull() } // if use state, throw exception
+            val nullableMemoList = memoEntityList.map { entity ->
+                entity.modelOrNull()
+            } // if use state, throw exception
 
             val notNullMemoList = nullableMemoList.map { it ?: return@flow }
 
             emit(notNullMemoList)
+        } catch (e: Exception) {
+            //Todo(emit failed)
+        }
+    }
+
+    override suspend fun fetchFilteredMemoByCategory(
+        uid: String,
+        category: String
+    ) = flow {
+        try {
+            val snapshot = firestore.memosRef(uid)
+                .whereEqualTo(FireStoreConstants.CATEGORY, category)
+                .get()
+                .await()
+
+            val memoEntityList = snapshot.toObjects(MemoEntity::class.java)
+            val nullableFilteredList = memoEntityList.map { entity ->
+                entity.modelOrNull()
+            }
+
+            val notNullFilteredList = nullableFilteredList.map { it ?: return@flow }
+
+            emit(notNullFilteredList)
         } catch (e: Exception) {
             //Todo(emit failed)
         }

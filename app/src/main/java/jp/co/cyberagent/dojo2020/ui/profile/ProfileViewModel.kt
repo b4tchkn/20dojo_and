@@ -23,14 +23,14 @@ class ProfileViewModel(context: Context) : ViewModel() {
     private val firebaseProfileRepository: ProfileRepository = DI.injectTestProfileRepository()
     private val memoRepository = FakeRepository
 
-    private fun user() = firebaseUserInfoRepository.fetchUserInfo()
+    private val userFlow = firebaseUserInfoRepository.fetchUserInfo()
 
     private val profileMutableLiveData: MutableLiveData<Profile> = MutableLiveData()
     val profileLiveData: LiveData<Profile>
         get() = profileMutableLiveData
 
     fun fetchUserData() = viewModelScope.launch {
-        user().collect { userInfo ->
+        userFlow.collect { userInfo ->
             firebaseProfileRepository.fetchProfile(userInfo?.uid).collect {
                 profileMutableLiveData.value = it
             }
@@ -42,7 +42,7 @@ class ProfileViewModel(context: Context) : ViewModel() {
         get() = studyTimeMutableLiveData
 
     fun fetchStudyTime() = viewModelScope.launch {
-        user().collect { userInfo ->
+        userFlow.collect { userInfo ->
             memoRepository.fetchAllMemo(userInfo?.uid).collect { memoList ->
                 val totalTime = memoList.fold(0L) { res: Long, memo: Memo ->
 

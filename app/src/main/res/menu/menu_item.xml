@@ -3,8 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/kotlin"
-        android:title="kotlin"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
+        android:title="kotlin" />
 
 </menu>

@@ -12,6 +12,8 @@ interface MemoRepository {
 
     suspend fun fetchAllMemo(uid: String?): Flow<List<Memo>>
 
+    suspend fun fetchFilteredMemoByCategory(uid: String?, category: String): Flow<List<Memo>?>
+
     suspend fun fetchMemoById(uid: String?, id: String): Flow<Memo?>
 
     suspend fun deleteMemoById(uid: String?, id: String)
@@ -42,6 +44,24 @@ class DefaultMemoRepository(
         }
 
         return memoListFlow
+    }
+
+    @FlowPreview
+    override suspend fun fetchFilteredMemoByCategory(
+        uid: String?,
+        category: String
+    ): Flow<List<Memo>?> {
+        val localMemoListFlow = localMemoDataSource.fetchFilteredMemoByCategory(category)
+
+        val filteredMemoListFlow = localMemoListFlow.flatMapConcat { localMemoList ->
+            if (uid != null && localMemoList == null) {
+                return@flatMapConcat remoteMemoDataSource.fetchAllMemo(uid)
+            }
+
+            return@flatMapConcat localMemoListFlow
+        }
+
+        return filteredMemoListFlow
     }
 
     @FlowPreview

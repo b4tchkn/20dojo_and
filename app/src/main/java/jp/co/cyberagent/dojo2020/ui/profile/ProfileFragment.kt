@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
                 findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
             }
 
-            viewModel.liveData.observe(viewLifecycleOwner) {
+            viewModel.profileLiveData.observe(viewLifecycleOwner) {
                 profileUserName.text = it.name
 
                 val url =
@@ -59,7 +59,7 @@ class ProfileFragment : Fragment() {
 
             reloadButton.setOnClickListener {
                 viewModel.fetchUserData()
-                //viewModel.fetchStudyTime()
+                viewModel.fetchStudyTime()
                 setupPieChart()
             }
         }

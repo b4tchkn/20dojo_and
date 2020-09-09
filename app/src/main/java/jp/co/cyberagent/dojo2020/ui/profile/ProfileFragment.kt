@@ -70,7 +70,6 @@ class ProfileFragment : Fragment() {
         val times = listOf(15, 45, 25, 35)
         val tags = listOf("japanese", "math", "sciense", "english")
 
-        //PieEntriesのリストを作成する
         val pieEntries: MutableList<PieEntry> = ArrayList()
 
         (times zip tags).forEach {
@@ -78,21 +77,24 @@ class ProfileFragment : Fragment() {
         }
 
         val dataSet = PieDataSet(pieEntries, "category")
-        dataSet.setColors(*ColorTemplate.JOYFUL_COLORS)
-        dataSet.valueTextSize = 12f
-        dataSet.valueTextColor = Color.WHITE
-        //dataSet.setDrawValues(false) // 数値を削除するか
+        dataSet.apply {
+            setColors(*ColorTemplate.JOYFUL_COLORS)
+            valueTextSize = 12f
+            valueTextColor = Color.WHITE
+            //setDrawValues(false) // 数値を削除するか
+        }
 
         val data = PieData(dataSet)
 
-        //PieChartを取得する
         val pieChart = binding.pieChart
-        pieChart.data = data
-        pieChart.setEntryLabelTextSize(13f)
-        pieChart.setEntryLabelColor(Color.BLACK)
-        pieChart.centerText = "statistics"
-        pieChart.setCenterTextSize(15f)
-        pieChart.animateY(750)
-        pieChart.invalidate() //更新
+        pieChart.apply {
+            this.data = data
+            setEntryLabelTextSize(13f)
+            setEntryLabelColor(Color.BLACK)
+            centerText = "statistics"
+            setCenterTextSize(15f)
+            animateY(750)
+            invalidate() //更新
+        }
     }
 }

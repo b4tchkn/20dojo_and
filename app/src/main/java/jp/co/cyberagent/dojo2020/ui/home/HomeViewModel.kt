@@ -26,6 +26,14 @@ class HomeViewModel(context: Context) : ViewModel() {
         }
     }
 
+    fun filter() = viewModelScope.launch {
+        user().collect { userInfo ->
+            memoRepository.fetchAllMemo(userInfo?.uid).collect { memoList ->
+                memoList.filter { it.category == "kotlin" }
+            }
+        }
+    }
+
     fun saveMemo(memo: Memo) = viewModelScope.launch {
         user().collect { userInfo ->
             memoRepository.saveMemo(userInfo?.uid, memo)

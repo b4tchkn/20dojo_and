@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import jp.co.cyberagent.dojo2020.R
 import jp.co.cyberagent.dojo2020.databinding.FragmentMemoCreateBinding
+import jp.co.cyberagent.dojo2020.ui.create.spinner.CustomOnItemSelectedListener
+import jp.co.cyberagent.dojo2020.ui.create.spinner.SpinnerAdapter
+import jp.co.cyberagent.dojo2020.ui.widget.CustomBottomSheetDialog
 
 class MemoCreateFragment : Fragment() {
+    private lateinit var activityInFragment: AppCompatActivity
     private lateinit var binding: FragmentMemoCreateBinding
 
     override fun onCreateView(
@@ -29,15 +34,30 @@ class MemoCreateFragment : Fragment() {
         showKeyboard()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is AppCompatActivity) {
+            activityInFragment = context
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            val adapter = SpinnerAdapter.getInstance(requireContext()).apply {
+            val spinnerAdapter = SpinnerAdapter.getInstance(requireContext()).apply {
                 setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             }
 
-            categorySpinner.adapter = adapter
+            categorySpinner.apply {
+                adapter = spinnerAdapter
+                onItemSelectedListener = CustomOnItemSelectedListener(
+                    this@MemoCreateFragment::showDialog
+                )
+
+                setSelection(1)
+            }
 
             addButton.setOnClickListener {
                 findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
@@ -47,22 +67,15 @@ class MemoCreateFragment : Fragment() {
     }
 
     private fun showKeyboard() {
-        val activity = requireActivity()
-        val manager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val manager =
+            activityInFragment.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         manager.showSoftInput(binding.titleTextEdit, InputMethodManager.SHOW_IMPLICIT)
     }
-}
 
-object SpinnerAdapter {
-    private var INSTANCE: ArrayAdapter<String>? = null
-
-    fun getInstance(context: Context): ArrayAdapter<String> {
-        if (INSTANCE != null) return INSTANCE!!
-        val stringList = context.resources.getStringArray(R.array.spinner_item).toMutableList()
-
-        INSTANCE = ArrayAdapter(context, android.R.layout.simple_spinner_item, stringList)
-
-        return INSTANCE!!
+    private fun showDialog() {
+        CustomBottomSheetDialog().apply {
+            show(activityInFragment.supportFragmentManager, CustomBottomSheetDialog.TAG)
+        }
     }
 }

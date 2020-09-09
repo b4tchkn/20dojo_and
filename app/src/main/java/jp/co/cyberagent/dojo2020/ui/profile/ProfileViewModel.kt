@@ -44,9 +44,9 @@ class ProfileViewModel(context: Context) : ViewModel() {
     fun culculateStudyTime() = viewModelScope.launch {
         userFlow.collect { userInfo ->
             memoRepository.fetchAllMemo(userInfo?.uid).collect { memoList ->
-                val totalTime = memoList.fold(0L) { res: Long, memo: Memo ->
+                val totalTime = memoList.fold(0L) { result: Long, memo: Memo ->
 
-                    res + memo.time.toLong()
+                    result + memo.time
                 }
                 //val noneList = memoList.filter { it.category == "none"}
                 Log.d(TAG, totalTime.toString())

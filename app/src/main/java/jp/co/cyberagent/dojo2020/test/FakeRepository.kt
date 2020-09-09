@@ -3,7 +3,6 @@ package jp.co.cyberagent.dojo2020.test
 import android.util.Log
 import jp.co.cyberagent.dojo2020.data.MemoRepository
 import jp.co.cyberagent.dojo2020.data.model.Memo
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 object FakeRepository : MemoRepository {

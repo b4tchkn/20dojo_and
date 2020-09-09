@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jp.co.cyberagent.dojo2020.DI
-import jp.co.cyberagent.dojo2020.data.DefaultUserInfoRepository
 import jp.co.cyberagent.dojo2020.data.ProfileRepository
 import jp.co.cyberagent.dojo2020.data.UserInfoRepository
 import jp.co.cyberagent.dojo2020.data.model.Memo
@@ -19,18 +18,18 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(context: Context) : ViewModel() {
 
-    private val firebaseUserInfoRepository: UserInfoRepository = DefaultUserInfoRepository()
+    private val firebaseUserInfoRepository: UserInfoRepository =
+        DI.injectDefaultUserInfoRepository()
     private val firebaseProfileRepository: ProfileRepository = DI.injectTestProfileRepository()
     private val memoRepository = FakeRepository
 
-    private fun user() = firebaseUserInfoRepository.fetchUserInfo()
+    private val userFlow = firebaseUserInfoRepository.fetchUserInfo()
 
     private val profileMutableLiveData: MutableLiveData<Profile> = MutableLiveData()
-    val profileLiveData: LiveData<Profile>
-        get() = profileMutableLiveData
+    val profileLiveData: LiveData<Profile> = profileMutableLiveData
 
     fun fetchUserData() = viewModelScope.launch {
-        user().collect { userInfo ->
+        userFlow.collect { userInfo ->
             firebaseProfileRepository.fetchProfile(userInfo?.uid).collect {
                 profileMutableLiveData.value = it
             }
@@ -38,15 +37,14 @@ class ProfileViewModel(context: Context) : ViewModel() {
     }
 
     private val studyTimeMutableLiveData: MutableLiveData<Long> = MutableLiveData()
-    val studyTimeLiveData: LiveData<Long>
-        get() = studyTimeMutableLiveData
+    val studyTimeLiveData: LiveData<Long> = studyTimeMutableLiveData
 
-    fun fetchStudyTime() = viewModelScope.launch {
-        user().collect { userInfo ->
+    fun calculateStudyTime() = viewModelScope.launch {
+        userFlow.collect { userInfo ->
             memoRepository.fetchAllMemo(userInfo?.uid).collect { memoList ->
-                val totalTime = memoList.fold(0L) { res: Long, memo: Memo ->
+                val totalTime = memoList.fold(0L) { result: Long, memo: Memo ->
 
-                    res + memo.time.toLong()
+                    result + memo.time
                 }
                 //val noneList = memoList.filter { it.category == "none"}
                 Log.d(TAG, totalTime.toString())

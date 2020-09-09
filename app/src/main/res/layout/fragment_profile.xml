@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/view_cardview_margin_topbottom"
         android:layout_marginEnd="@dimen/view_cardview_margin_leftright"
         android:layout_marginBottom="@dimen/view_cardview_margin_topbottom"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="@dimen/view_cardview_corner_radius"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,14 +43,14 @@
                 android:paddingBottom="@dimen/view_cardview_padding_topbottom">
 
                 <ImageView
-                    android:id="@+id/profile_icon"
+                    android:id="@+id/icon_image_view"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="@dimen/view_cardview_padding_leftright"
                     android:layout_marginRight="@dimen/view_cardview_padding_leftright" />
 
                 <TextView
-                    android:id="@+id/profile_user_name"
+                    android:id="@+id/user_name_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -84,7 +84,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/profile_twitter_id"
+                        android:id="@+id/twitter_id_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start"
@@ -93,7 +93,7 @@
                         android:textSize="@dimen/view_cardview_textsize_sub" />
 
                     <TextView
-                        android:id="@+id/profile_twitter_url"
+                        android:id="@+id/twitter_url_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start"
@@ -127,7 +127,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/profile_github_id"
+                        android:id="@+id/github_id_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start"
@@ -136,7 +136,7 @@
                         android:textSize="@dimen/view_cardview_textsize_sub" />
 
                     <TextView
-                        android:id="@+id/profile_github_url"
+                        android:id="@+id/github_url_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start"
@@ -221,7 +221,7 @@
                         android:textSize="@dimen/view_cardview_textsize_sub" />
 
                     <TextView
-                        android:id="@+id/profile_weekly_time"
+                        android:id="@+id/weekly_time_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"

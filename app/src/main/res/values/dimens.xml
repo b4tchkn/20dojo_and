@@ -12,6 +12,8 @@
     <dimen name="view_cardview_padding_topbottom">12dp</dimen>
     <dimen name="view_cardview_textsize_main">24sp</dimen>
     <dimen name="view_cardview_textsize_sub">16sp</dimen>
+    <dimen name="view_cardview_corner_radius">16dp</dimen>
+
 
     <dimen name="view_cardview_margin_leftright">16dp</dimen>
     <dimen name="view_cardview_margin_topbottom">8dp</dimen>

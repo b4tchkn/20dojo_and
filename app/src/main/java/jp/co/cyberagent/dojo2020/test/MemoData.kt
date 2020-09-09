@@ -7,27 +7,28 @@ object MemoData {
         Memo("101", "", "", 0L, "none"),
         Memo("102", "title", "contents", 0L, "none"),
         Memo(
-            "102",
+            "103",
             "title",
             "cccccccccccccccccccccccccccccccccccccc aaaaaaaaaaaaaaaaaaaaaaaaa",
             0L,
             "none"
         ),
 
-        Memo("103", "", "", -10L, "none"),
-        Memo("103", "title", "contents", -10L, "none"),
+        Memo("104", "", "", -1.1, "none"),
+        Memo("105", "title", "contents", -1.1, "none"),
         Memo(
-            "103",
+            "106",
             "title",
             "cccccccccccccccccccccccccccccccccccccc aaaaaaaaaaaaaaaaaaaaaaaaa",
             -10L,
             "none"
         ),
 
-        Memo("103", "", "", 10L, "none"),
-        Memo("103", "title", "contents", 10L, "none"),
+
+        Memo("107", "", "", 1.1, "none"),
+        Memo("108", "title", "contents", 1.1, "none"),
         Memo(
-            "103",
+            "109",
             "title",
             "cccccccccccccccccccccccccccccccccccccc aaaaaaaaaaaaaaaaaaaaaaaaa",
             10L,

@@ -22,11 +22,11 @@ object FakeRepository : MemoRepository {
         emit(MemoData.list.firstOrNull { it.id == id })
     }
 
-    override suspend fun fetchFilteredMemoByCategory(category: String) = flow {
+    override suspend fun fetchFilteredMemoByCategory(uid: String?, category: String) = flow {
         emit(MemoData.list.filter { it.category == category })
     }
 
-    override suspend fun deleteMemoById(id: String) {
+    override suspend fun deleteMemoById(uid: String?, id: String) {
         MemoData.list.removeIf { it.id == id }
     }
 }

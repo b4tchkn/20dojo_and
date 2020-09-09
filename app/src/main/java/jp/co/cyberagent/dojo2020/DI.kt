@@ -20,6 +20,7 @@ object DI {
     private var draftRepository: DraftRepository? = null
     private var profileRepository: ProfileRepository? = null
     private var userInfoRepository: UserInfoRepository? = null
+    private var categoryRepository: CategoryRepository? = null
 
     private var firestoreProfileDataSource: FireStoreProfileDataSource? = null
     private var profileDataSource: ProfileDataSource? = null
@@ -35,6 +36,20 @@ object DI {
     private var firestoreCategoryDataSource: FirestoreCategoryDataSource? = null
 
     private var applicationDataBase: ApplicationDataBase? = null
+
+    fun injectDefaultCategoryRepository(context: Context): CategoryRepository {
+        if (categoryRepository != null) return categoryRepository!!
+
+        val localCategoryDataSource = injectCategoryDataSource(context)
+        val remoteCategoryDataSource = injectFirestoreCategoryDataSource()
+
+        categoryRepository = DefaultCategoryRepository(
+            localCategoryDataSource,
+            remoteCategoryDataSource
+        )
+
+        return categoryRepository!!
+    }
 
     fun injectDefaultMemoRepository(context: Context): MemoRepository {
         if (memoRepository != null) return memoRepository!!

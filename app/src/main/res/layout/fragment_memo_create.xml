@@ -9,18 +9,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add"
-        app:layout_constraintLeft_toLeftOf="@id/category_spinner"
-        app:layout_constraintRight_toRightOf="@id/category_spinner"
+        app:layout_constraintRight_toLeftOf="@id/category_spinner"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/category_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
         android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/title_text_edit"
@@ -28,14 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/small_margin"
         android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginEnd="@dimen/small_margin"
         android:focusableInTouchMode="true"
         android:hint="@string/title"
         android:inputType="text"
         android:maxLines="1"
         android:nextFocusDown="@id/content_text_edit"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/category_spinner"
+        app:layout_constraintRight_toLeftOf="@id/add_button"
         app:layout_constraintTop_toTopOf="parent">
 
         <requestFocus />

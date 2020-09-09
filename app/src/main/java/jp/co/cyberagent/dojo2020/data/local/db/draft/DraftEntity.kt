@@ -16,5 +16,8 @@ data class DraftEntity(
     val contents: String,
 
     @ColumnInfo(name = "start_time")
-    val startTime: Double
+    val startTime: Double,
+
+    @ColumnInfo(name = "category")
+    val category: String
 )

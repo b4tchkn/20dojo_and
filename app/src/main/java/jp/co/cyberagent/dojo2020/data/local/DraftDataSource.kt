@@ -36,10 +36,10 @@ class DefaultDraftDataSource(private val database: ApplicationDataBase) : DraftD
     }
 
     private fun Draft.toEntityForLocal(): DraftEntity {
-        return DraftEntity(id, title, content, startTime)
+        return DraftEntity(id, title, content, startTime, category)
     }
 
     private fun DraftEntity.toModel(): Draft {
-        return Draft(id, title, contents, startTime)
+        return Draft(id, title, contents, startTime, category)
     }
 }

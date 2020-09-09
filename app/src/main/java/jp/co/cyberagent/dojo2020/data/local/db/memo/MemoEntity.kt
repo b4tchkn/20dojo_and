@@ -17,7 +17,7 @@ data class MemoEntity(
     val contents: String,
 
     @ColumnInfo(name = "time")
-    val time: Double,
+    val time: Long,
 
     @ColumnInfo(name = "category")
     val category: String

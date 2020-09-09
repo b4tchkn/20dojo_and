@@ -4,6 +4,6 @@ data class Draft(
     val id: String,
     val title: String,
     val content: String,
-    val startTime: Double,
+    val startTime: Long,
     val category: String
 )

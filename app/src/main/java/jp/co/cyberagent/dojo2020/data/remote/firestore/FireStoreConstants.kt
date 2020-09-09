@@ -5,4 +5,6 @@ object FireStoreConstants {
     const val MEMOS = "memos"
     const val PROFILE = "profile"
     const val YOUR = "YOUR"
+
+    const val CATEGORY = "category"
 }

@@ -11,6 +11,8 @@ interface DraftDataSource {
 
     suspend fun fetchAllDraft(): Flow<List<Draft>>
 
+    suspend fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?>
+
     suspend fun fetchDraftById(id: String): Flow<Draft?>
 
     suspend fun deleteDraftById(id: String)
@@ -27,6 +29,12 @@ class DefaultDraftDataSource(private val database: ApplicationDataBase) : DraftD
         }
     }
 
+    override suspend fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?> {
+        return database.draftDao().fetchFilteredByCategory(category).map { entityList ->
+            entityList?.map { it.toModel() }
+        }
+    }
+
     override suspend fun fetchDraftById(id: String): Flow<Draft?> {
         return database.draftDao().fetch(id).map { it?.toModel() }
     }
@@ -36,10 +44,10 @@ class DefaultDraftDataSource(private val database: ApplicationDataBase) : DraftD
     }
 
     private fun Draft.toEntityForLocal(): DraftEntity {
-        return DraftEntity(id, title, content, startTime)
+        return DraftEntity(id, title, content, startTime, category)
     }
 
     private fun DraftEntity.toModel(): Draft {
-        return Draft(id, title, contents, startTime)
+        return Draft(id, title, contents, startTime, category)
     }
 }

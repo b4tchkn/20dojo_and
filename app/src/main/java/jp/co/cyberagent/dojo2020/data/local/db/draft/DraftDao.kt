@@ -14,6 +14,9 @@ interface DraftDao {
     @Query(value = "SELECT * FROM drafts")
     fun fetchAll(): Flow<List<DraftEntity>>
 
+    @Query(value = "SELECT * FROM drafts Where category = :category")
+    fun fetchFilteredByCategory(category: String): Flow<List<DraftEntity>?>
+
     @Query(value = "SELECT * FROM drafts WHERE id = :id")
     fun fetch(id: String): Flow<DraftEntity?>
 

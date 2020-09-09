@@ -1,6 +1,9 @@
 package jp.co.cyberagent.dojo2020.data.local.db.memo
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -10,6 +13,9 @@ interface MemoDao {
 
     @Query(value = "SELECT * FROM memos")
     fun fetchAll(): Flow<List<MemoEntity>>
+
+    @Query(value = "SELECT * FROM memos Where category = :category")
+    fun fetchFilteredByCategory(category: String): Flow<List<MemoEntity>?>
 
     @Query(value = "SELECT * FROM memos WHERE id = :id")
     fun fetch(id: String): Flow<MemoEntity?>

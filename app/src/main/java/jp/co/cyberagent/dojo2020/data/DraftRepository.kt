@@ -9,6 +9,8 @@ interface DraftRepository {
 
     suspend fun fetchAllDraft(): Flow<List<Draft>>
 
+    suspend fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?>
+
     suspend fun fetchDraftById(id: String): Flow<Draft?>
 
     suspend fun deleteDraftById(id: String)
@@ -21,6 +23,10 @@ class DefaultDraftRepository(private val draftDataSource: DraftDataSource) : Dra
 
     override suspend fun fetchAllDraft(): Flow<List<Draft>> {
         return draftDataSource.fetchAllDraft()
+    }
+
+    override suspend fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?> {
+        return draftDataSource.fetchFilteredDraftsByCategory(category)
     }
 
     override suspend fun fetchDraftById(id: String): Flow<Draft?> {

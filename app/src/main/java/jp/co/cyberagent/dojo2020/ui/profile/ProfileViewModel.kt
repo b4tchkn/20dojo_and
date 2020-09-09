@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jp.co.cyberagent.dojo2020.DI
-import jp.co.cyberagent.dojo2020.data.DefaultUserInfoRepository
 import jp.co.cyberagent.dojo2020.data.ProfileRepository
 import jp.co.cyberagent.dojo2020.data.UserInfoRepository
 import jp.co.cyberagent.dojo2020.data.model.Memo
@@ -19,7 +18,8 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(context: Context) : ViewModel() {
 
-    private val firebaseUserInfoRepository: UserInfoRepository = DefaultUserInfoRepository()
+    private val firebaseUserInfoRepository: UserInfoRepository =
+        DI.injectDefaultUserInfoRepository()
     private val firebaseProfileRepository: ProfileRepository = DI.injectTestProfileRepository()
     private val memoRepository = FakeRepository
 

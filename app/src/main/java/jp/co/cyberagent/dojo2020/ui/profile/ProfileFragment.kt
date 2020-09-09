@@ -59,9 +59,10 @@ class ProfileFragment : Fragment() {
 
             reloadButton.setOnClickListener {
                 viewModel.fetchUserData()
+                //viewModel.fetchStudyTime()
+                setupPieChart()
             }
         }
-
     }
 
     private fun setupPieChart() {

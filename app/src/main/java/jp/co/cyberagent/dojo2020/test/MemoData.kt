@@ -14,8 +14,8 @@ object MemoData {
             "none"
         ),
 
-        Memo("104", "", "", -1.1, "none"),
-        Memo("105", "title", "contents", -1.1, "none"),
+        Memo("104", "", "", -1L, "none"),
+        Memo("105", "title", "contents", -1L, "none"),
         Memo(
             "106",
             "title",
@@ -25,8 +25,8 @@ object MemoData {
         ),
 
 
-        Memo("107", "", "", 1.1, "none"),
-        Memo("108", "title", "contents", 1.1, "none"),
+        Memo("107", "", "", 1L, "none"),
+        Memo("108", "title", "contents", 1L, "none"),
         Memo(
             "109",
             "title",

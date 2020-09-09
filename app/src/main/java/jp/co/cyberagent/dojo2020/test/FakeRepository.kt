@@ -3,7 +3,6 @@ package jp.co.cyberagent.dojo2020.test
 import android.util.Log
 import jp.co.cyberagent.dojo2020.data.MemoRepository
 import jp.co.cyberagent.dojo2020.data.model.Memo
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 object FakeRepository : MemoRepository {
@@ -22,11 +21,11 @@ object FakeRepository : MemoRepository {
         emit(MemoData.list.firstOrNull { it.id == id })
     }
 
-    override suspend fun fetchFilteredMemoByCategory(category: String) = flow {
+    override suspend fun fetchFilteredMemoByCategory(uid: String?, category: String) = flow {
         emit(MemoData.list.filter { it.category == category })
     }
 
-    override suspend fun deleteMemoById(id: String) {
+    override suspend fun deleteMemoById(uid: String?, id: String) {
         MemoData.list.removeIf { it.id == id }
     }
 }

@@ -34,6 +34,16 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_item,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
     
 
 }

@@ -1,3 +1,5 @@
 package jp.co.cyberagent.dojo2020.data.model
 
-data class FirebaseUserInfo(val uid: String, val email: String)
+import android.net.Uri
+
+data class FirebaseUserInfo(val uid: String, val name: String, val imageUri: Uri?)

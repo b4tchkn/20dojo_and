@@ -64,14 +64,20 @@ class MemoCreateFragment : Fragment() {
                 setSelection(1)
             }
 
+            memoCreateViewModel.categoryListLiveData.observe(viewLifecycleOwner) { categoryList ->
+                spinnerAdapter.apply {
+                    add(categoryList.last())
+                    notifyDataSetChanged()
+                }
+            }
+
             addButton.setOnClickListener {
                 val title = titleTextEdit.text.toString()
                 val content = contentTextEdit.text.toString()
                 val category = categorySpinner.selectedItem.toString()
 
-                Log.d(TAG, category)
-
                 memoCreateViewModel.addDraft(title, content, category)
+
                 findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
             }
         }
@@ -85,7 +91,6 @@ class MemoCreateFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_list, menu)
-
     }
 
     private fun showKeyboard() {

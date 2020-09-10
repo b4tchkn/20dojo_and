@@ -4,7 +4,7 @@ import jp.co.cyberagent.dojo2020.data.model.Memo
 
 object MemoData {
     val list = mutableListOf(
-        Memo("101", "", "", 0L, "none"),
+        Memo("101", "testTitle", "", 0L, "none"),
         Memo("102", "title", "contents", 0L, "none"),
         Memo(
             "103",

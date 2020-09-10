@@ -2,9 +2,11 @@ package jp.co.cyberagent.dojo2020.ui.create
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -14,6 +16,7 @@ import jp.co.cyberagent.dojo2020.ui.create.spinner.CustomOnItemSelectedListener
 import jp.co.cyberagent.dojo2020.ui.create.spinner.SpinnerAdapter
 import jp.co.cyberagent.dojo2020.ui.widget.CustomBottomSheetDialog
 import jp.co.cyberagent.dojo2020.ui.widget.CustomBottomSheetDialog.Companion.TAG
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MemoCreateFragment : Fragment() {
     private lateinit var activityInFragment: AppCompatActivity
@@ -44,6 +47,9 @@ class MemoCreateFragment : Fragment() {
         if (context is AppCompatActivity) {
             activityInFragment = context
         }
+
+        val toolbar = activityInFragment.toolbar
+        toolbar.navigationIcon = ContextCompat.getDrawable(requireContext(),R.drawable.cancel)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,20 +69,14 @@ class MemoCreateFragment : Fragment() {
                 setSelection(1)
             }
 
-            memoCreateViewModel.categoryListLiveData.observe(viewLifecycleOwner) { categoryList ->
-                spinnerAdapter.apply {
-                    add(categoryList.last())
-                    notifyDataSetChanged()
-                }
-            }
-
             addButton.setOnClickListener {
                 val title = titleTextEdit.text.toString()
                 val content = contentTextEdit.text.toString()
                 val category = categorySpinner.selectedItem.toString()
 
-                memoCreateViewModel.addDraft(title, content, category)
+                Log.d(TAG, category)
 
+                memoCreateViewModel.addDraft(title, content, category)
                 findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
             }
         }
@@ -90,6 +90,21 @@ class MemoCreateFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_list, menu)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.create_profile_icon_id -> {
+                findNavController().navigate(R.id.action_memoCreateFragment_to_profileFragment)
+                true
+            }
+            android.R.id.home -> {
+                findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun showKeyboard() {

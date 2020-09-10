@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_createMemoFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_memoCreateFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -34,6 +37,9 @@
         <action
             android:id="@+id/action_profileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_memoCreateFragment"
+            app:destination="@id/memoCreateFragment" />
     </fragment>
     <fragment
         android:id="@+id/memoEditFragment"

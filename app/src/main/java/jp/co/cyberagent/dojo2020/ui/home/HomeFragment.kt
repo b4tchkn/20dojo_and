@@ -70,15 +70,25 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onStart() {
-        super.onStart()
-
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_item, menu)
+        inflater.inflate(R.menu.menu_home,menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.home_profile_icon_id -> {
+                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+                true
+            }
+            R.id.home_create_icon_id -> {
+                findNavController().navigate(R.id.action_homeFragment_to_memoCreateFragment)
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+    
 }

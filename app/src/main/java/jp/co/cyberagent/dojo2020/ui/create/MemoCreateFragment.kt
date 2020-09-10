@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -46,6 +47,8 @@ class MemoCreateFragment : Fragment() {
         if (context is AppCompatActivity) {
             activityInFragment = context
         }
+        val toolbar = activityInFragment.toolbar
+        toolbar.navigationIcon = ContextCompat.getDrawable(requireContext(),R.drawable.cancel)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,7 +84,6 @@ class MemoCreateFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
-        
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -93,6 +95,10 @@ class MemoCreateFragment : Fragment() {
         return when(item.itemId){
             R.id.create_profile_icon_id ->{
                 findNavController().navigate(R.id.action_memoCreateFragment_to_profileFragment)
+                true
+            }
+            android.R.id.home -> {
+                findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

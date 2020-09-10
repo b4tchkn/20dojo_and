@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import jp.co.cyberagent.dojo2020.DI
 import jp.co.cyberagent.dojo2020.data.ext.accessWithUid
 import jp.co.cyberagent.dojo2020.data.model.Draft
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -24,7 +25,10 @@ class MemoCreateViewModel(context: Context) : ViewModel() {
 
     val categoryListLiveData = liveData {
         userInfoFlow.accessWithUid { uid ->
-            emitSource(categoryRepository.fetchAllCategory(uid).asLiveData())
+            val categoryListFlow = categoryRepository.fetchAllCategory(uid)
+            val categorySetFlow = categoryListFlow.map { it.toSet() }
+
+            emitSource(categorySetFlow.asLiveData())
         }
     }
 

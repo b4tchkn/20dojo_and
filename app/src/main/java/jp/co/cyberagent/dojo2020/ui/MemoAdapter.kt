@@ -37,7 +37,7 @@ class MemoAdapter(private val onItemClickListener: View.OnClickListener) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding: ItemMemoBinding = ItemMemoBinding.inflate(inflater)
+        val binding: ItemMemoBinding = ItemMemoBinding.inflate(inflater, parent, false)
 
         return RecyclerViewHolder(binding)
     }

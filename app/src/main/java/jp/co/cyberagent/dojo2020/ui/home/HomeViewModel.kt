@@ -18,16 +18,16 @@ class HomeViewModel(context: Context) : ViewModel() {
     private val memoRepository = DI.injectDefaultMemoRepository(context)
     private val firebaseUserInfoRepository: UserInfoRepository = DefaultUserInfoRepository()
 
-    private fun user() = firebaseUserInfoRepository.fetchUserInfo()
+    val user= firebaseUserInfoRepository.fetchUserInfo()
 
     val memoListLiveData = liveData<List<Memo>> {
-        user().collect { userInfo ->
+        user.collect { userInfo ->
             emitSource(memoRepository.fetchAllMemo(userInfo?.uid).asLiveData())
         }
     }
 
     fun filter() = viewModelScope.launch {
-        user().collect { userInfo ->
+        user.collect { userInfo ->
             memoRepository.fetchAllMemo(userInfo?.uid).collect { memoList ->
                 memoList.filter { it.category == "kotlin" }
             }
@@ -35,7 +35,7 @@ class HomeViewModel(context: Context) : ViewModel() {
     }
 
     fun saveMemo(memo: Memo) = viewModelScope.launch {
-        user().collect { userInfo ->
+        user.collect { userInfo ->
             memoRepository.saveMemo(userInfo?.uid, memo)
             Log.d(TAG, "uid is ${userInfo?.uid}")
         }

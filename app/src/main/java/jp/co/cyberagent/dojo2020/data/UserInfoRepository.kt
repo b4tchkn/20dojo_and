@@ -1,37 +1,26 @@
 package jp.co.cyberagent.dojo2020.data
 
-import com.google.firebase.auth.FirebaseUser
 import jp.co.cyberagent.dojo2020.data.model.FirebaseUserInfo
 import jp.co.cyberagent.dojo2020.data.remote.auth.FirebaseAuthentication
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 
 interface UserInfoRepository {
     fun fetchUserInfo(): Flow<FirebaseUserInfo?>
 }
 
 class DefaultUserInfoRepository : UserInfoRepository {
-    private var firebaseUser: FirebaseUser? = null
 
-    init {
-        FirebaseAuthentication.addStateListener { firebaseAuth ->
-            firebaseUser = firebaseAuth.currentUser
+    @ExperimentalCoroutinesApi
+    override fun fetchUserInfo(): Flow<FirebaseUserInfo?> {
+        return FirebaseAuthentication.currentUser.map { firebaseUser ->
+            val user = firebaseUser ?: return@map null
+
+            val email = user.email ?: return@map null
+            val uid = user.uid
+
+            FirebaseUserInfo(email, uid)
         }
-        firebaseUser = FirebaseAuthentication.currentUser()
     }
-
-    override fun fetchUserInfo(): Flow<FirebaseUserInfo?> = flow {
-        if (firebaseUser == null || firebaseUser?.uid == null || firebaseUser?.email == null) {
-            emit(null)
-            return@flow
-        }
-
-        val user = firebaseUser ?: return@flow
-
-        val email = user.email ?: return@flow
-        val uid = user.uid
-
-        emit(FirebaseUserInfo(uid, email))
-    }
-
 }

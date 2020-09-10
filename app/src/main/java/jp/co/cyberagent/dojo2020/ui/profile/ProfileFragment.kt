@@ -2,9 +2,7 @@ package jp.co.cyberagent.dojo2020.ui.profile
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -64,6 +62,33 @@ class ProfileFragment : Fragment() {
             }
         }
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_profile,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.profile_create_icon_id -> {
+                findNavController().navigate(R.id.action_profileFragment_to_memoCreateFragment)
+                true
+            }
+            R.id.profile_home_icon_id -> {
+                findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
+                true
+            }
+            else ->{
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
 
     private fun setupPieChart() {
 

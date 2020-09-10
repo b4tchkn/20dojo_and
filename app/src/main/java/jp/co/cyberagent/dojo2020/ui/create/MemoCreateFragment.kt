@@ -15,6 +15,7 @@ import jp.co.cyberagent.dojo2020.ui.create.spinner.CustomOnItemSelectedListener
 import jp.co.cyberagent.dojo2020.ui.create.spinner.SpinnerAdapter
 import jp.co.cyberagent.dojo2020.ui.widget.CustomBottomSheetDialog
 import jp.co.cyberagent.dojo2020.ui.widget.CustomBottomSheetDialog.Companion.TAG
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MemoCreateFragment : Fragment() {
     private lateinit var activityInFragment: AppCompatActivity
@@ -80,12 +81,12 @@ class MemoCreateFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
+        
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_list, menu)
-
     }
 
     private fun showKeyboard() {

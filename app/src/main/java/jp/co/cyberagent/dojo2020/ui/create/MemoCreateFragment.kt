@@ -2,7 +2,6 @@ package jp.co.cyberagent.dojo2020.ui.create
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity

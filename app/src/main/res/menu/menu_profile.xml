@@ -6,9 +6,4 @@
         android:title="profile_creeate_icon"
         android:icon="@drawable/create"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/profile_home_icon_id"
-        android:title="profile_home_icon"
-        android:icon="@drawable/home"
-        app:showAsAction="always"/>
 </menu>

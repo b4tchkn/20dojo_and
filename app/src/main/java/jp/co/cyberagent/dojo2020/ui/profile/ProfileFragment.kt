@@ -46,19 +46,19 @@ class ProfileFragment : Fragment() {
 
                 userNameTextView.text = firebaseUser.name
 
-                Glide.with(view).load(firebaseUser.imageUri).into(iconImageView)
+                Glide.with(view).load(firebaseUser.imageUri).circleCrop().into(iconImageView)
             }
 
-            viewModel.profileLiveData.observe(viewLifecycleOwner) {
-                val twitterAccount = it.accountList?.first { it.serviceName == "twitter" }
+
+            viewModel.profileLiveData.observe(viewLifecycleOwner) { profile ->
+                val twitterAccount = profile.accountList?.first { it.serviceName == "twitter" }
                 twitterIdTextView.text = twitterAccount?.id
                 twitterUrlTextView.text = twitterAccount?.url
 
-                val githubAccount = it.accountList?.first { it.serviceName == "github" }
+                val githubAccount = profile.accountList?.first { it.serviceName == "github" }
                 githubIdTextView.text = githubAccount?.id
                 githubUrlTextView.text = githubAccount?.url
             }
-
             reloadButton.setOnClickListener {
                 viewModel.fetchUserData()
                 viewModel.calculateStudyTime()

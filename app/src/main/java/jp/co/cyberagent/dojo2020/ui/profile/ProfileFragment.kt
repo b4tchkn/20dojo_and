@@ -41,22 +41,24 @@ class ProfileFragment : Fragment() {
                 findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
             }
 
-            viewModel.profileLiveData.observe(viewLifecycleOwner) {
-                userNameTextView.text = it.name
+            viewModel.firebaseUserInfo.observe(viewLifecycleOwner) { firebaseUser ->
+                firebaseUser ?: return@observe
 
-                val url =
-                    "https://raw.githubusercontent.com/bumptech/glide/master/static/glide_logo.png"
-                Glide.with(view).load(url).into(iconImageView)
+                userNameTextView.text = firebaseUser.name
 
-                val twitterAccount = it.accountList?.first { it.serviceName == "twitter" }
+                Glide.with(view).load(firebaseUser.imageUri).circleCrop().into(iconImageView)
+            }
+
+
+            viewModel.profileLiveData.observe(viewLifecycleOwner) { profile ->
+                val twitterAccount = profile.accountList?.first { it.serviceName == "twitter" }
                 twitterIdTextView.text = twitterAccount?.id
                 twitterUrlTextView.text = twitterAccount?.url
 
-                val githubAccount = it.accountList?.first { it.serviceName == "github" }
+                val githubAccount = profile.accountList?.first { it.serviceName == "github" }
                 githubIdTextView.text = githubAccount?.id
                 githubUrlTextView.text = githubAccount?.url
             }
-
             reloadButton.setOnClickListener {
                 viewModel.fetchUserData()
                 viewModel.calculateStudyTime()

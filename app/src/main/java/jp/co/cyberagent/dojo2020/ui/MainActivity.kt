@@ -13,12 +13,14 @@ import com.google.firebase.ktx.Firebase
 import jp.co.cyberagent.dojo2020.R
 import jp.co.cyberagent.dojo2020.data.remote.auth.FirebaseAuthentication
 import jp.co.cyberagent.dojo2020.databinding.ActivityMainBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navigationController: NavController
     private lateinit var googleSignInClient: GoogleSignInClient
 
+    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

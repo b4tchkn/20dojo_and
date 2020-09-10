@@ -41,13 +41,15 @@ class ProfileFragment : Fragment() {
                 findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
             }
 
+            viewModel.firebaseUserInfo.observe(viewLifecycleOwner) { firebaseUser ->
+                firebaseUser ?: return@observe
+
+                userNameTextView.text = firebaseUser.name
+
+                Glide.with(view).load(firebaseUser.imageUri).into(iconImageView)
+            }
+
             viewModel.profileLiveData.observe(viewLifecycleOwner) {
-                userNameTextView.text = it.name
-
-                val url =
-                    "https://raw.githubusercontent.com/bumptech/glide/master/static/glide_logo.png"
-                Glide.with(view).load(url).into(iconImageView)
-
                 val twitterAccount = it.accountList?.first { it.serviceName == "twitter" }
                 twitterIdTextView.text = twitterAccount?.id
                 twitterUrlTextView.text = twitterAccount?.url

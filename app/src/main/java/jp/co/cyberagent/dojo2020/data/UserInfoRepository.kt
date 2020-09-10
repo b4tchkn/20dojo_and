@@ -17,10 +17,11 @@ class DefaultUserInfoRepository : UserInfoRepository {
         return FirebaseAuthentication.currentUser.map { firebaseUser ->
             val user = firebaseUser ?: return@map null
 
-            val email = user.email ?: return@map null
+            val name = user.displayName ?: return@map null
             val uid = user.uid
+            val uri = user.photoUrl
 
-            FirebaseUserInfo(email, uid)
+            FirebaseUserInfo(uid, name, uri)
         }
     }
 }

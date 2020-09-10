@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/view_cardview_margin_topbottom"
         android:layout_marginEnd="@dimen/view_cardview_margin_leftright"
         android:layout_marginBottom="@dimen/view_cardview_margin_topbottom"
-        app:cardCornerRadius="@dimen/view_cardview_corner_radius"
+        app:cardCornerRadius="@dimen/view_profile_cardview_corner_radius"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

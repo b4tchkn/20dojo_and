@@ -47,6 +47,7 @@ class MemoCreateFragment : Fragment() {
         if (context is AppCompatActivity) {
             activityInFragment = context
         }
+
         val toolbar = activityInFragment.toolbar
         toolbar.navigationIcon = ContextCompat.getDrawable(requireContext(),R.drawable.cancel)
     }
@@ -76,7 +77,7 @@ class MemoCreateFragment : Fragment() {
                 Log.d(TAG, category)
 
                 memoCreateViewModel.addDraft(title, content, category)
-               // findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
+                findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
             }
         }
     }
@@ -89,11 +90,12 @@ class MemoCreateFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_list, menu)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            R.id.create_profile_icon_id ->{
+        return when (item.itemId) {
+            R.id.create_profile_icon_id -> {
                 findNavController().navigate(R.id.action_memoCreateFragment_to_profileFragment)
                 true
             }

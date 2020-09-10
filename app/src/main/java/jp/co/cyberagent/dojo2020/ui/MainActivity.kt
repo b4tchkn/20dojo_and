@@ -1,7 +1,11 @@
 package jp.co.cyberagent.dojo2020.ui
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration

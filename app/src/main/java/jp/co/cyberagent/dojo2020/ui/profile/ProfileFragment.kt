@@ -60,33 +60,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_profile,menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
-            R.id.profile_create_icon_id -> {
-                findNavController().navigate(R.id.action_profileFragment_to_memoCreateFragment)
-                true
-            }
-            android.R.id.home -> {
-                findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
-                true
-            }
-            else ->{
-                super.onOptionsItemSelected(item)
-            }
-        }
-    }
-
-
     private fun setupPieChart() {
 
         val times = listOf(15, 45, 25, 35)

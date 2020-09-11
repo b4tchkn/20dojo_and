@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import jp.co.cyberagent.dojo2020.data.model.Memo
+import jp.co.cyberagent.dojo2020.data.model.*
 import jp.co.cyberagent.dojo2020.databinding.ItemMemoBinding
 import java.util.Collections.emptyList
 
-class MemoAdapter(private val onItemClickListener: View.OnClickListener) :
-    RecyclerView.Adapter<MemoAdapter.RecyclerViewHolder>() {
+class TextAdapter(private val onItemClickListener: View.OnClickListener) :
+    RecyclerView.Adapter<TextAdapter.RecyclerViewHolder>() {
 
-    var memoList: List<Memo> = emptyList()
+    var textList: List<Text> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -25,13 +25,26 @@ class MemoAdapter(private val onItemClickListener: View.OnClickListener) :
             itemView.setOnClickListener(onItemClickListener)
         }
 
-        fun setMemo(memo: Memo) {
+        fun setText(text: Text) {
             binding.apply {
-                titleTextView.text = memo.title
-                contentsTextView.text = memo.contents
-                timeChronometer.text = memo.time.toString()
-                categoryTextView.text = memo.category
+                titleTextView.text = text.title
+                contentsTextView.text = text.contents
+                categoryTextView.text = text.category
             }
+
+            when (text) {
+                is Left -> setDraft(text.value)
+                is Right -> setMemo(text.value)
+            }
+        }
+
+
+        private fun setDraft(draft: Draft) {
+
+        }
+
+        private fun setMemo(memo: Memo) {
+
         }
     }
 
@@ -43,13 +56,11 @@ class MemoAdapter(private val onItemClickListener: View.OnClickListener) :
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        val memo = memoList[position]
+        val text = textList[position]
 
-        holder.setMemo(memo)
+        holder.setText(text)
         holder.setOnItemClickListener(onItemClickListener)
     }
 
-    override fun getItemCount() = memoList.size
-
-
+    override fun getItemCount() = textList.size
 }

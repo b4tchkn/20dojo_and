@@ -4,58 +4,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
-        android:text="@string/add"
-        app:layout_constraintRight_toLeftOf="@id/category_spinner"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/category_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginEnd="@dimen/small_margin"
+    <include
+        android:id="@+id/memo_create_tool_bar"
+        layout="@layout/layout_memo_create_tool_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/title_text_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginTop="@dimen/small_margin"
-        android:focusableInTouchMode="true"
-        android:hint="@string/title"
-        android:inputType="text"
-        android:maxLines="1"
-        android:nextFocusDown="@id/content_text_edit"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/add_button"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/content_text_edit"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginEnd="@dimen/small_margin"
-        android:background="@null"
-        android:gravity="top"
-        android:hint="@string/what_s_your_plan_for_today"
-        android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/add_button"
-        app:layout_constraintTop_toBottomOf="@id/title_text_edit" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/memo_create_tool_bar">
+
+        <Spinner
+            android:id="@+id/category_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/title_text_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:focusableInTouchMode="true"
+            android:hint="@string/title"
+            android:inputType="text"
+            android:maxLines="1"
+            android:nextFocusDown="@id/content_text_edit"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/category_spinner"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/content_text_edit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="@string/what_s_your_plan_for_today"
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_text_edit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

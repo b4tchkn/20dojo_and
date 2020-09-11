@@ -72,7 +72,7 @@ class MemoCreateFragment : Fragment() {
                 }
             }
 
-            addButton.setOnClickListener {
+            memoCreateToolBar.addButton.setOnClickListener {
                 val title = titleTextEdit.text.toString()
                 val content = contentTextEdit.text.toString()
                 val category = categorySpinner.selectedItem.toString()

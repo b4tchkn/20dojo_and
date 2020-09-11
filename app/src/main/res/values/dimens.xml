@@ -19,5 +19,6 @@
     <dimen name="view_cardview_margin_topbottom">8dp</dimen>
 
     <dimen name="view_recyclerview_margin">12dp</dimen>
+    <dimen name="small_icon">36dp</dimen>
 
 </resources>

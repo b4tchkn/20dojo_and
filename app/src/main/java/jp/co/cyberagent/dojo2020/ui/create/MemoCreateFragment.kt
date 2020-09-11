@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import jp.co.cyberagent.dojo2020.R
 import jp.co.cyberagent.dojo2020.databinding.FragmentMemoCreateBinding
@@ -81,9 +82,17 @@ class MemoCreateFragment : Fragment() {
 
                 memoCreateViewModel.addDraft(title, content, category)
 
-                findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
+                showHome()
+            }
+
+            memoCreateToolBarLayout.memoCreateMaterialToolBar.setNavigationOnClickListener { view ->
+                view.findNavController().navigateUp()
             }
         }
+    }
+
+    private fun showHome() {
+        findNavController().navigate(R.id.action_createMemoFragment_to_homeFragment)
     }
 
     private fun showKeyboard() {

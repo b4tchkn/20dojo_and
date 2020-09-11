@@ -2,7 +2,9 @@ package jp.co.cyberagent.dojo2020.ui.create
 
 import android.content.Context
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -72,7 +74,7 @@ class MemoCreateFragment : Fragment() {
                 }
             }
 
-            memoCreateToolBar.addButton.setOnClickListener {
+            memoCreateToolBarLayout.addButton.setOnClickListener {
                 val title = titleTextEdit.text.toString()
                 val content = contentTextEdit.text.toString()
                 val category = categorySpinner.selectedItem.toString()

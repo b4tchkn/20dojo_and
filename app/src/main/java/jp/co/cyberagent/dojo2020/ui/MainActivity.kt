@@ -27,12 +27,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        navigationController = findNavController(R.id.navigation_host_fragment)
-        setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.navigation_host_fragment)
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        navigationController = findNavController(R.id.navigation_host_fragment)
     }
 
     override fun onSupportNavigateUp(): Boolean {

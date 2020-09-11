@@ -4,16 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/profile_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        android:textSize="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/profile_card_view"
+    <include
+        android:id="@+id/profile_tool_bar"
+        layout="@layout/layout_profile_tool_bar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_to_home_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/profile_card_view"
@@ -27,7 +23,7 @@
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_text_view">
+        app:layout_constraintTop_toBottomOf="@id/profile_tool_bar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,10 +50,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:paddingStart="@dimen/view_cardview_padding_leftright"
                     android:text="NAME"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/view_cardview_textsize_main"
-                    android:paddingStart="@dimen/view_cardview_padding_leftright" />
+                    android:textSize="@dimen/view_cardview_textsize_main" />
 
             </LinearLayout>
 
@@ -73,9 +69,9 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_gravity="center"
                     android:layout_marginStart="@dimen/view_cardview_margin_leftright"
                     android:layout_marginEnd="@dimen/view_cardview_margin_leftright"
-                    android:layout_gravity="center"
                     android:src="@mipmap/twitter_logo" />
 
                 <LinearLayout
@@ -116,9 +112,9 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_gravity="center"
                     android:layout_marginStart="@dimen/view_cardview_margin_leftright"
                     android:layout_marginEnd="@dimen/view_cardview_margin_leftright"
-                    android:layout_gravity="center"
                     android:src="@mipmap/github_logo" />
 
                 <LinearLayout
@@ -159,9 +155,9 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -183,10 +179,10 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:background="@drawable/vertical_line"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -208,10 +204,10 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:background="@drawable/vertical_line"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -235,23 +231,6 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-
-    <Button
-        android:id="@+id/profile_to_home_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="profile_to_home"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/reload_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="reload"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pie_chart"

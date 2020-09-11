@@ -39,10 +39,6 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            profileToHomeButton.setOnClickListener {
-                findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
-            }
-
             viewModel.firebaseUserInfo.observe(viewLifecycleOwner) { firebaseUser ->
                 firebaseUser ?: return@observe
 
@@ -60,11 +56,6 @@ class ProfileFragment : Fragment() {
                 val githubAccount = profile.accountList?.first { it.serviceName == "github" }
                 githubIdTextView.text = githubAccount?.id
                 githubUrlTextView.text = githubAccount?.url
-            }
-            reloadButton.setOnClickListener {
-                viewModel.fetchUserData()
-                viewModel.calculateStudyTime()
-                setupPieChart()
             }
         }
     }

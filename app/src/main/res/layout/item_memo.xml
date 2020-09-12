@@ -7,6 +7,7 @@
     android:layout_marginStart="@dimen/small_margin"
     android:layout_marginTop="4dp"
     android:layout_marginEnd="@dimen/small_margin"
+    android:foreground="@drawable/ripple_card_view"
     app:cardCornerRadius="@dimen/view_memo_cardview_corner_radius"
     app:cardUseCompatPadding="true">
 
@@ -39,10 +40,10 @@
                 android:id="@+id/category_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginEnd="10dp"
                 android:text="category"
-                android:layout_marginStart="@dimen/large_margin"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_text_view" />
 
@@ -50,8 +51,8 @@
                 android:id="@+id/timer_image_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginEnd="@dimen/small_margin"
                 android:src="@drawable/ic_stopping_timer"
                 app:layout_constraintRight_toRightOf="parent"

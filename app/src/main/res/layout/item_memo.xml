@@ -7,7 +7,7 @@
     android:layout_marginStart="@dimen/small_margin"
     android:layout_marginTop="4dp"
     android:layout_marginEnd="@dimen/small_margin"
-    android:foreground="@drawable/ripple_card_view"
+    android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="@dimen/view_memo_cardview_corner_radius"
     app:cardUseCompatPadding="true">
 

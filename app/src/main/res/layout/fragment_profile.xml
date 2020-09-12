@@ -52,7 +52,7 @@
                     android:layout_gravity="center"
                     android:paddingStart="@dimen/view_cardview_padding_leftright"
                     android:text="NAME"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/view_cardview_textsize_main" />
 
             </LinearLayout>
@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="start"
                         android:text="id"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="@dimen/view_cardview_textsize_sub" />
 
                     <TextView
@@ -128,7 +128,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="start"
                         android:text="id"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="@dimen/view_cardview_textsize_sub" />
 
                     <TextView

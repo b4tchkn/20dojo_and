@@ -31,13 +31,13 @@
                 android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:text="title"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/large_text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/label_image_view"
+                android:id="@+id/category_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_margin"
@@ -57,8 +57,8 @@
                 android:layout_marginBottom="@dimen/middle_margin"
                 android:text="category"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/label_image_view"
-                app:layout_constraintTop_toTopOf="@id/label_image_view" />
+                app:layout_constraintLeft_toRightOf="@id/category_image_view"
+                app:layout_constraintTop_toTopOf="@id/category_image_view" />
 
             <ImageButton
                 android:id="@+id/timer_image_button"

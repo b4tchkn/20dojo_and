@@ -1,7 +1,9 @@
 package jp.co.cyberagent.dojo2020.ui.home
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -31,12 +33,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            homeToCreateButton.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_memoCreateFragment)
-            }
-
-            homeToProfileButton.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            addFloatingActionButton.setOnClickListener { showMemoCreate() }
+            profileToolBarLayout.homeMaterialToolBar.setNavigationOnClickListener {
+                showProfile()
             }
 
             val linearLayoutManager = LinearLayoutManager(
@@ -60,6 +59,14 @@ class HomeFragment : Fragment() {
                 adapter = memoAdapter
             }
         }
+    }
+
+    private fun showProfile() {
+        findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+    }
+
+    private fun showMemoCreate() {
+        findNavController().navigate(R.id.action_homeFragment_to_memoCreateFragment)
     }
 
 }

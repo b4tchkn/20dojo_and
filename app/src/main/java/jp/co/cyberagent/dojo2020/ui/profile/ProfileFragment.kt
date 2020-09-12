@@ -1,22 +1,19 @@
 package jp.co.cyberagent.dojo2020.ui.profile
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.view.*
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
-import jp.co.cyberagent.dojo2020.R
 import jp.co.cyberagent.dojo2020.databinding.FragmentProfileBinding
-import kotlinx.android.synthetic.main.activity_main.*
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -39,6 +36,10 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
+            profileToolBarLayout.profileMaterialToolBar.setNavigationOnClickListener { view ->
+                view.findNavController().navigateUp()
+            }
+
             viewModel.firebaseUserInfo.observe(viewLifecycleOwner) { firebaseUser ->
                 firebaseUser ?: return@observe
 

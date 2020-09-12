@@ -1,7 +1,9 @@
 package jp.co.cyberagent.dojo2020.ui.home
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -31,12 +33,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            homeToCreateButton.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_memoCreateFragment)
-            }
-
-            homeToProfileButton.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            addFloatingActionButton.setOnClickListener { showMemoCreate() }
+            profileToolBarLayout.homeMaterialToolBar.setNavigationOnClickListener {
+                showProfile()
             }
 
             val linearLayoutManager = LinearLayoutManager(
@@ -62,30 +61,12 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setHasOptionsMenu(true)
+    private fun showProfile() {
+        findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_home, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.home_profile_icon_id -> {
-                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
-                true
-            }
-            R.id.home_create_icon_id -> {
-                findNavController().navigate(R.id.action_homeFragment_to_memoCreateFragment)
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
+    private fun showMemoCreate() {
+        findNavController().navigate(R.id.action_homeFragment_to_memoCreateFragment)
     }
 
 }

@@ -1,22 +1,19 @@
 package jp.co.cyberagent.dojo2020.ui.profile
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.view.*
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
-import jp.co.cyberagent.dojo2020.R
 import jp.co.cyberagent.dojo2020.databinding.FragmentProfileBinding
-import kotlinx.android.synthetic.main.activity_main.*
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -39,8 +36,8 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            profileToHomeButton.setOnClickListener {
-                findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
+            profileToolBarLayout.profileMaterialToolBar.setNavigationOnClickListener { view ->
+                view.findNavController().navigateUp()
             }
 
             viewModel.firebaseUserInfo.observe(viewLifecycleOwner) { firebaseUser ->
@@ -61,40 +58,8 @@ class ProfileFragment : Fragment() {
                 githubIdTextView.text = githubAccount?.id
                 githubUrlTextView.text = githubAccount?.url
             }
-            reloadButton.setOnClickListener {
-                viewModel.fetchUserData()
-                viewModel.calculateStudyTime()
-                setupPieChart()
-            }
         }
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_profile,menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
-            R.id.profile_create_icon_id -> {
-                findNavController().navigate(R.id.action_profileFragment_to_memoCreateFragment)
-                true
-            }
-            android.R.id.home -> {
-                findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
-                true
-            }
-            else ->{
-                super.onOptionsItemSelected(item)
-            }
-        }
-    }
-
 
     private fun setupPieChart() {
 

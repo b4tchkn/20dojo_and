@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:background="@drawable/border"
+                android:background="@drawable/shape_border"
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/view_cardview_padding_topbottom"
                 android:paddingBottom="@dimen/view_cardview_padding_topbottom">
@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:background="@drawable/border"
+                android:background="@drawable/shape_border"
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/view_cardview_padding_topbottom"
                 android:paddingBottom="@dimen/view_cardview_padding_topbottom">
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:background="@drawable/border"
+                android:background="@drawable/shape_border"
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/view_cardview_padding_topbottom"
                 android:paddingBottom="@dimen/view_cardview_padding_topbottom">
@@ -180,7 +180,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/vertical_line"
+                    android:background="@drawable/shape_vertical_line"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -205,7 +205,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/vertical_line"
+                    android:background="@drawable/shape_vertical_line"
                     android:gravity="center"
                     android:orientation="vertical">
 

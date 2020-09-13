@@ -1,5 +1,6 @@
 package jp.co.cyberagent.dojo2020.data.remote.firestore.memo
 
+import jp.co.cyberagent.dojo2020.data.model.Category
 import jp.co.cyberagent.dojo2020.data.model.Memo
 
 data class MemoEntity(
@@ -7,7 +8,7 @@ data class MemoEntity(
     val title: String? = null,
     val contents: String? = null,
     val time: Long? = null,
-    val category: String? = null
+    val category: Category? = null
 ) {
     fun modelOrNull(): Memo? {
         val containsNull = listOf(id, title, contents, time, category).contains(null)

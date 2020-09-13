@@ -2,6 +2,7 @@ package jp.co.cyberagent.dojo2020.data.local
 
 import jp.co.cyberagent.dojo2020.data.local.db.ApplicationDataBase
 import jp.co.cyberagent.dojo2020.data.local.db.memo.MemoEntity
+import jp.co.cyberagent.dojo2020.data.model.Category
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -13,7 +14,7 @@ interface MemoDataSource {
 
     fun fetchMemoById(id: String): Flow<Memo?>
 
-    fun fetchFilteredMemoByCategory(category: String): Flow<List<Memo>?>
+    fun fetchFilteredMemoByCategory(category: Category): Flow<List<Memo>?>
 
     suspend fun deleteMemoById(id: String)
 }
@@ -21,7 +22,7 @@ interface MemoDataSource {
 class DefaultMemoDataSource(private val dataBase: ApplicationDataBase) : MemoDataSource {
 
     override suspend fun saveMemo(memo: Memo) {
-        dataBase.memoDao().insert(memo.toEntityForLocal())
+        dataBase.memoDao().insert(memo.toEntity())
     }
 
     override fun fetchAllMemo(): Flow<List<Memo>> {
@@ -30,7 +31,7 @@ class DefaultMemoDataSource(private val dataBase: ApplicationDataBase) : MemoDat
         }
     }
 
-    override fun fetchFilteredMemoByCategory(category: String): Flow<List<Memo>?> {
+    override fun fetchFilteredMemoByCategory(category: Category): Flow<List<Memo>?> {
         return dataBase.memoDao().fetchFilteredByCategory(category).map { memoEntityList ->
             memoEntityList?.map { it.toModel() }
         }
@@ -44,7 +45,7 @@ class DefaultMemoDataSource(private val dataBase: ApplicationDataBase) : MemoDat
         dataBase.memoDao().deleteById(id)
     }
 
-    private fun Memo.toEntityForLocal(): MemoEntity {
+    private fun Memo.toEntity(): MemoEntity {
         return MemoEntity(id, title, contents, time, category)
     }
 }

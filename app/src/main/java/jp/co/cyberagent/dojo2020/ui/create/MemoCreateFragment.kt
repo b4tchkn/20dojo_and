@@ -70,7 +70,7 @@ class MemoCreateFragment : Fragment() {
                 spinnerAdapter.apply {
                     clear()
                     addAll(SpinnerAdapter.defaultItemList(context))
-                    addAll(categoryList)
+                    addAll(categoryList.map { it.name })
                     notifyDataSetChanged()
                 }
             }

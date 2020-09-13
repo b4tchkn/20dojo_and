@@ -10,7 +10,7 @@ class AccountListConverter {
     }
 
     @TypeConverter
-    fun accountListToString(string: String?): List<Account>? {
+    fun stringToAccountList(string: String?): List<Account>? {
         val accountsString = string?.split(separator)
         return accountsString?.map { stringToAccount(it) }
     }

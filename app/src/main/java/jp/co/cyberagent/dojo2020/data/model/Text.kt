@@ -4,7 +4,7 @@ sealed class Text(
     val id: String,
     val title: String,
     val contents: String,
-    val category: String
+    val category: Category
 )
 
 data class Left(val value: Draft) : Text(value.id, value.title, value.content, value.category)

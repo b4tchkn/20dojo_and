@@ -1,6 +1,7 @@
 package jp.co.cyberagent.dojo2020.data
 
 import jp.co.cyberagent.dojo2020.data.local.MemoDataSource
+import jp.co.cyberagent.dojo2020.data.model.Category
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.FireStoreMemoDataSource
 import kotlinx.coroutines.FlowPreview
@@ -12,7 +13,7 @@ interface MemoRepository {
 
     fun fetchAllMemo(uid: String?): Flow<List<Memo>>
 
-    fun fetchFilteredMemoByCategory(uid: String?, category: String): Flow<List<Memo>?>
+    fun fetchFilteredMemoByCategory(uid: String?, category: Category): Flow<List<Memo>?>
 
     fun fetchMemoById(uid: String?, id: String): Flow<Memo?>
 
@@ -49,7 +50,7 @@ class DefaultMemoRepository(
     @FlowPreview
     override fun fetchFilteredMemoByCategory(
         uid: String?,
-        category: String
+        category: Category
     ): Flow<List<Memo>?> {
         val localMemoListFlow = localMemoDataSource.fetchFilteredMemoByCategory(category)
 

@@ -41,7 +41,7 @@ class HomeViewModel(context: Context) : ViewModel() {
     fun filter() = viewModelScope.launch {
         userFlow.collect { userInfo ->
             memoRepository.fetchAllMemo(userInfo?.uid).collect { memoList ->
-                memoList.filter { it.category == "kotlin" }
+                memoList.filter { it.category.name == "kotlin" }
             }
         }
     }

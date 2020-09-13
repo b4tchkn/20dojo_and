@@ -7,15 +7,14 @@ import androidx.lifecycle.*
 import jp.co.cyberagent.dojo2020.DI
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import jp.co.cyberagent.dojo2020.data.model.Profile
-import jp.co.cyberagent.dojo2020.test.FakeRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(context: Context) : ViewModel() {
 
     private val firebaseUserInfoRepository = DI.injectDefaultUserInfoRepository()
-    private val firebaseProfileRepository = DI.injectTestProfileRepository()
-    private val memoRepository = FakeRepository
+    private val firebaseProfileRepository = DI.injectDefaultProfileRepository(context)
+    private val memoRepository = DI.injectDefaultMemoRepository(context)
 
     private val userFlow = firebaseUserInfoRepository.fetchUserInfo()
     val firebaseUserInfo = userFlow.asLiveData()

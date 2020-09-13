@@ -9,8 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import jp.co.cyberagent.dojo2020.R
+import jp.co.cyberagent.dojo2020.data.model.Category
+import jp.co.cyberagent.dojo2020.data.model.Memo
 import jp.co.cyberagent.dojo2020.databinding.FragmentHomeBinding
 import jp.co.cyberagent.dojo2020.ui.TextAdapter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlin.random.Random
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -28,13 +32,27 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
             addFloatingActionButton.setOnClickListener { showMemoCreate() }
-            profileToolBarLayout.homeMaterialToolBar.setNavigationOnClickListener {
-                showProfile()
+            profileToolBarLayout.apply {
+                homeMaterialToolBar.setNavigationOnClickListener {
+                    showProfile()
+                }
+
+                filterListImageButton.setOnClickListener {
+                    homeViewModel.saveMemo(
+                        Memo.createWithOutId(
+                            "Title" + Random.nextInt(30),
+                            "contents",
+                            0,
+                            Category("Kotlin")
+                        )
+                    )
+                }
             }
 
             val linearLayoutManager = LinearLayoutManager(

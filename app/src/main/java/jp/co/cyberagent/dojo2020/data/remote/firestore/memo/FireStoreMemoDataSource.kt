@@ -4,8 +4,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreConstants
 import jp.co.cyberagent.dojo2020.data.remote.firestore.memosRef
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
 interface FireStoreMemoDataSource {
@@ -20,8 +22,9 @@ interface FireStoreMemoDataSource {
     suspend fun deleteMemoById(uid: String, id: String)
 }
 
-class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
-    FireStoreMemoDataSource {
+class DefaultFireStoreMemoDataSource(
+    private val firestore: FirebaseFirestore
+) : FireStoreMemoDataSource {
 
     override suspend fun saveMemo(uid: String, memo: Memo) {
         val entity = memo.toEntity()
@@ -30,55 +33,51 @@ class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
         firestore.memosRef(uid).document(id).set(entity)
     }
 
-    override fun fetchAllMemo(uid: String) = flow<List<Memo>> {
-        try {
-            val snapshot = firestore.memosRef(uid).get().await()
-            val memoEntityList = snapshot.toObjects(MemoEntity::class.java)
-            val nullableMemoList = memoEntityList.map { entity ->
-                entity.modelOrNull()
-            } // if use state, throw exception
+    @ExperimentalCoroutinesApi
+    override fun fetchAllMemo(uid: String) = callbackFlow {
+        firestore.memosRef(uid).addSnapshotListener { snapshot, exception ->
+            exception?.message?.run { return@addSnapshotListener } // if use state, emit error
 
-            val notNullMemoList = nullableMemoList.map { it ?: return@flow }
+            val memoEntityList = snapshot?.toObjects(MemoEntity::class.java)
+            memoEntityList ?: return@addSnapshotListener
 
-            emit(notNullMemoList)
-        } catch (e: Exception) {
-            //Todo(emit failed)
-        }
+            val memoList = memoEntityList.mapNotNull { it.modelOrNull() }
+            offer(memoList)
+
+        }.also { awaitClose { it.remove() } }
     }
 
+    @ExperimentalCoroutinesApi
     override fun fetchFilteredMemoByCategory(
         uid: String,
         category: String
-    ) = flow {
-        try {
-            val snapshot = firestore.memosRef(uid)
-                .whereEqualTo(FireStoreConstants.CATEGORY, category)
-                .get()
-                .await()
+    ) = callbackFlow {
 
-            val memoEntityList = snapshot.toObjects(MemoEntity::class.java)
-            val nullableFilteredList = memoEntityList.map { entity ->
-                entity.modelOrNull()
-            }
+        firestore.memosRef(uid)
+            .whereEqualTo(FireStoreConstants.CATEGORY, category)
+            .addSnapshotListener { snapshot, exception ->
+                exception?.message?.run { return@addSnapshotListener }
 
-            val notNullFilteredList = nullableFilteredList.map { it ?: return@flow }
+                val memoEntityList = snapshot?.toObjects(MemoEntity::class.java)
+                memoEntityList ?: return@addSnapshotListener
 
-            emit(notNullFilteredList)
-        } catch (e: Exception) {
-            //Todo(emit failed)
-        }
+                val memoList = memoEntityList.mapNotNull { it.modelOrNull() }
+                offer(memoList)
+
+            }.also { awaitClose { it.remove() } }
     }
 
-    override fun fetchMemoById(uid: String, id: String) = flow<Memo?> {
-        try {
-            val snapshot = firestore.memosRef(uid).document(id).get().await()
-            val memoEntity = snapshot.toObject(MemoEntity::class.java)
-            val memo = memoEntity?.modelOrNull()
+    @ExperimentalCoroutinesApi
+    override fun fetchMemoById(uid: String, id: String) = callbackFlow {
+        firestore.memosRef(uid).document(id).addSnapshotListener { snapshot, exception ->
+            exception?.message?.run { return@addSnapshotListener }
 
-            emit(memo)
-        } catch (e: Exception) {
-            //Todo(emit failed)
+            val memoEntity = snapshot?.toObject(MemoEntity::class.java)
+            memoEntity ?: return@addSnapshotListener
+
+            offer(memoEntity.modelOrNull())
         }
+
     }
 
     override suspend fun deleteMemoById(uid: String, id: String) {
@@ -86,7 +85,7 @@ class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
     }
 
     private fun Memo.toEntity(): MemoEntity {
-        return MemoEntity(id, title, contents, time, category)
+        return MemoEntity(id, title, contents, time, category.name)
     }
 
 }

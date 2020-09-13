@@ -24,7 +24,7 @@ class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
     FireStoreMemoDataSource {
 
     override suspend fun saveMemo(uid: String, memo: Memo) {
-        val entity = memo.toEntityForRemote()
+        val entity = memo.toEntity()
         val id = entity.id ?: return
 
         firestore.memosRef(uid).document(id).set(entity)
@@ -85,17 +85,8 @@ class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
         firestore.memosRef(uid).document(id).delete().await()
     }
 
-    private fun Memo.toEntityForRemote(): MemoEntity {
-        return MemoEntity(id, title, contents, time)
-    }
-
-    private fun MemoEntity.modelOrNull(): Memo? {
-        val containsNull = listOf(id, title, contents, time, category).contains(null)
-        if (containsNull) {
-            return null
-        }
-
-        return Memo(id!!, title!!, contents!!, time!!, category!!)
+    private fun Memo.toEntity(): MemoEntity {
+        return MemoEntity(id, title, contents, time, category)
     }
 
 }

@@ -44,10 +44,6 @@ class DefaultMemoDataSource(private val dataBase: ApplicationDataBase) : MemoDat
         dataBase.memoDao().deleteById(id)
     }
 
-    private fun MemoEntity.toModel(): Memo {
-        return Memo(id, title, contents, time, category)
-    }
-
     private fun Memo.toEntityForLocal(): MemoEntity {
         return MemoEntity(id, title, contents, time, category)
     }

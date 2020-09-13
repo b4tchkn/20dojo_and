@@ -8,14 +8,17 @@ data class MemoEntity(
     val title: String? = null,
     val contents: String? = null,
     val time: Long? = null,
-    val category: Category? = null
+    val categoryName: String? = null
 ) {
     fun modelOrNull(): Memo? {
-        val containsNull = listOf(id, title, contents, time, category).contains(null)
+        val containsNull = listOf(id, title, contents, time, categoryName).contains(null)
         if (containsNull) {
             return null
         }
 
-        return Memo(id!!, title!!, contents!!, time!!, category!!)
+        val category = Category(categoryName!!)
+
+        return Memo(id!!, title!!, contents!!, time!!, category)
     }
+
 }

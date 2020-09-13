@@ -28,8 +28,17 @@ class TextAdapter(private val onItemClickListener: View.OnClickListener) :
         fun setText(text: Text) {
             binding.apply {
                 titleTextView.text = text.title
-                contentsTextView.text = text.contents
                 categoryTextView.text = text.category
+
+                text.contents.toOneLine().also { contents ->
+                    contentsTextView.text = contents
+
+                    expandImageView.visibility = visibleOrGone(
+                        contents.takeLastWhile { it == '.' }.length >= 3
+                    )
+
+                }
+
             }
 
             when (text) {
@@ -38,13 +47,21 @@ class TextAdapter(private val onItemClickListener: View.OnClickListener) :
             }
         }
 
-
         private fun setDraft(draft: Draft) {
 
         }
 
         private fun setMemo(memo: Memo) {
 
+        }
+
+        private fun visibleOrGone(isVisible: Boolean) = if (isVisible) View.VISIBLE else View.GONE
+
+        private fun String.toOneLine(): String =
+            if (this.contains("\n")) takeWhile { it != '\n' } + stringTerminated else this
+
+        companion object {
+            private const val stringTerminated = "..."
         }
     }
 

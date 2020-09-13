@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.map
 interface CategoryDataSource {
     suspend fun addCategory(category: String)
 
-    suspend fun fetchCategory(): Flow<List<String>>
+    fun fetchCategory(): Flow<List<String>>
 
     suspend fun deleteCategory(name: String)
 }
@@ -18,7 +18,7 @@ class DefaultCategoryDataSource(private val database: ApplicationDataBase) : Cat
         database.categoryDao().insert(CategoryEntity(category))
     }
 
-    override suspend fun fetchCategory(): Flow<List<String>> {
+    override fun fetchCategory(): Flow<List<String>> {
         return database.categoryDao().fetchAll().map { categoryList ->
             categoryList.map { it.name }
         }

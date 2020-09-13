@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.map
 interface DraftDataSource {
     suspend fun saveDraft(draft: Draft)
 
-    suspend fun fetchAllDraft(): Flow<List<Draft>>
+    fun fetchAllDraft(): Flow<List<Draft>>
 
-    suspend fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?>
+    fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?>
 
-    suspend fun fetchDraftById(id: String): Flow<Draft?>
+    fun fetchDraftById(id: String): Flow<Draft?>
 
     suspend fun deleteDraftById(id: String)
 }
@@ -23,19 +23,19 @@ class DefaultDraftDataSource(private val database: ApplicationDataBase) : DraftD
         database.draftDao().insert(draft.toEntityForLocal())
     }
 
-    override suspend fun fetchAllDraft(): Flow<List<Draft>> {
+    override fun fetchAllDraft(): Flow<List<Draft>> {
         return database.draftDao().fetchAll().map { entityList ->
             entityList.map { it.toModel() }
         }
     }
 
-    override suspend fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?> {
+    override fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?> {
         return database.draftDao().fetchFilteredByCategory(category).map { entityList ->
             entityList?.map { it.toModel() }
         }
     }
 
-    override suspend fun fetchDraftById(id: String): Flow<Draft?> {
+    override fun fetchDraftById(id: String): Flow<Draft?> {
         return database.draftDao().fetch(id).map { it?.toModel() }
     }
 

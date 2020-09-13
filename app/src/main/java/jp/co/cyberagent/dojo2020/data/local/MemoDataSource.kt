@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.map
 interface MemoDataSource {
     suspend fun saveMemo(memo: Memo)
 
-    suspend fun fetchAllMemo(): Flow<List<Memo>>
+    fun fetchAllMemo(): Flow<List<Memo>>
 
-    suspend fun fetchMemoById(id: String): Flow<Memo?>
+    fun fetchMemoById(id: String): Flow<Memo?>
 
-    suspend fun fetchFilteredMemoByCategory(category: String): Flow<List<Memo>?>
+    fun fetchFilteredMemoByCategory(category: String): Flow<List<Memo>?>
 
     suspend fun deleteMemoById(id: String)
 }
@@ -24,19 +24,19 @@ class DefaultMemoDataSource(private val dataBase: ApplicationDataBase) : MemoDat
         dataBase.memoDao().insert(memo.toEntityForLocal())
     }
 
-    override suspend fun fetchAllMemo(): Flow<List<Memo>> {
+    override fun fetchAllMemo(): Flow<List<Memo>> {
         return dataBase.memoDao().fetchAll().map { memoEntityList ->
             memoEntityList.map { it.toModel() }
         }
     }
 
-    override suspend fun fetchFilteredMemoByCategory(category: String): Flow<List<Memo>?> {
+    override fun fetchFilteredMemoByCategory(category: String): Flow<List<Memo>?> {
         return dataBase.memoDao().fetchFilteredByCategory(category).map { memoEntityList ->
             memoEntityList?.map { it.toModel() }
         }
     }
 
-    override suspend fun fetchMemoById(id: String): Flow<Memo?> {
+    override fun fetchMemoById(id: String): Flow<Memo?> {
         return dataBase.memoDao().fetch(id).map { it?.toModel() }
     }
 

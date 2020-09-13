@@ -111,7 +111,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/small_icon"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_border"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/middle_constraint_layout">
@@ -119,7 +120,7 @@
             <ImageButton
                 android:id="@+id/expand_image_Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/small_icon"
                 android:background="?android:attr/selectableItemBackground"
                 android:src="@drawable/ic_expand_more"
                 app:layout_constraintLeft_toLeftOf="parent"

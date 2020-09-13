@@ -17,6 +17,7 @@ import jp.co.cyberagent.dojo2020.ui.create.spinner.CustomOnItemSelectedListener
 import jp.co.cyberagent.dojo2020.ui.create.spinner.SpinnerAdapter
 import jp.co.cyberagent.dojo2020.ui.widget.CustomBottomSheetDialog
 import jp.co.cyberagent.dojo2020.ui.widget.CustomBottomSheetDialog.Companion.TAG
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class MemoCreateFragment : Fragment() {
     private lateinit var activityInFragment: AppCompatActivity
@@ -49,6 +50,7 @@ class MemoCreateFragment : Fragment() {
         }
     }
 
+    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

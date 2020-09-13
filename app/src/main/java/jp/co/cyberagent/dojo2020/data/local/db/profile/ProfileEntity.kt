@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import jp.co.cyberagent.dojo2020.data.model.Account
+import jp.co.cyberagent.dojo2020.data.model.Profile
 
 @Entity(tableName = "profile")
 data class ProfileEntity(
@@ -27,5 +28,9 @@ data class ProfileEntity(
         ): ProfileEntity {
             return ProfileEntity(0, name, iconUrl, accountList)
         }
+    }
+
+    fun toModel(): Profile {
+        return Profile(name, iconUrl, accountList)
     }
 }

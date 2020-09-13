@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import jp.co.cyberagent.dojo2020.R
-import jp.co.cyberagent.dojo2020.data.model.toText
 import jp.co.cyberagent.dojo2020.databinding.FragmentHomeBinding
 import jp.co.cyberagent.dojo2020.ui.TextAdapter
 
@@ -49,8 +48,8 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(action)
             }
 
-            homeViewModel.memoListLiveData.observe(viewLifecycleOwner) { memoList ->
-                memoAdapter.textList = memoList.map { it.toText() }
+            homeViewModel.textListLiveData.observe(viewLifecycleOwner) { textList ->
+                memoAdapter.textList = textList
             }
 
             recyclerView.apply {

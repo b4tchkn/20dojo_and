@@ -7,27 +7,39 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import jp.co.cyberagent.dojo2020.DI
 import jp.co.cyberagent.dojo2020.data.DefaultUserInfoRepository
 import jp.co.cyberagent.dojo2020.data.UserInfoRepository
+import jp.co.cyberagent.dojo2020.data.ext.accessWithUid
 import jp.co.cyberagent.dojo2020.data.model.Memo
-import jp.co.cyberagent.dojo2020.test.FakeRepository
+import jp.co.cyberagent.dojo2020.data.model.toText
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
 class HomeViewModel(context: Context) : ViewModel() {
-    private val memoRepository = FakeRepository
+    private val draftRepository = DI.injectDefaultDraftRepository(context)
+    private val memoRepository = DI.injectDefaultMemoRepository(context)
     private val firebaseUserInfoRepository: UserInfoRepository = DefaultUserInfoRepository()
 
-    val user= firebaseUserInfoRepository.fetchUserInfo()
+    private val userFlow = firebaseUserInfoRepository.fetchUserInfo()
 
-    val memoListLiveData = liveData<List<Memo>> {
-        user.collect { userInfo ->
-            emitSource(memoRepository.fetchAllMemo(userInfo?.uid).asLiveData())
+    val textListLiveData = liveData {
+        userFlow.accessWithUid { uid ->
+            emitSource(draftRepository.fetchAllDraft()
+                .combine(memoRepository.fetchAllMemo(uid)) { draftList, memoList ->
+                    val rightList = memoList.map { it.toText() }
+                    val leftList = draftList.map { it.toText() }
+
+                    leftList + rightList
+                }
+                .asLiveData()
+            )
         }
     }
 
     fun filter() = viewModelScope.launch {
-        user.collect { userInfo ->
+        userFlow.collect { userInfo ->
             memoRepository.fetchAllMemo(userInfo?.uid).collect { memoList ->
                 memoList.filter { it.category == "kotlin" }
             }
@@ -35,7 +47,7 @@ class HomeViewModel(context: Context) : ViewModel() {
     }
 
     fun saveMemo(memo: Memo) = viewModelScope.launch {
-        user.collect { userInfo ->
+        userFlow.collect { userInfo ->
             memoRepository.saveMemo(userInfo?.uid, memo)
             Log.d(TAG, "uid is ${userInfo?.uid}")
         }

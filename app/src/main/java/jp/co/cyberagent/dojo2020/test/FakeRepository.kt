@@ -10,18 +10,18 @@ object FakeRepository : MemoRepository {
         Log.d(Constants.REPOSITORY, "insert: $memo")
     }
 
-    override suspend fun fetchAllMemo(uid: String?) = flow {
+    override fun fetchAllMemo(uid: String?) = flow {
         val dataList = MemoData.list
 
         dataList.forEach { Log.d(Constants.REPOSITORY, "fetchAll: $it") }
         emit(dataList)
     }
 
-    override suspend fun fetchMemoById(uid: String?, id: String) = flow {
+    override fun fetchMemoById(uid: String?, id: String) = flow {
         emit(MemoData.list.firstOrNull { it.id == id })
     }
 
-    override suspend fun fetchFilteredMemoByCategory(uid: String?, category: String) = flow {
+    override fun fetchFilteredMemoByCategory(uid: String?, category: String) = flow {
         emit(MemoData.list.filter { it.category == category })
     }
 

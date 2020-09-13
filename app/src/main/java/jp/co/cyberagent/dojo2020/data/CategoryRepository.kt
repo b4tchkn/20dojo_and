@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flatMapConcat
 interface CategoryRepository {
     suspend fun saveCategory(uid: String?, category: String)
 
-    suspend fun fetchAllCategory(uid: String?): Flow<List<String>>
+    fun fetchAllCategory(uid: String?): Flow<List<String>>
 
     suspend fun deleteCategory(uid: String?, category: String)
 }
@@ -27,7 +27,7 @@ class DefaultCategoryRepository(
     }
 
     @FlowPreview
-    override suspend fun fetchAllCategory(uid: String?): Flow<List<String>> {
+    override fun fetchAllCategory(uid: String?): Flow<List<String>> {
         val localCategoryListFlow = localCategoryDataSource.fetchCategory()
 
         val categoryListFlow = localCategoryListFlow.flatMapConcat { categoryList ->

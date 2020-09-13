@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flatMapConcat
 interface ProfileRepository {
     suspend fun saveProfile(uid: String?, profile: Profile)
 
-    suspend fun fetchProfile(uid: String?): Flow<Profile?>
+    fun fetchProfile(uid: String?): Flow<Profile?>
 }
 
 class DefaultProfileRepository(
@@ -26,7 +26,7 @@ class DefaultProfileRepository(
     }
 
     @FlowPreview
-    override suspend fun fetchProfile(uid: String?): Flow<Profile?> {
+    override fun fetchProfile(uid: String?): Flow<Profile?> {
         val localProfileFlow = localProfileDataSource.fetchProfile()
 
         val profileFlow = localProfileFlow.flatMapConcat { profile ->

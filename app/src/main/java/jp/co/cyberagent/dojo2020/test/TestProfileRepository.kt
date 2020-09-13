@@ -13,7 +13,7 @@ object TestProfileRepository : ProfileRepository {
         Log.d(TAG, profile.toString())
     }
 
-    override suspend fun fetchProfile(uid: String?) = flow {
+    override fun fetchProfile(uid: String?) = flow {
         val twitter = Account("twitter", "twitterID", "twitter.com")
         val github = Account("github", "githubID", "github.com")
         val accountList = listOf(twitter, github)

@@ -7,6 +7,7 @@
     android:layout_marginStart="@dimen/small_margin"
     android:layout_marginTop="4dp"
     android:layout_marginEnd="@dimen/small_margin"
+    android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="@dimen/view_memo_cardview_corner_radius"
     app:cardUseCompatPadding="true">
 
@@ -30,29 +31,43 @@
                 android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:text="title"
-                android:textColor="@color/colorBlack"
-                android:textSize="24sp"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/large_text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/category_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/middle_margin"
+                android:src="@drawable/ic_label"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_text_view" />
 
             <TextView
                 android:id="@+id/category_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="@dimen/middle_margin"
                 android:text="category"
-                android:layout_marginStart="@dimen/large_margin"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title_text_view" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/category_image_view"
+                app:layout_constraintTop_toTopOf="@id/category_image_view" />
 
             <ImageButton
                 android:id="@+id/timer_image_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginStart="@dimen/small_margin"
-                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_marginTop="@dimen/middle_margin"
+                android:layout_marginEnd="@dimen/middle_margin"
+                android:background="@drawable/ripple_filter_list_button"
                 android:src="@drawable/ic_stopping_timer"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +77,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
-                android:layout_marginEnd="@dimen/small_margin"
                 android:layout_marginBottom="@dimen/small_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="@id/timer_image_button"
@@ -71,17 +85,50 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/contents_text_view"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/middle_constraint_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginBottom="@dimen/small_margin"
-            android:text="contents"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/top_constraint_layout" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_constraint_layout">
+
+            <TextView
+                android:id="@+id/contents_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/middle_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/middle_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:text="contents"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_border"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/middle_constraint_layout">
+
+            <ImageButton
+                android:id="@+id/expand_image_Button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/small_icon"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_expand_more"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

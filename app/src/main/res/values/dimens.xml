@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="small_text">12dp</dimen>
-    <dimen name="middle_text">16dp</dimen>
-    <dimen name="large_text">24dp</dimen>
+    <dimen name="small_text">12sp</dimen>
+    <dimen name="middle_text">16sp</dimen>
+    <dimen name="large_text">24sp</dimen>
 
     <dimen name="small_margin">8dp</dimen>
     <dimen name="middle_margin">16dp</dimen>
@@ -19,6 +19,6 @@
     <dimen name="view_cardview_margin_topbottom">8dp</dimen>
 
     <dimen name="view_recyclerview_margin">12dp</dimen>
-    <dimen name="small_icon">30dp</dimen>
+    <dimen name="small_icon">28dp</dimen>
 
 </resources>

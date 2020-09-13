@@ -1,6 +1,7 @@
 package jp.co.cyberagent.dojo2020.data.remote.firestore.category
 
 import com.google.firebase.firestore.FirebaseFirestore
+import jp.co.cyberagent.dojo2020.data.model.Category
 import jp.co.cyberagent.dojo2020.data.remote.firestore.FireStoreConstants
 import jp.co.cyberagent.dojo2020.data.remote.firestore.categoriesRef
 import kotlinx.coroutines.flow.Flow
@@ -8,35 +9,33 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
 interface FirestoreCategoryDataSource {
-    suspend fun saveCategory(uid: String, category: String)
+    suspend fun saveCategory(uid: String, category: Category)
 
-    suspend fun fetchAllCategory(uid: String): Flow<List<String>>
+    fun fetchAllCategory(uid: String): Flow<List<Category>>
 
-    suspend fun deleteCategory(uid: String, category: String)
+    suspend fun deleteCategory(uid: String, category: Category)
 }
 
 class DefaultFirestoreCategoryDataSource(private val firestore: FirebaseFirestore) :
     FirestoreCategoryDataSource {
 
-    override suspend fun saveCategory(uid: String, category: String) {
-        val entity = CategoryEntity(category)
-
-        firestore.categoriesRef(uid).document().set(entity)
+    override suspend fun saveCategory(uid: String, category: Category) {
+        firestore.categoriesRef(uid).document().set(category.toEntity())
     }
 
-    override suspend fun fetchAllCategory(uid: String) = flow<List<String>> {
+    override fun fetchAllCategory(uid: String) = flow<List<Category>> {
         try {
             val snapshot = firestore.categoriesRef(uid).get().await()
 
             val categoryEntityList = snapshot.toObjects(CategoryEntity::class.java)
 
-            emit(categoryEntityList.mapNotNull { it.name })
+            emit(categoryEntityList.mapNotNull { it.modelOrNull() })
         } catch (e: Exception) {
             //Todo(emit failed)
         }
     }
 
-    override suspend fun deleteCategory(uid: String, category: String) {
+    override suspend fun deleteCategory(uid: String, category: Category) {
         val snapshot = firestore.categoriesRef(uid)
             .whereEqualTo(FireStoreConstants.CATEGORY, category)
             .get()
@@ -45,6 +44,10 @@ class DefaultFirestoreCategoryDataSource(private val firestore: FirebaseFirestor
         snapshot.forEach {
             it.reference.delete()
         }
+    }
+
+    private fun Category.toEntity(): CategoryEntity {
+        return CategoryEntity(name)
     }
 
 }

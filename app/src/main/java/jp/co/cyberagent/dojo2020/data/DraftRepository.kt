@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.Flow
 interface DraftRepository {
     suspend fun saveDraft(draft: Draft)
 
-    suspend fun fetchAllDraft(): Flow<List<Draft>>
+    fun fetchAllDraft(): Flow<List<Draft>>
 
-    suspend fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?>
+    fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?>
 
-    suspend fun fetchDraftById(id: String): Flow<Draft?>
+    fun fetchDraftById(id: String): Flow<Draft?>
 
     suspend fun deleteDraftById(id: String)
 }
@@ -21,15 +21,15 @@ class DefaultDraftRepository(private val draftDataSource: DraftDataSource) : Dra
         draftDataSource.saveDraft(draft)
     }
 
-    override suspend fun fetchAllDraft(): Flow<List<Draft>> {
+    override fun fetchAllDraft(): Flow<List<Draft>> {
         return draftDataSource.fetchAllDraft()
     }
 
-    override suspend fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?> {
+    override fun fetchFilteredDraftsByCategory(category: String): Flow<List<Draft>?> {
         return draftDataSource.fetchFilteredDraftsByCategory(category)
     }
 
-    override suspend fun fetchDraftById(id: String): Flow<Draft?> {
+    override fun fetchDraftById(id: String): Flow<Draft?> {
         return draftDataSource.fetchDraftById(id)
     }
 

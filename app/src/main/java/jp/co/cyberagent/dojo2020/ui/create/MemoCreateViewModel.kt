@@ -7,6 +7,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import jp.co.cyberagent.dojo2020.DI
 import jp.co.cyberagent.dojo2020.data.ext.accessWithUid
+import jp.co.cyberagent.dojo2020.data.model.Category
 import jp.co.cyberagent.dojo2020.data.model.Draft
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -35,13 +36,13 @@ class MemoCreateViewModel(context: Context) : ViewModel() {
     fun addDraft(title: String, content: String, category: String) = viewModelScope.launch {
         val id = UUID.randomUUID().toString()
         val startTime = System.currentTimeMillis()
-        val draft = Draft(id, title, content, startTime, category)
+        val draft = Draft(id, title, content, startTime, Category(category))
 
         draftRepository.saveDraft(draft)
     }
 
     fun addCategory(categoryName: String) = viewModelScope.launch {
 
-        userInfoFlow.accessWithUid { uid -> categoryRepository.saveCategory(uid, categoryName) }
+        userInfoFlow.accessWithUid { uid -> categoryRepository.saveCategory(uid, Category(categoryName)) }
     }
 }

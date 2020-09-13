@@ -5,5 +5,5 @@ data class Draft(
     val title: String,
     val content: String,
     val startTime: Long,
-    val category: String
+    val category: Category
 )

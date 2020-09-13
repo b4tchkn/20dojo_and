@@ -1,6 +1,7 @@
 package jp.co.cyberagent.dojo2020.data
 
 import jp.co.cyberagent.dojo2020.data.local.MemoDataSource
+import jp.co.cyberagent.dojo2020.data.model.Category
 import jp.co.cyberagent.dojo2020.data.model.Memo
 import jp.co.cyberagent.dojo2020.data.remote.firestore.memo.FireStoreMemoDataSource
 import kotlinx.coroutines.FlowPreview
@@ -10,11 +11,11 @@ import kotlinx.coroutines.flow.flatMapConcat
 interface MemoRepository {
     suspend fun saveMemo(uid: String?, memo: Memo)
 
-    suspend fun fetchAllMemo(uid: String?): Flow<List<Memo>>
+    fun fetchAllMemo(uid: String?): Flow<List<Memo>>
 
-    suspend fun fetchFilteredMemoByCategory(uid: String?, category: String): Flow<List<Memo>?>
+    fun fetchFilteredMemoByCategory(uid: String?, category: Category): Flow<List<Memo>?>
 
-    suspend fun fetchMemoById(uid: String?, id: String): Flow<Memo?>
+    fun fetchMemoById(uid: String?, id: String): Flow<Memo?>
 
     suspend fun deleteMemoById(uid: String?, id: String)
 }
@@ -32,7 +33,7 @@ class DefaultMemoRepository(
     }
 
     @FlowPreview
-    override suspend fun fetchAllMemo(uid: String?): Flow<List<Memo>> {
+    override fun fetchAllMemo(uid: String?): Flow<List<Memo>> {
         val localMemoListFlow = localMemoDataSource.fetchAllMemo()
 
         val memoListFlow = localMemoListFlow.flatMapConcat { localMemoList ->
@@ -47,9 +48,9 @@ class DefaultMemoRepository(
     }
 
     @FlowPreview
-    override suspend fun fetchFilteredMemoByCategory(
+    override fun fetchFilteredMemoByCategory(
         uid: String?,
-        category: String
+        category: Category
     ): Flow<List<Memo>?> {
         val localMemoListFlow = localMemoDataSource.fetchFilteredMemoByCategory(category)
 
@@ -65,7 +66,7 @@ class DefaultMemoRepository(
     }
 
     @FlowPreview
-    override suspend fun fetchMemoById(uid: String?, id: String): Flow<Memo?> {
+    override fun fetchMemoById(uid: String?, id: String): Flow<Memo?> {
         val localMemoFlow = localMemoDataSource.fetchMemoById(id)
 
         val memoListFlow = localMemoFlow.flatMapConcat { localMemo ->

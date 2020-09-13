@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.map
 interface ProfileDataSource {
     suspend fun saveProfile(profile: Profile)
 
-    suspend fun fetchProfile(): Flow<Profile?>
+    fun fetchProfile(): Flow<Profile?>
 }
 
 class DefaultProfileDataSource(private val database: ApplicationDataBase) : ProfileDataSource {
@@ -17,7 +17,7 @@ class DefaultProfileDataSource(private val database: ApplicationDataBase) : Prof
         database.profileDao().insert(profile.toEntity())
     }
 
-    override suspend fun fetchProfile(): Flow<Profile?> {
+    override fun fetchProfile(): Flow<Profile?> {
         return database.profileDao().fetch().map { it?.toModel() }
     }
 
@@ -25,7 +25,4 @@ class DefaultProfileDataSource(private val database: ApplicationDataBase) : Prof
         return ProfileEntity.createForInsert(name, iconUrl, accountList)
     }
 
-    private fun ProfileEntity.toModel(): Profile {
-        return Profile(name, iconUrl, accountList)
-    }
 }

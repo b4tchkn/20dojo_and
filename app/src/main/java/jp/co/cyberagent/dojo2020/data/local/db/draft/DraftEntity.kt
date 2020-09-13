@@ -3,6 +3,8 @@ package jp.co.cyberagent.dojo2020.data.local.db.draft
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import jp.co.cyberagent.dojo2020.data.model.Category
+import jp.co.cyberagent.dojo2020.data.model.Draft
 
 @Entity(tableName = "drafts")
 data class DraftEntity(
@@ -19,5 +21,10 @@ data class DraftEntity(
     val startTime: Long,
 
     @ColumnInfo(name = "category")
-    val category: String
-)
+    val category: Category
+) {
+
+    fun toModel(): Draft {
+        return Draft(id, title, contents, startTime, category)
+    }
+}

@@ -1,17 +1,18 @@
 package jp.co.cyberagent.dojo2020.data
 
 import jp.co.cyberagent.dojo2020.data.local.CategoryDataSource
+import jp.co.cyberagent.dojo2020.data.model.Category
 import jp.co.cyberagent.dojo2020.data.remote.firestore.category.FirestoreCategoryDataSource
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat
 
 interface CategoryRepository {
-    suspend fun saveCategory(uid: String?, category: String)
+    suspend fun saveCategory(uid: String?, category: Category)
 
-    suspend fun fetchAllCategory(uid: String?): Flow<List<String>>
+    fun fetchAllCategory(uid: String?): Flow<List<Category>>
 
-    suspend fun deleteCategory(uid: String?, category: String)
+    suspend fun deleteCategory(uid: String?, category: Category)
 }
 
 class DefaultCategoryRepository(
@@ -19,7 +20,7 @@ class DefaultCategoryRepository(
     private val remoteCategoryFirestoreDataSource: FirestoreCategoryDataSource
 ) : CategoryRepository {
 
-    override suspend fun saveCategory(uid: String?, category: String) {
+    override suspend fun saveCategory(uid: String?, category: Category) {
         localCategoryDataSource.addCategory(category)
         uid ?: return
 
@@ -27,7 +28,7 @@ class DefaultCategoryRepository(
     }
 
     @FlowPreview
-    override suspend fun fetchAllCategory(uid: String?): Flow<List<String>> {
+    override fun fetchAllCategory(uid: String?): Flow<List<Category>> {
         val localCategoryListFlow = localCategoryDataSource.fetchCategory()
 
         val categoryListFlow = localCategoryListFlow.flatMapConcat { categoryList ->
@@ -41,7 +42,7 @@ class DefaultCategoryRepository(
         return categoryListFlow
     }
 
-    override suspend fun deleteCategory(uid: String?, category: String) {
+    override suspend fun deleteCategory(uid: String?, category: Category) {
         localCategoryDataSource.deleteCategory(category)
         uid ?: return
 

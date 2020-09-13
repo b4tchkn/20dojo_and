@@ -33,7 +33,7 @@ class TextAdapter(private val onItemClickListener: View.OnClickListener) :
         fun setText(text: Text) {
             binding.apply {
                 titleTextView.text = text.title
-                categoryTextView.text = text.category
+                categoryTextView.text = text.category.name
 
                 expandImageButton.setOnClickListener {
                     it.isSelected = !it.isSelected

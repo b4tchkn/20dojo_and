@@ -29,19 +29,4 @@ class DefaultFireStoreProfileDataSource(private val firestore: FirebaseFirestore
         emit(profileEntity.toModel())
     }
 
-    private fun ProfileEntity.toModel(): Profile {
-        return Profile(
-            name,
-            iconUrl,
-            accountEntityList?.mapNotNull { it.toModelOrNull() })
-    }
-
-    private fun AccountEntity.toModelOrNull(): Account? {
-        val list = listOf(serviceName, id, url)
-        if (list.contains(null)) {
-            return null
-        }
-
-        return Account(serviceName!!, id!!, url!!)
-    }
 }

@@ -30,15 +30,21 @@ class TextAdapter(private val onItemClickListener: View.OnClickListener) :
                 titleTextView.text = text.title
                 categoryTextView.text = text.category
 
-                text.contents.toOneLine().also { contents ->
-                    contentsTextView.text = contents
+                expandImageButton.setOnClickListener {
+                    it.isSelected = !it.isSelected
 
-                    expandImageView.visibility = visibleOrGone(
-                        contents.takeLastWhile { it == '.' }.length >= 3
-                    )
-
+                    text.contents.also { contents ->
+                        contentsTextView.text =
+                            if (it.isSelected) contents else contents.toOneLine()
+                    }
                 }
 
+                text.contents.also { contents ->
+                    contentsTextView.text = contents.toOneLine().also {
+                        expandImageButton.visibility =
+                            visibleOrGone(it.takeLastWhile { ch -> ch == addedPostFix }.length >= 3)
+                    }
+                }
             }
 
             when (text) {
@@ -62,6 +68,7 @@ class TextAdapter(private val onItemClickListener: View.OnClickListener) :
 
         companion object {
             private const val stringTerminated = "..."
+            private const val addedPostFix = '.'
         }
     }
 

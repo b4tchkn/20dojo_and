@@ -10,7 +10,7 @@ import kotlinx.coroutines.tasks.await
 interface FirestoreCategoryDataSource {
     suspend fun saveCategory(uid: String, category: String)
 
-    suspend fun fetchAllCategory(uid: String): Flow<List<String>>
+    fun fetchAllCategory(uid: String): Flow<List<String>>
 
     suspend fun deleteCategory(uid: String, category: String)
 }
@@ -24,7 +24,7 @@ class DefaultFirestoreCategoryDataSource(private val firestore: FirebaseFirestor
         firestore.categoriesRef(uid).document().set(entity)
     }
 
-    override suspend fun fetchAllCategory(uid: String) = flow<List<String>> {
+    override fun fetchAllCategory(uid: String) = flow<List<String>> {
         try {
             val snapshot = firestore.categoriesRef(uid).get().await()
 

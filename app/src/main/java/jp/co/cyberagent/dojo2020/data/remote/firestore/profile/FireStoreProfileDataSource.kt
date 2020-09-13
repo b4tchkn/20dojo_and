@@ -1,7 +1,6 @@
 package jp.co.cyberagent.dojo2020.data.remote.firestore.profile
 
 import com.google.firebase.firestore.FirebaseFirestore
-import jp.co.cyberagent.dojo2020.data.model.Account
 import jp.co.cyberagent.dojo2020.data.model.Profile
 import jp.co.cyberagent.dojo2020.data.remote.firestore.profileRef
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +10,7 @@ import kotlinx.coroutines.tasks.await
 interface FireStoreProfileDataSource {
     suspend fun saveProfile(uid: String, profile: Profile)
 
-    suspend fun fetchProfile(uid: String): Flow<Profile?>
+    fun fetchProfile(uid: String): Flow<Profile?>
 }
 
 class DefaultFireStoreProfileDataSource(private val firestore: FirebaseFirestore) :
@@ -21,7 +20,7 @@ class DefaultFireStoreProfileDataSource(private val firestore: FirebaseFirestore
         firestore.profileRef(uid).set(profile)
     }
 
-    override suspend fun fetchProfile(uid: String) = flow {
+    override fun fetchProfile(uid: String) = flow {
         val result = firestore.profileRef(uid).get().await()
 
         val profileEntity = result.toObject(ProfileEntity::class.java) ?: return@flow

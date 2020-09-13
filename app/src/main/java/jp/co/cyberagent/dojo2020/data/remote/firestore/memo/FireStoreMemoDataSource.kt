@@ -11,11 +11,11 @@ import kotlinx.coroutines.tasks.await
 interface FireStoreMemoDataSource {
     suspend fun saveMemo(uid: String, memo: Memo)
 
-    suspend fun fetchAllMemo(uid: String): Flow<List<Memo>>
+    fun fetchAllMemo(uid: String): Flow<List<Memo>>
 
-    suspend fun fetchFilteredMemoByCategory(uid: String, category: String): Flow<List<Memo>?>
+    fun fetchFilteredMemoByCategory(uid: String, category: String): Flow<List<Memo>?>
 
-    suspend fun fetchMemoById(uid: String, id: String): Flow<Memo?>
+    fun fetchMemoById(uid: String, id: String): Flow<Memo?>
 
     suspend fun deleteMemoById(uid: String, id: String)
 }
@@ -30,7 +30,7 @@ class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
         firestore.memosRef(uid).document(id).set(entity)
     }
 
-    override suspend fun fetchAllMemo(uid: String) = flow<List<Memo>> {
+    override fun fetchAllMemo(uid: String) = flow<List<Memo>> {
         try {
             val snapshot = firestore.memosRef(uid).get().await()
             val memoEntityList = snapshot.toObjects(MemoEntity::class.java)
@@ -46,7 +46,7 @@ class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
         }
     }
 
-    override suspend fun fetchFilteredMemoByCategory(
+    override fun fetchFilteredMemoByCategory(
         uid: String,
         category: String
     ) = flow {
@@ -69,7 +69,7 @@ class DefaultFireStoreMemoDataSource(private val firestore: FirebaseFirestore) :
         }
     }
 
-    override suspend fun fetchMemoById(uid: String, id: String) = flow<Memo?> {
+    override fun fetchMemoById(uid: String, id: String) = flow<Memo?> {
         try {
             val snapshot = firestore.memosRef(uid).document(id).get().await()
             val memoEntity = snapshot.toObject(MemoEntity::class.java)
